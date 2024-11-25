@@ -1,14 +1,18 @@
 package com.kitrady;
 
 import java.util.Scanner;
+
 import static java.lang.Math.*;
 
-public class InputGetter {
+public class InputHandler {
     private final double radius; // radius of desired sphere in inches
     private final double gauge; // gauge of crocheter in stitches per inch
     private final double vertGauge; // vertical gauge of crocheter in rows per inch
+    private final double stRadius; // converts the radius from inches to stitches using gauge
+    private final double rowRadius; // creates a vertical radius measured in rows using radius in inches and vertical gauge in rows per inch
+    private final double rowCircumference; // creates a vertical circumference measured in rows using vertical radius measured in rows
 
-    public InputGetter(Scanner input) {
+    public InputHandler(Scanner input) {
         radius = abs(handleInput(input,
                 "\nEnter the radius of your sphere in inches: ",
                 "\nPlease enter just a number that is the radius of your sphere in inches."));
@@ -23,15 +27,23 @@ public class InputGetter {
                 "\nEnter your vertical crochet gauge in rows per inch: ",
                 "\nPlease enter just a number that is your vertical crochet gauge in stitches per inch."));
         input.nextLine();
+
+        stRadius = radius * gauge;
+        rowRadius = radius * vertGauge;
+        rowCircumference = 6.2831 * rowRadius;
     }
 
-    public InputGetter(double radius, double gauge, double vertGauge) {
+    public InputHandler(double radius, double gauge, double vertGauge) {
         this.radius = abs(radius);
         this.gauge = abs(gauge);
         this.vertGauge = abs(vertGauge);
+        stRadius = radius * gauge; // converts the radius from inches to stitches using gauge
+        rowRadius = radius * vertGauge; // creates a vertical radius measured in rows using radius in inches and vertical gauge in rows per inch
+        rowCircumference = 6.2831 * rowRadius; // creates a vertical circumference measured in rows using vertical radius measured in rows
     }
 
     private double handleInput(Scanner input, String message, String correctingMessage) {
+        // will loop until input is correct type
         while (true) {
             System.out.print(message);
 
@@ -61,9 +73,20 @@ public class InputGetter {
         return vertGauge;
     }
 
+    public double getStRadius() {
+        return stRadius;
+    }
+
+    public double getRowCircumference() {
+        return rowCircumference;
+    }
+
     public String toString() {
         return ("\n- Radius = " + radius +
                 "\n- Gauge = " + gauge +
-                "\n- Vertical gauge = " + vertGauge);
+                "\n- Vertical gauge = " + vertGauge +
+                "\n- Radius in stitches = " + stRadius +
+                "\n- Radius in rows = " + rowRadius +
+                "\n- Circumference in rows = " + rowCircumference);
     }
 }
