@@ -11,14 +11,6 @@ public class SphereMaker {
     private double rowCircumference;
     private double degreesPerRow;
 
-    // private because using this constructor would literally break the program
-    // this constructor exists only to fulfill project requirements
-    private SphereMaker() {
-        stRadius = 0;
-        rowCircumference = 0;
-        degreesPerRow = 0;
-    }
-
     public SphereMaker(double stRadius, double rowCircumference) {
         this.stRadius = stRadius; // radius measured in stitches
         this.rowCircumference = rowCircumference;  // circumference measured in rows
