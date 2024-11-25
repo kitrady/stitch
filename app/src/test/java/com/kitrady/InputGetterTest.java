@@ -23,13 +23,13 @@ public class InputGetterTest {
         assertEquals(3.4, classUnderTest.getVertGauge());
     }
 
-//    @Test
-//    public void testHardcodeNegInput() {
-//        InputGetter classUnderTest = new InputGetter(-2, -3, -3);
-//        assertEquals(2, classUnderTest.getRadius());
-//        assertEquals(3, classUnderTest.getGauge());
-//        assertEquals(3, classUnderTest.getVertGauge());
-//    }
+    @Test
+    public void testHardcodeNegInput() {
+        InputGetter classUnderTest = new InputGetter(-2, -3, -3);
+        assertEquals(2, classUnderTest.getRadius());
+        assertEquals(3, classUnderTest.getGauge());
+        assertEquals(3, classUnderTest.getVertGauge());
+    }
 
     @Test
     public void testInputRadius() {
@@ -55,13 +55,13 @@ public class InputGetterTest {
         assertEquals(4, classUnderTest.getVertGauge());
     }
 
-//    @Test
-//    public void testInputNegInput() {
-//        String data = "-1.9\n-4.1\n-3.7\n";
-//        Scanner input = new Scanner(data);
-//        InputGetter classUnderTest = new InputGetter(input);
-//        assertEquals(1.9, classUnderTest.getRadius());
-//        assertEquals(4.1, classUnderTest.getGauge());
-//        assertEquals(3.7, classUnderTest.getVertGauge());
-//    }
+    @Test
+    public void testInputNegInput() {
+        String data = "-1.9\n-4.1\n-3.7\n";
+        Scanner input = new Scanner(data);
+        InputGetter classUnderTest = new InputGetter(input);
+        assertEquals(1.9, classUnderTest.getRadius());
+        assertEquals(4.1, classUnderTest.getGauge());
+        assertEquals(3.7, classUnderTest.getVertGauge());
+    }
 }
