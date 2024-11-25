@@ -91,12 +91,6 @@ public class InputGetter {
         return vertGauge;
     }
 
-    // private because the radius should NOT be changed from what the user inputted, as that would break the program
-    // this method is only here to fulfill project requirements
-    private void setRadius(double radius) {
-        this.radius = radius;
-    }
-
     public String toString() {
         return ("\n- Radius = " + radius +
                 "\n- Gauge = " + gauge +
