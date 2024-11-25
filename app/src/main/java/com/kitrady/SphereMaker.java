@@ -7,9 +7,9 @@ public class SphereMaker {
     // array list where index represents row and value is number of stitches in row
     ArrayList<Integer> stitchesPerRow = new ArrayList<Integer>();
 
-    private double stRadius;
-    private double rowCircumference;
-    private double degreesPerRow;
+    private final double stRadius;
+    private final double rowCircumference;
+    private final double degreesPerRow;
 
     public SphereMaker(double stRadius, double rowCircumference) {
         this.stRadius = stRadius; // radius measured in stitches
