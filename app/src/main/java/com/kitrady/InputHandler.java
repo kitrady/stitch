@@ -37,9 +37,9 @@ public class InputHandler {
         this.radius = abs(radius);
         this.gauge = abs(gauge);
         this.vertGauge = abs(vertGauge);
-        stRadius = radius * gauge; // converts the radius from inches to stitches using gauge
-        rowRadius = radius * vertGauge; // creates a vertical radius measured in rows using radius in inches and vertical gauge in rows per inch
-        rowCircumference = 6.2831 * rowRadius; // creates a vertical circumference measured in rows using vertical radius measured in rows
+        stRadius = radius * gauge;
+        rowRadius = radius * vertGauge;
+        rowCircumference = 6.2831 * rowRadius;
     }
 
     private double handleInput(Scanner input, String message, String correctingMessage) {
@@ -59,6 +59,10 @@ public class InputHandler {
             // further instructions if the received input is incorrect type
             System.out.print(correctingMessage);
         }
+        // should only be expecting numbers, and maybe "yes" or "no"
+        // so could make one big method that checks for double, int, and maybe string of yes or no
+        // that every input handler for each shape could use
+        // and just specify acceptable types in parameters
     }
 
     public double getRadius() {
