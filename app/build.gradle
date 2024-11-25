@@ -1,0 +1,50 @@
+//file:noinspection GroovyAssignabilityCheck
+
+plugins {
+    id 'application'
+    id 'java'
+}
+
+///// Start Plugin Configuration /////
+
+///// End Plugin Configuration /////
+
+// Define the main class for the application
+
+application {
+    mainClass = 'com.kitrady.PatternRunner'
+}
+
+repositories {
+    gradlePluginPortal()
+    mavenCentral()
+}
+
+def javacArgs = [
+        "-Werror", // Treat compiler warnings as errors
+        "-Xlint" // Lint while compiling
+]
+
+test {
+    useJUnitPlatform()
+    reports.html.getRequired().set(false)
+    testLogging {
+        exceptionFormat = 'full'
+        showStandardStreams = true
+        afterSuite{ desc, result -> if (!desc.parent) println "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)" }
+    }
+}
+
+compileJava {
+    options.compilerArgs += javacArgs
+}
+
+compileTestJava {
+    options.compilerArgs += javacArgs
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+

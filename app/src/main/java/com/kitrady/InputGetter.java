@@ -1,3 +1,5 @@
+package com.kitrady;
+
 import java.util.Scanner;
 
 public class InputGetter {

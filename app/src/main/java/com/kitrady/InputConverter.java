@@ -1,3 +1,5 @@
+package com.kitrady;
+
 import java.lang.Math;
 
 public class InputConverter extends InputGetter {
