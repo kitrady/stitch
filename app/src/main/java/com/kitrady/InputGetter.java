@@ -1,6 +1,7 @@
 package com.kitrady;
 
 import java.util.Scanner;
+import static java.lang.Math.*;
 
 public class InputGetter {
     private double radius; // radius of desired sphere in inches
@@ -8,18 +9,18 @@ public class InputGetter {
     private double vertGauge; // vertical gauge of crocheter in rows per inch
 
     public InputGetter(Scanner input) {
-        radius = handleRadiusInput(input);
+        radius = abs(handleRadiusInput(input));
         input.nextLine();
-        gauge = handleGaugeInput(input);
+        gauge = abs(handleGaugeInput(input));
         input.nextLine();
-        vertGauge = handleVertGaugeInput(input);
+        vertGauge = abs(handleVertGaugeInput(input));
         input.nextLine();
     }
 
     public InputGetter(double radius, double gauge, double vertGauge) {
-        this.radius = radius;
-        this.gauge = gauge;
-        this.vertGauge = vertGauge;
+        this.radius = abs(radius);
+        this.gauge = abs(gauge);
+        this.vertGauge = abs(vertGauge);
     }
 
     private double handleRadiusInput(Scanner input) {
