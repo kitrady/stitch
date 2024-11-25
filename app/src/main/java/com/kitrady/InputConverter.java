@@ -3,9 +3,9 @@ package com.kitrady;
 import java.lang.Math;
 
 public class InputConverter extends InputGetter {
-    private double stRadius;
-    private double rowRadius;
-    private double rowCircumference;
+    private final double stRadius;
+    private final double rowRadius;
+    private final double rowCircumference;
 
     public InputConverter(double radius, double gauge, double vertGauge) {
         super(radius, gauge, vertGauge);

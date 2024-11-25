@@ -4,16 +4,24 @@ import java.util.Scanner;
 import static java.lang.Math.*;
 
 public class InputGetter {
-    private double radius; // radius of desired sphere in inches
-    private double gauge; // gauge of crocheter in stitches per inch
-    private double vertGauge; // vertical gauge of crocheter in rows per inch
+    private final double radius; // radius of desired sphere in inches
+    private final double gauge; // gauge of crocheter in stitches per inch
+    private final double vertGauge; // vertical gauge of crocheter in rows per inch
 
     public InputGetter(Scanner input) {
-        radius = abs(handleRadiusInput(input));
+        radius = abs(handleInput(input,
+                "\nEnter the radius of your sphere in inches: ",
+                "\nPlease enter just a number that is the radius of your sphere in inches."));
         input.nextLine();
-        gauge = abs(handleGaugeInput(input));
+
+        gauge = abs(handleInput(input,
+                "\nEnter your crochet gauge in stitches per inch: ",
+                "\nPlease enter just a number that is your crochet gauge in stitches per inch."));
         input.nextLine();
-        vertGauge = abs(handleVertGaugeInput(input));
+
+        vertGauge = abs(handleInput(input,
+                "\nEnter your vertical crochet gauge in rows per inch: ",
+                "\nPlease enter just a number that is your vertical crochet gauge in stitches per inch."));
         input.nextLine();
     }
 
@@ -23,10 +31,9 @@ public class InputGetter {
         this.vertGauge = abs(vertGauge);
     }
 
-    private double handleRadiusInput(Scanner input) {
-        // will loop until input for radius is correct type
+    private double handleInput(Scanner input, String message, String correctingMessage) {
         while (true) {
-            System.out.print("\nEnter the radius of your sphere in inches: ");
+            System.out.print(message);
 
             // logic to ensure input that is received is an int or double but no other type
             if (input.hasNextDouble()) {
@@ -38,45 +45,7 @@ public class InputGetter {
             input.nextLine(); // clearing buffer so if statements evaluate properly on subsequent loops
 
             // further instructions if the received input is incorrect type
-            System.out.print("\nPlease enter just a number that is the radius of your sphere in inches.");
-        }
-    }
-
-    private double handleGaugeInput(Scanner input) {
-        // will loop until input for gauge is correct type
-        while (true) {
-            System.out.print("\nEnter your crochet gauge in stitches per inch: ");
-
-            // logic to ensure input that is received is an int or double but no other type
-            if (input.hasNextDouble()) {
-                return input.nextDouble();
-            }
-            if (input.hasNextInt()) {
-                return input.nextInt();
-            }
-            input.nextLine(); // clearing buffer so if statements evaluate properly on subsequent loops
-
-            // further instructions if the received input is incorrect type
-            System.out.print("\nPlease enter just a number that is your crochet gauge in stitches per inch.");
-        }
-    }
-
-    private double handleVertGaugeInput(Scanner input) {
-        // will loop until input for vertical gauge is correct type
-        while (true) {
-            System.out.print("\nEnter your vertical crochet gauge in rows per inch: ");
-
-            // logic to ensure input that is received is an int or double but no other type
-            if (input.hasNextDouble()) {
-                return input.nextDouble();
-            }
-            if (input.hasNextInt()) {
-                return input.nextInt();
-            }
-            input.nextLine(); // clearing buffer so if statements evaluate properly on subsequent loops
-
-            // further instructions if the recieved input is incorrect type
-            System.out.print("\nPlease enter just a number that is your vertical crochet gauge in stitches per inch.");
+            System.out.print(correctingMessage);
         }
     }
 
