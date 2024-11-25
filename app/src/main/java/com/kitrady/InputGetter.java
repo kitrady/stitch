@@ -3,13 +3,11 @@ package com.kitrady;
 import java.util.Scanner;
 
 public class InputGetter {
-    Scanner input = new Scanner(System.in);
-
     private double radius; // radius of desired sphere in inches
     private double gauge; // gauge of crocheter in stitches per inch
     private double vertGauge; // vertical gauge of crocheter in rows per inch
 
-    public InputGetter() {
+    public InputGetter(Scanner input) {
         radius = handleRadiusInput(input);
         input.nextLine();
         gauge = handleGaugeInput(input);
