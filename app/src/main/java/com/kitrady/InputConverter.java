@@ -7,15 +7,6 @@ public class InputConverter extends InputGetter {
     private double rowRadius;
     private double rowCircumference;
 
-    // private because using this constructor would literally break the program
-    // this constructor exists only to fulfill project requirements
-    private InputConverter() {
-        super(0, 0, 0);
-        stRadius = 0;
-        rowRadius = 0;
-        rowCircumference = 0;
-    }
-
     public InputConverter(double radius, double gauge, double vertGauge) {
         super(radius, gauge, vertGauge);
         stRadius = radius * gauge; // converts the radius from inches to stitches using gauge
