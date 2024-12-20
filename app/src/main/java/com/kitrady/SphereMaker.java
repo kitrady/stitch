@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.lang.Math;
 
 public class SphereMaker {
-    // array list where index represents row and value is number of stitches in row
-    ArrayList<Integer> stitchesPerRow = new ArrayList<Integer>();
-
+    private ArrayList<Integer> stitchesPerRow = new ArrayList<Integer>(); // array list where index represents row and value is number of stitches in row
     private final double stRadius;
     private final double rowCircumference;
     private final double degreesPerRow;
@@ -37,6 +35,11 @@ public class SphereMaker {
         for (int i = 0; i < originalSize; i++) {
             stitchesPerRow.add(stitchesPerRow.get(originalSize - i - 1));
         }
+    }
+
+    public ArrayList<Integer> getStitchesPerRow() {
+        generateRows();
+        return stitchesPerRow;
     }
 
     public void printRows() {
