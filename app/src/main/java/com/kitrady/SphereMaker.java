@@ -30,7 +30,7 @@ public class SphereMaker {
 
         int originalSize = stitchesPerRow.size();
         // if more than half of the angle increment was left, there is a "missing" row
-        if (angle + degreesPerRow > degreesPerRow / 2) {
+        if (angle + degreesPerRow >= degreesPerRow / 2) {
             stitchesPerRow.add((int) Math.round(6.2831 * stRadius)); // adds "missing" row using an angle of zero, aka full radius
         }
         // since a sphere has identical hemispheres, reverse current stitch counts to get rest of sphere
