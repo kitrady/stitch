@@ -9,10 +9,11 @@ public class PatternRunner {
         InputHandler objInputHandler = new InputHandler(1.15, 4, 4);
 //        InputHandler objInputHandler = new InputHandler(input);
         SphereMaker objSphereMaker = new SphereMaker(objInputHandler.getStRadius(), objInputHandler.getRowCircumference());
+        PatternFormatter objPatternFormatter =  new PatternFormatter(objSphereMaker.getStitchesPerRow());
 
         System.out.println("\nobjInputGetter:" + objInputHandler);
         System.out.println("\nobjSphereMaker:" + objSphereMaker);
 
-        objSphereMaker.printRows();
+        objPatternFormatter.printPattern();
     }
 }
