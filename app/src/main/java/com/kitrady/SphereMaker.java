@@ -21,16 +21,21 @@ public class SphereMaker {
         // computes stitches per row, starting from top of sphere (aka 90 degrees) and ending at side of sphere (aka 0 degrees)
         // uses degrees per row to increment angle properly
         // no row can be at exact top, so starts with one row offset
-        for (double angle = (90 - degreesPerRow); angle >= 0; angle -= degreesPerRow) {
+        double angle;
+        for (angle = (90 - degreesPerRow); angle >= 0; angle -= degreesPerRow) {
             double currentRadius = Math.cos(Math.toRadians(angle)) * stRadius; // finds radius associated with current row/angle using cosine
             double currentCircumference = 6.2831 * currentRadius; // finds circumference associated with current row/angle using circumference formula
             stitchesPerRow.add((int) Math.round(currentCircumference)); // expresses circumference as whole number of stitches and adds to list of stitches per row
         }
 
+        int originalSize = stitchesPerRow.size();
+        // if more than half of the angle increment was left, there is a "missing" row
+        if (angle + degreesPerRow > degreesPerRow / 2) {
+            stitchesPerRow.add((int) Math.round(6.2831 * stRadius)); // adds "missing" row using an angle of zero, aka full radius
+        }
         // since a sphere has identical hemispheres, reverse current stitch counts to get rest of sphere
-        int size = stitchesPerRow.size();
-        for (int i = 0; i < size; i++) {
-            stitchesPerRow.add(stitchesPerRow.get(size - i - 1));
+        for (int i = 0; i < originalSize; i++) {
+            stitchesPerRow.add(stitchesPerRow.get(originalSize - i - 1));
         }
     }
 
