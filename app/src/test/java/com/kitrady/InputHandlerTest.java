@@ -72,8 +72,8 @@ public class InputHandlerTest {
     }
 
     @Test
-    public void testRowCircumference() {
+    public void testRdCircumference() {
         InputHandler classUnderTest = new InputHandler(1.1, 4.7, 3.9);
-        assertEquals((6.2831 * 1.1 * 3.9), classUnderTest.getRowCircumference());
+        assertEquals((6.2831 * 1.1 * 3.9), classUnderTest.getRdCircumference());
     }
 }
