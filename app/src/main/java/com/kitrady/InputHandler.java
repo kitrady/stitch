@@ -81,7 +81,7 @@ public class InputHandler {
         return stRadius;
     }
 
-    public double getRowCircumference() {
+    public double getRdCircumference() {
         return rowCircumference;
     }
 
