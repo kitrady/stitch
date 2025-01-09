@@ -41,8 +41,16 @@ public class PatternFormatter {
 
                 // checks if any single crochets are needed
                 if (numStitchesInRepeat - 2 > 0) {
-                    currentRound += "(" + (numStitchesInRepeat - 2) + "sc, inc) x" + numIncreases;
+                    // checks if there are multiple repeats in the round
+                    if (numIncreases > 1) {
+                        currentRound += "(" + (numStitchesInRepeat - 2) + " sc, inc) x" + numIncreases;
+                    }
+                    // otherwise does this if only one repeat
+                    else {
+                        currentRound += (numStitchesInRepeat - 2) + " sc, inc";
+                    }
                 }
+
                 // round is all increases if no single crochets are needed
                 else {
                     currentRound += "inc in each st in round";
@@ -86,7 +94,7 @@ public class PatternFormatter {
 
                 // checks if any single crochets are needed
                 if (numStitchesInRepeat - 2 > 0) {
-                    currentRound += "(" + (numStitchesInRepeat - 2) + "sc, dec) x" + numDecreases;
+                    currentRound += "(" + (numStitchesInRepeat - 2) + " sc, dec) x" + numDecreases;
                 }
                 // round is all decreases if no single crochets are needed
                 else {
