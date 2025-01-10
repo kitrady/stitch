@@ -6,6 +6,7 @@ import java.util.Collections;
 public class PatternFormatter {
     private ArrayList<Integer> stitchesPerRd = new ArrayList<Integer>();
     private ArrayList<String> formattedPattern = new ArrayList<String>();
+    private int alternateRdCounter = 1; // alternate rounds are used to make sure the increases don't line up and create bubbles
 
     public PatternFormatter(ArrayList<Integer> stitchesPerRd) {
         this.stitchesPerRd = stitchesPerRd;
@@ -31,23 +32,41 @@ public class PatternFormatter {
 
             // checks if any increases are needed
             if (numIncreases > 0) {
-                int numStitchesInRepeat = currentStTotal / numIncreases;
+                int numStitchesInSection = currentStTotal / numIncreases;
+                int numScInSection = numStitchesInSection - 2;
 
                 // if increases don't divide evenly into stitch total, calculates remaining stitches
                 int extraStitches = 0;
-                if (numStitchesInRepeat * numIncreases != currentStTotal) {
-                    extraStitches = currentStTotal - (numStitchesInRepeat * numIncreases);
+                if (numStitchesInSection * numIncreases != currentStTotal) {
+                    extraStitches = currentStTotal - (numStitchesInSection * numIncreases);
                 }
 
                 // checks if any single crochets are needed
-                if (numStitchesInRepeat - 2 > 0) {
-                    // checks if there are multiple repeats in the round
+                if (numScInSection > 0) {
+                    // checks if there are multiple sections in the round
                     if (numIncreases > 1) {
-                        currentRound += "(" + (numStitchesInRepeat - 2) + " sc, inc) x" + numIncreases;
+                        // checks if round should have alternate format where one of the sections is split in half
+                        if (alternateRdCounter % 2 == 0) {
+                            int numScInHalfSection = numScInSection / 2; // finds sc in each part of half section
+
+                            // adds "second" half of sc to extra stitches, just because this is a convenient way to incorporate the stitches
+                            extraStitches += numScInHalfSection;
+
+                            // checks if truncation occurred when finding number of sc in half section
+                            if (numScInHalfSection * 2 != numScInSection) {
+                                extraStitches += 1; // if truncation did occur, add an extra stitch
+                            }
+                            currentRound += numScInHalfSection + " sc, inc, (" + numScInSection + " sc, inc) x" + (numIncreases - 1);
+                        }
+                        // otherwise, uses normal format
+                        else {
+                            currentRound += "(" + numScInSection + " sc, inc) x" + numIncreases;
+                        }
+                        alternateRdCounter++;
                     }
-                    // otherwise does this if only one repeat
+                    // otherwise there is only one section
                     else {
-                        currentRound += (numStitchesInRepeat - 2) + " sc, inc";
+                        currentRound += numScInSection + " sc, inc";
                     }
                 }
 
@@ -84,17 +103,40 @@ public class PatternFormatter {
 
             // checks if any decreases are needed
             if (numDecreases > 0) {
-                int numStitchesInRepeat = previousStTotal / numDecreases;
+                int numStitchesInSection = previousStTotal / numDecreases;
+                int numScInSection = numStitchesInSection - 2;
 
                 // if decreases don't divide evenly into stitch total, calculates remaining stitches
                 int extraStitches = 0;
-                if (numStitchesInRepeat * numDecreases != previousStTotal) {
-                    extraStitches = previousStTotal - (numStitchesInRepeat * numDecreases);
+                if (numStitchesInSection * numDecreases != previousStTotal) {
+                    extraStitches = previousStTotal - (numStitchesInSection * numDecreases);
                 }
 
                 // checks if any single crochets are needed
-                if (numStitchesInRepeat - 2 > 0) {
-                    currentRound += "(" + (numStitchesInRepeat - 2) + " sc, dec) x" + numDecreases;
+                if (numScInSection > 0) {
+                    // checks if there are multiple sections in the round
+                    if (numDecreases > 1) {
+                        if (alternateRdCounter % 2 == 0) {
+                            int numScInHalfSection = numScInSection / 2; // finds sc in each part of half section
+
+                            // adds "second" half of sc to extra stitches, just because this is a convenient way to incorporate the stitches
+                            extraStitches += numScInHalfSection;
+
+                            // checks if truncation occurred when finding number of sc in half section
+                            if (numScInHalfSection * 2 != numScInSection) {
+                                extraStitches += 1; // if truncation did occur, add an extra stitch
+                            }
+                            currentRound += numScInHalfSection + " sc, dec, (" + numScInSection + " sc, dec) x" + (numDecreases - 1);
+                        }
+                        else {
+                            currentRound += "(" + (numStitchesInSection - 2) + " sc, dec) x" + numDecreases;
+                        }
+                        alternateRdCounter++;
+                    }
+                    // otherwise, there is only one section
+                    else {
+                        currentRound += numScInSection + " sc, dec";
+                    }
                 }
                 // round is all decreases if no single crochets are needed
                 else {
