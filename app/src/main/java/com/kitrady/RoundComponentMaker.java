@@ -1,0 +1,163 @@
+package com.kitrady;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class RoundComponentMaker {
+    private final ArrayList<Integer> stitchesPerRound;
+    private final ArrayList<String> formattedPattern = new ArrayList<>();
+    private int alternateRoundToPreventBubblesCounter = 1;
+
+    public RoundComponentMaker(ArrayList<Integer> stitchesPerRound) {
+        this.stitchesPerRound = stitchesPerRound;
+    }
+
+    private void formatPattern() {
+        formattedPattern.add("Rd 1: " + stitchesPerRound.getFirst() + " sc in magic ring (" + stitchesPerRound.getFirst() + ")");
+
+        int finalLargestRoundIndex = stitchesPerRound.lastIndexOf(Collections.max(stitchesPerRound));
+        formatIncreaseRounds(finalLargestRoundIndex);
+        formatDecreaseRounds(finalLargestRoundIndex);
+    }
+
+    public void formatIncreaseRounds(int finalLargestRoundIndex) {
+        for (int i = 1; i < finalLargestRoundIndex; i++) {
+            String inProgressRound = "Rd " + (i + 1) + ": ";
+
+            RoundComponentAssembler assembler = new RoundComponentAssembler();
+
+            int previousStitchTotal = stitchesPerRound.get(i - 1);
+            int currentStitchTotal = stitchesPerRound.get(i);
+            int numIncreases = currentStitchTotal - previousStitchTotal;
+
+            if (numIncreases == 0) {
+                inProgressRound += "sc in each st in round";
+            } else {
+                int numStitchesInSection = currentStitchTotal / numIncreases;
+                int numSingleCrochetInSection = numStitchesInSection - 2;
+
+                int extraStitches = 0;
+                if (numStitchesInSection * numIncreases != currentStitchTotal) {
+                    extraStitches = currentStitchTotal - (numStitchesInSection * numIncreases);
+                }
+
+                if (numSingleCrochetInSection == 0) {
+                    inProgressRound += "inc in each st in round";
+                } else {
+                    // the numIncreases > 1 is needed because alternate rounds need two repeats to work
+                    if (alternateRoundToPreventBubblesCounter % 2 == 0 && numIncreases > 1) {
+                        int numSingleCrochetInHalfSection = numSingleCrochetInSection / 2;
+
+                        assembler.updateRoundComponents(numSingleCrochetInHalfSection, ComponentTypes.SINGLE_CROCHET);
+                        assembler.updateRoundComponents(1, ComponentTypes.INCREASE);
+
+                        assembler.updateRoundComponents(numSingleCrochetInSection, ComponentTypes.REPEAT_SINGLE_CROCHET);
+
+                        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_INCREASE);
+
+                        assembler.updateRoundComponents(numIncreases - 1, ComponentTypes.REPEAT_COUNT);
+
+                        if (numSingleCrochetInHalfSection * 2 != numSingleCrochetInSection) {
+                            numSingleCrochetInHalfSection += 1;
+                        }
+                        assembler.updateRoundComponents(numSingleCrochetInHalfSection, ComponentTypes.SINGLE_CROCHET);
+                    } else {
+                        assembler.updateRoundComponents(numSingleCrochetInSection, ComponentTypes.REPEAT_SINGLE_CROCHET);
+
+                        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_INCREASE);
+
+                        assembler.updateRoundComponents(numIncreases, ComponentTypes.REPEAT_COUNT);
+                    }
+                    alternateRoundToPreventBubblesCounter++;
+                }
+
+                if (extraStitches > 0) {
+                    assembler.updateRoundComponents(extraStitches, ComponentTypes.SINGLE_CROCHET);
+                }
+            }
+
+            inProgressRound += assembler.assemble();
+
+            inProgressRound += " (" + currentStitchTotal + ")";
+
+            formattedPattern.add(inProgressRound);
+        }
+    }
+
+    public void formatDecreaseRounds(int finalLargestRdIndex) {
+        for (int i = finalLargestRdIndex; i < stitchesPerRound.size(); i++) {
+            String inProgressRound = "Rd " + (i + 1) + ": ";
+
+            RoundComponentAssembler assembler = new RoundComponentAssembler();
+
+            int previousStitchTotal = stitchesPerRound.get(i - 1);
+            int currentStitchTotal = stitchesPerRound.get(i);
+            int numDecreases = previousStitchTotal - currentStitchTotal;
+
+            if (numDecreases == 0) {
+                inProgressRound += "sc in each st in round";
+            } else {
+                int numStitchesInSection = previousStitchTotal / numDecreases;
+                int numSingleCrochetInSection = numStitchesInSection - 2;
+
+                int extraStitches = 0;
+                if (numStitchesInSection * numDecreases != previousStitchTotal) {
+                    extraStitches = previousStitchTotal - (numStitchesInSection * numDecreases);
+                }
+
+                if (numSingleCrochetInSection == 0) {
+                    inProgressRound += "dec in each st in round";
+                } else {
+                    // the numDecreases > 1 in needed because alternate rounds need two repeats to work
+                    if (alternateRoundToPreventBubblesCounter % 2 == 0 && numDecreases > 1) {
+                        int numSingleCrochetInHalfSection = numSingleCrochetInSection / 2;
+
+                        assembler.updateRoundComponents(numSingleCrochetInHalfSection, ComponentTypes.SINGLE_CROCHET);
+                        assembler.updateRoundComponents(1, ComponentTypes.DECREASE);
+
+                        assembler.updateRoundComponents(numSingleCrochetInSection, ComponentTypes.REPEAT_SINGLE_CROCHET);
+
+                        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_DECREASE);
+
+                        assembler.updateRoundComponents(numDecreases - 1, ComponentTypes.REPEAT_COUNT);
+
+                        if (numSingleCrochetInHalfSection * 2 != numSingleCrochetInSection) {
+                            numSingleCrochetInHalfSection += 1;
+                        }
+
+                        assembler.updateRoundComponents(numSingleCrochetInHalfSection, ComponentTypes.SINGLE_CROCHET);
+                    } else {
+                        assembler.updateRoundComponents(numSingleCrochetInSection, ComponentTypes.REPEAT_SINGLE_CROCHET);
+
+                        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_DECREASE);
+
+                        assembler.updateRoundComponents(numDecreases, ComponentTypes.REPEAT_COUNT);
+                    }
+                    alternateRoundToPreventBubblesCounter++;
+                }
+
+                if (extraStitches > 0) {
+                    assembler.updateRoundComponents(extraStitches, ComponentTypes.SINGLE_CROCHET);
+                }
+            }
+
+            inProgressRound += assembler.assemble();
+
+            inProgressRound += " (" + currentStitchTotal + ")";
+
+            formattedPattern.add(inProgressRound);
+        }
+    }
+
+    public ArrayList<String> getFormattedPattern() {
+        formatPattern();
+        return formattedPattern;
+    }
+
+    public void printPattern() {
+        formatPattern();
+        for (String s : formattedPattern) {
+            System.out.print("\n" + s);
+        }
+    }
+}
