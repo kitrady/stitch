@@ -16,7 +16,6 @@ public class RoundComponentAssembler {
         roundComponentTypes.add(componentType);
     }
 
-    // TODO make this multiple methods, probably one for empty round and one for not empty round
     public String assemble() {
         StringBuilder inProgressRound = new StringBuilder();
         ComponentTypes previousComponentType = null;
