@@ -42,6 +42,18 @@ public class SphereMaker {
         return stitchesPerRd;
     }
 
+    public double getStRadius() {
+        return stRadius;
+    }
+
+    public double getRowCircumference() {
+        return rowCircumference;
+    }
+
+    public double getDegreesPerRd() {
+        return degreesPerRd;
+    }
+
     public String toString() {
         return ("\n- Radius in stitches = " + stRadius +
                 "\n- Circumference in rows = " + rowCircumference +
