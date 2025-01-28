@@ -11,7 +11,7 @@ public class PatternFormattingTest {
         ArrayList<Integer> stitchesPerRd = new ArrayList<>(List.of(6, 12, 18, 23, 26, 29, 31, 31, 31, 29, 26, 23, 18, 12, 6));
         RoundComponentMaker objRoundComponentMaker =  new RoundComponentMaker(stitchesPerRd);
         objRoundComponentMaker.formatPattern();
-        ArrayList<String> formattedPattern = objRoundComponentMaker.getFormattedPattern();
+        List<String> formattedPattern = objRoundComponentMaker.getFormattedPattern();
         String output = "";
         for (String s : formattedPattern) {
             output += "\n" + s;
@@ -40,7 +40,7 @@ Rd 15: dec in each st in round (6)""", output);
         ArrayList<Integer> stitchesPerRd = new ArrayList<>(List.of(6, 12, 18, 22, 26, 28, 29, 29, 28, 26, 22, 18, 12, 6));
         RoundComponentMaker objRoundComponentMaker =  new RoundComponentMaker(stitchesPerRd);
         objRoundComponentMaker.formatPattern();
-        ArrayList<String> formattedPattern = objRoundComponentMaker.getFormattedPattern();
+        List<String> formattedPattern = objRoundComponentMaker.getFormattedPattern();
         String output = "";
         for (String s : formattedPattern) {
             output += "\n" + s;

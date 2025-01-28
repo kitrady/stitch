@@ -14,6 +14,20 @@ public class PatternRunner {
         System.out.println("\nobjInputGetter:" + objInputHandler);
         System.out.println("\nobjSphereMaker:" + objSphereMaker);
 
+//        TODO refactor maker and assembler class
+//        have maker make only components, absolutely zero strings
+//        have assembler make all the components into strings
+//        this would allow the formatted pattern list to just be a list of components
+//        which does magically make everything more encapsulated and tests more realistic
+//
+//        example:
+//        List<CrochetRound> components = objRoundComponentMaker.makeComponents();
+//        printedPattern = patternPrinter.format(components)
+//        System.out.println(printedPattern);
+
+        // TODO add test for alternate format with odd single crochet in section
+        // TODO check for any other ArrayList types that could just be list
+
         objRoundComponentMaker.formatPattern();
         objRoundComponentMaker.printPattern();
     }
