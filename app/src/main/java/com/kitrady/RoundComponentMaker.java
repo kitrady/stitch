@@ -2,14 +2,15 @@ package com.kitrady;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class RoundComponentMaker {
-    private final ArrayList<Integer> stitchesPerRound;
-    private final ArrayList<String> formattedPattern = new ArrayList<>();
+    private final List<Integer> stitchesPerRound;
+    private final List<String> formattedPattern = new ArrayList<>();
     private int alternateRoundToPreventBubblesCounter = 1;
     private RoundComponentAssembler assembler;
 
-    public RoundComponentMaker(ArrayList<Integer> stitchesPerRound) {
+    public RoundComponentMaker(List<Integer> stitchesPerRound) {
         this.stitchesPerRound = stitchesPerRound;
     }
 
@@ -21,7 +22,7 @@ public class RoundComponentMaker {
         formatDecreaseRounds(stitchesPerRound, finalLargestRoundIndex);
     }
 
-    private void formatIncreaseRounds(ArrayList<Integer> stitchesPerRound, int finalLargestRoundIndex) {
+    private void formatIncreaseRounds(List<Integer> stitchesPerRound, int finalLargestRoundIndex) {
         for (int i = 1; i < finalLargestRoundIndex; i++) {
             String inProgressRound = "Rd " + (i + 1) + ": ";
 
@@ -90,7 +91,7 @@ public class RoundComponentMaker {
         }
     }
 
-    private void formatDecreaseRounds(ArrayList<Integer> stitchesPerRound, int finalLargestRdIndex) {
+    private void formatDecreaseRounds(List<Integer> stitchesPerRound, int finalLargestRdIndex) {
         for (int i = finalLargestRdIndex; i < stitchesPerRound.size(); i++) {
             String inProgressRound = "Rd " + (i + 1) + ": ";
 
@@ -155,11 +156,11 @@ public class RoundComponentMaker {
         }
     }
 
-    public RoundComponentAssembler getAssembler() {
+    RoundComponentAssembler getAssembler() {
         return assembler;
     }
 
-    public ArrayList<String> getFormattedPattern() {
+    public List<String> getFormattedPattern() {
         return formattedPattern;
     }
 
@@ -169,7 +170,7 @@ public class RoundComponentMaker {
         }
     }
 
-    public void formatGivenRounds(ArrayList<Integer> stitchesPerRound, boolean isDecrease) {
+    void formatGivenRounds(List<Integer> stitchesPerRound, boolean isDecrease) {
         if (isDecrease) {
             formatDecreaseRounds(stitchesPerRound, 1);
         } else {
