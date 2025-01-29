@@ -59,10 +59,6 @@ public class InputHandler {
             // further instructions if the received input is incorrect type
             System.out.print(correctingMessage);
         }
-        // should only be expecting numbers, and maybe "yes" or "no"
-        // so could make one big method that checks for double, int, and maybe string of yes or no
-        // that every input handler for each shape could use
-        // and just specify acceptable types in parameters
     }
 
     public double getRadius() {

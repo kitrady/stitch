@@ -16,6 +16,14 @@ public class RoundComponentAssembler {
         roundComponentTypes.add(componentType);
     }
 
+    public ArrayList<Integer> getRoundComponentCounts() {
+        return roundComponentCounts;
+    }
+
+    public ArrayList<ComponentTypes> getRoundComponentTypes() {
+        return roundComponentTypes;
+    }
+
     public String assemble() {
         StringBuilder inProgressRound = new StringBuilder();
         ComponentTypes previousComponentType = null;
@@ -56,10 +64,7 @@ public class RoundComponentAssembler {
                         possibleRepeatSingleCrochets = currentComponentCount;
                         break;
 
-                    case REPEAT_INCREASE:
-                        break;
-
-                    case REPEAT_DECREASE:
+                    case REPEAT_INCREASE, REPEAT_DECREASE:
                         break;
 
                     case REPEAT_COUNT:
@@ -106,10 +111,7 @@ public class RoundComponentAssembler {
                         possibleRepeatSingleCrochets = currentComponentCount;
                         break;
 
-                    case REPEAT_INCREASE:
-                        break;
-
-                    case REPEAT_DECREASE:
+                    case REPEAT_INCREASE, REPEAT_DECREASE:
                         break;
 
                     case REPEAT_COUNT:
