@@ -61,15 +61,15 @@ public class InputHandler {
         }
     }
 
-    public double getRadius() {
+    double getRadius() {
         return radius;
     }
 
-    public double getGauge() {
+    double getGauge() {
         return gauge;
     }
 
-    public double getVertGauge() {
+    double getVertGauge() {
         return vertGauge;
     }
 

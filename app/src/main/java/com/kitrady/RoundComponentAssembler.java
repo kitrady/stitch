@@ -1,10 +1,11 @@
 package com.kitrady;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RoundComponentAssembler {
-    private final ArrayList<Integer> roundComponentCounts;
-    private final ArrayList<ComponentTypes> roundComponentTypes;
+    private final List<Integer> roundComponentCounts;
+    private final List<ComponentTypes> roundComponentTypes;
 
     public RoundComponentAssembler() {
         roundComponentCounts = new ArrayList<>();
@@ -16,11 +17,11 @@ public class RoundComponentAssembler {
         roundComponentTypes.add(componentType);
     }
 
-    public ArrayList<Integer> getRoundComponentCounts() {
+    List<Integer> getRoundComponentCounts() {
         return roundComponentCounts;
     }
 
-    public ArrayList<ComponentTypes> getRoundComponentTypes() {
+    List<ComponentTypes> getRoundComponentTypes() {
         return roundComponentTypes;
     }
 

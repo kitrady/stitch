@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PatternFormattingTest {
     @Test
     public void patternFormatterTest1() {
-        ArrayList<Integer> stitchesPerRd = new ArrayList<>(List.of(6, 12, 18, 23, 26, 29, 31, 31, 31, 29, 26, 23, 18, 12, 6));
+        List<Integer> stitchesPerRd = List.of(6, 12, 18, 23, 26, 29, 31, 31, 31, 29, 26, 23, 18, 12, 6);
         RoundComponentMaker objRoundComponentMaker =  new RoundComponentMaker(stitchesPerRd);
         objRoundComponentMaker.formatPattern();
         List<String> formattedPattern = objRoundComponentMaker.getFormattedPattern();
@@ -37,7 +37,7 @@ Rd 15: dec in each st in round (6)""", output);
 
     @Test
     public void patternFormatterTest2() {
-        ArrayList<Integer> stitchesPerRd = new ArrayList<>(List.of(6, 12, 18, 22, 26, 28, 29, 29, 28, 26, 22, 18, 12, 6));
+        List<Integer> stitchesPerRd = List.of(6, 12, 18, 22, 26, 28, 29, 29, 28, 26, 22, 18, 12, 6);
         RoundComponentMaker objRoundComponentMaker =  new RoundComponentMaker(stitchesPerRd);
         objRoundComponentMaker.formatPattern();
         List<String> formattedPattern = objRoundComponentMaker.getFormattedPattern();
