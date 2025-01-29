@@ -25,8 +25,9 @@ public class PatternRunner {
 //        printedPattern = patternPrinter.format(components)
 //        System.out.println(printedPattern);
 
-        // TODO add test for alternate format with odd single crochet in section
         // TODO check for any other ArrayList types that could just be list
+        // TODO add more descriptive names to potentially remove comments
+        // TODO consider scope of all methods and make sure they make sense
 
         objRoundComponentMaker.formatPattern();
         objRoundComponentMaker.printPattern();
