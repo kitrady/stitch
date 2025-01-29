@@ -2,9 +2,10 @@ package com.kitrady;
 
 import java.util.ArrayList;
 import java.lang.Math;
+import java.util.List;
 
 public class SphereMaker {
-    private ArrayList<Integer> stitchesPerRd = new ArrayList<Integer>(); // array list where index represents round and value is number of stitches in round
+    private final List<Integer> stitchesPerRd = new ArrayList<Integer>(); // array list where index represents round and value is number of stitches in round
     private final double stRadius;
     private final double rowCircumference;
     private final double degreesPerRd;
@@ -37,20 +38,20 @@ public class SphereMaker {
         }
     }
 
-    public ArrayList<Integer> getStitchesPerRd() {
+    public List<Integer> getStitchesPerRd() {
         generateRounds();
         return stitchesPerRd;
     }
 
-    public double getStRadius() {
+    double getStRadius() {
         return stRadius;
     }
 
-    public double getRowCircumference() {
+    double getRowCircumference() {
         return rowCircumference;
     }
 
-    public double getDegreesPerRd() {
+    double getDegreesPerRd() {
         return degreesPerRd;
     }
 
