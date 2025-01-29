@@ -109,6 +109,21 @@ public class RoundComponentMakerTest {
     }
 
     @Test
+    public void testAlternateFormatForIncreaseOddSplit() {
+        List<Integer> stitchesPerRound = List.of(18, 21);
+        RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
+        maker.formatGivenRounds(stitchesPerRound, false);
+        maker.formatGivenRounds(stitchesPerRound, false);
+        RoundComponentAssembler assembler = maker.getAssembler();
+
+        ArrayList<Integer> counts = new ArrayList<>(List.of(2, 1, 5, 1, 2, 3));
+        assertEquals(counts, assembler.getRoundComponentCounts());
+
+        ArrayList<ComponentTypes> types = new ArrayList<>(List.of(ComponentTypes.SINGLE_CROCHET, ComponentTypes.INCREASE, ComponentTypes.REPEAT_SINGLE_CROCHET, ComponentTypes.REPEAT_INCREASE, ComponentTypes.REPEAT_COUNT, ComponentTypes.SINGLE_CROCHET));
+        assertEquals(types, assembler.getRoundComponentTypes());
+    }
+
+    @Test
     public void testAlternateFormatForDecrease() {
         List<Integer> stitchesPerRound = List.of(12, 9);
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
@@ -117,6 +132,21 @@ public class RoundComponentMakerTest {
         RoundComponentAssembler assembler = maker.getAssembler();
 
         List<Integer> counts = List.of(1, 1, 2, 1, 2, 1);
+        assertEquals(counts, assembler.getRoundComponentCounts());
+
+        List<ComponentTypes> types = List.of(ComponentTypes.SINGLE_CROCHET, ComponentTypes.DECREASE, ComponentTypes.REPEAT_SINGLE_CROCHET, ComponentTypes.REPEAT_DECREASE, ComponentTypes.REPEAT_COUNT, ComponentTypes.SINGLE_CROCHET);
+        assertEquals(types, assembler.getRoundComponentTypes());
+    }
+
+    @Test
+    public void testAlternateFormatForDecreaseOddSplit() {
+        List<Integer> stitchesPerRound = List.of(21, 18);
+        RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
+        maker.formatGivenRounds(stitchesPerRound, true);
+        maker.formatGivenRounds(stitchesPerRound, true);
+        RoundComponentAssembler assembler = maker.getAssembler();
+
+        List<Integer> counts = List.of(2, 1, 5, 1, 2, 3);
         assertEquals(counts, assembler.getRoundComponentCounts());
 
         List<ComponentTypes> types = List.of(ComponentTypes.SINGLE_CROCHET, ComponentTypes.DECREASE, ComponentTypes.REPEAT_SINGLE_CROCHET, ComponentTypes.REPEAT_DECREASE, ComponentTypes.REPEAT_COUNT, ComponentTypes.SINGLE_CROCHET);
