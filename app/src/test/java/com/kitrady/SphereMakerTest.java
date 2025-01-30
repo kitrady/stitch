@@ -2,7 +2,6 @@ package com.kitrady;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,19 +10,19 @@ public class SphereMakerTest {
     @Test
     public void testGetStRadius() {
         SphereMaker maker = new SphereMaker(4.6, 28.9);
-        assertEquals(4.6, maker.getStRadius());
+        assertEquals(4.6, maker.getRadiusInStitches());
     }
 
     @Test
     public void testGetRowCircumference() {
         SphereMaker maker = new SphereMaker(4.6, 28.9);
-        assertEquals(28.9, maker.getRowCircumference());
+        assertEquals(28.9, maker.getCircumferenceInRounds());
     }
 
     @Test
     public void testGetDegreesPerRd() {
         SphereMaker maker = new SphereMaker(4.6, 28.9);
-        assertEquals(12.456747404844291, maker.getDegreesPerRd());
+        assertEquals(12.456747404844291, maker.getDegreesPerRound());
     }
 
     @Test

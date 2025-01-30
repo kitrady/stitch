@@ -68,7 +68,7 @@ public class InputHandlerTest {
     @Test
     public void testStRadius() {
         InputHandler classUnderTest = new InputHandler(1, 4, 3);
-        assertEquals(4, classUnderTest.getStRadius());
+        assertEquals(4, classUnderTest.getRadiusInStitches());
     }
 
     @Test

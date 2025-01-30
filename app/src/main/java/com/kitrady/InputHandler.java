@@ -5,12 +5,12 @@ import java.util.Scanner;
 import static java.lang.Math.*;
 
 public class InputHandler {
-    private final double radius; // radius of desired sphere in inches
-    private final double gauge; // gauge of crocheter in stitches per inch
-    private final double vertGauge; // vertical gauge of crocheter in rows per inch
-    private final double stRadius; // converts the radius from inches to stitches using gauge
-    private final double rowRadius; // creates a vertical radius measured in rows using radius in inches and vertical gauge in rows per inch
-    private final double rowCircumference; // creates a vertical circumference measured in rows using vertical radius measured in rows
+    private final double radius; // units are inches
+    private final double gauge; // units are stitches per inch
+    private final double vertGauge; // units are rows per inch
+    private final double radiusInStitches; // units are stitches
+    private final double radiusInRounds; // units are rounds
+    private final double circumferenceInRounds; // units are rounds
 
     public InputHandler(Scanner input) {
         radius = abs(handleInput(input,
@@ -28,35 +28,32 @@ public class InputHandler {
                 "\nPlease enter just a number that is your vertical crochet gauge in stitches per inch."));
         input.nextLine();
 
-        stRadius = radius * gauge;
-        rowRadius = radius * vertGauge;
-        rowCircumference = 6.2831 * rowRadius;
+        radiusInStitches = radius * gauge;
+        radiusInRounds = radius * vertGauge;
+        circumferenceInRounds = 6.2831 * radiusInRounds;
     }
 
     public InputHandler(double radius, double gauge, double vertGauge) {
         this.radius = abs(radius);
         this.gauge = abs(gauge);
         this.vertGauge = abs(vertGauge);
-        stRadius = radius * gauge;
-        rowRadius = radius * vertGauge;
-        rowCircumference = 6.2831 * rowRadius;
+        radiusInStitches = radius * gauge;
+        radiusInRounds = radius * vertGauge;
+        circumferenceInRounds = 6.2831 * radiusInRounds;
     }
 
     private double handleInput(Scanner input, String message, String correctingMessage) {
-        // will loop until input is correct type
         while (true) {
             System.out.print(message);
 
-            // logic to ensure input that is received is an int or double but no other type
             if (input.hasNextDouble()) {
                 return input.nextDouble();
             }
             if (input.hasNextInt()) {
                 return input.nextInt();
             }
-            input.nextLine(); // clearing buffer so if statements evaluate properly on subsequent loops
+            input.nextLine();
 
-            // further instructions if the received input is incorrect type
             System.out.print(correctingMessage);
         }
     }
@@ -73,20 +70,20 @@ public class InputHandler {
         return vertGauge;
     }
 
-    public double getStRadius() {
-        return stRadius;
+    public double getRadiusInStitches() {
+        return radiusInStitches;
     }
 
     public double getRdCircumference() {
-        return rowCircumference;
+        return circumferenceInRounds;
     }
 
     public String toString() {
         return ("\n- Radius = " + radius +
                 "\n- Gauge = " + gauge +
                 "\n- Vertical gauge = " + vertGauge +
-                "\n- Radius in stitches = " + stRadius +
-                "\n- Radius in rows = " + rowRadius +
-                "\n- Circumference in rows = " + rowCircumference);
+                "\n- Radius in stitches = " + radiusInStitches +
+                "\n- Radius in rows = " + radiusInRounds +
+                "\n- Circumference in rows = " + circumferenceInRounds);
     }
 }
