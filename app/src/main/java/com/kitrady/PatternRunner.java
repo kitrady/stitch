@@ -26,7 +26,6 @@ public class PatternRunner {
 //        System.out.println(printedPattern);
 
         // TODO add more descriptive names to potentially remove comments
-        // TODO remove abbreviations from names
 
         objRoundComponentMaker.formatPattern();
         objRoundComponentMaker.printPattern();
