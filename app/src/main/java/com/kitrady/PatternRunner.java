@@ -8,7 +8,7 @@ public class PatternRunner {
 
         InputHandler objInputHandler = new InputHandler(1.25, 4, 4);
 //        InputHandler objInputHandler = new InputHandler(input);
-        SphereMaker objSphereMaker = new SphereMaker(objInputHandler.getStRadius(), objInputHandler.getRdCircumference());
+        SphereMaker objSphereMaker = new SphereMaker(objInputHandler.getRadiusInStitches(), objInputHandler.getRdCircumference());
         RoundComponentMaker objRoundComponentMaker =  new RoundComponentMaker(objSphereMaker.getStitchesPerRd());
 
         System.out.println("\nobjInputGetter:" + objInputHandler);
@@ -26,6 +26,7 @@ public class PatternRunner {
 //        System.out.println(printedPattern);
 
         // TODO add more descriptive names to potentially remove comments
+        // TODO remove abbreviations from names
 
         objRoundComponentMaker.formatPattern();
         objRoundComponentMaker.printPattern();
