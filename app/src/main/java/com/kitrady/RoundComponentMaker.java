@@ -2,20 +2,25 @@ package com.kitrady;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class RoundComponentMaker {
     private final List<Integer> stitchesPerRound;
-    private final List<String> formattedPattern = new ArrayList<>();
     private int alternateRoundToPreventBubblesCounter = 1;
-    private RoundComponentAssembler assembler;
+    private List<RoundComponent> roundComponents = new ArrayList<>();
+    private List<List<RoundComponent>> allRoundComponents = new ArrayList<>();
 
     public RoundComponentMaker(List<Integer> stitchesPerRound) {
         this.stitchesPerRound = stitchesPerRound;
     }
 
     public void formatPattern() {
-        formattedPattern.add("Rd 1: " + stitchesPerRound.getFirst() + " sc in magic ring (" + stitchesPerRound.getFirst() + ")");
+        updateRoundComponents(1, ComponentType.ROUND_NUMBER); // add to Makers instance variables instead
+        updateRoundComponents(stitchesPerRound.getFirst(), ComponentType.MAGIC_RING); // add to Makers instance variables instead
+        updateRoundComponents(stitchesPerRound.getFirst(), ComponentType.STITCH_TOTAL); // add to Makers instance variables instead
+
+        addRoundComponents();
 
         int finalLargestRoundIndex = stitchesPerRound.lastIndexOf(Collections.max(stitchesPerRound));
         formatIncreaseRounds(stitchesPerRound, finalLargestRoundIndex);
@@ -24,16 +29,15 @@ public class RoundComponentMaker {
 
     private void formatIncreaseRounds(List<Integer> stitchesPerRound, int finalLargestRoundIndex) {
         for (int i = 1; i < finalLargestRoundIndex; i++) {
-            String inProgressRound = "Rd " + (i + 1) + ": ";
-
-            assembler = new RoundComponentAssembler();
+            String inProgressRound = "";
+            updateRoundComponents(i + 1, ComponentType.ROUND_NUMBER); // add to Makers instance variables instead
 
             int previousStitchTotal = stitchesPerRound.get(i - 1);
             int currentStitchTotal = stitchesPerRound.get(i);
             int numIncreases = currentStitchTotal - previousStitchTotal;
 
             if (numIncreases == 0) {
-                inProgressRound += "sc in each st in round";
+                updateRoundComponents(0, ComponentType.ALL_SINGLE_CROCHET); // add to Makers instance variables instead
             } else {
                 int numStitchesInSection = currentStitchTotal / numIncreases;
                 int numSingleCrochetInSection = numStitchesInSection - 2;
@@ -44,31 +48,31 @@ public class RoundComponentMaker {
                 }
 
                 if (numSingleCrochetInSection == 0) {
-                    inProgressRound += "inc in each st in round";
+                    updateRoundComponents(0, ComponentType.ALL_INCREASE); // add to Makers instance variables instead
                 } else {
                     // the numIncreases > 1 is needed because alternate rounds need two repeats to work
                     if (alternateRoundToPreventBubblesCounter % 2 == 0 && numIncreases > 1) {
                         int numSingleCrochetInHalfSection = numSingleCrochetInSection / 2;
 
-                        assembler.updateRoundComponents(numSingleCrochetInHalfSection, ComponentTypes.SINGLE_CROCHET);
-                        assembler.updateRoundComponents(1, ComponentTypes.INCREASE);
+                        updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET); // add to Makers instance variables instead
+                        updateRoundComponents(1, ComponentType.INCREASE); // add to Makers instance variables instead
 
-                        assembler.updateRoundComponents(numSingleCrochetInSection, ComponentTypes.REPEAT_SINGLE_CROCHET);
+                        updateRoundComponents(numSingleCrochetInSection, ComponentType.REPEAT_SINGLE_CROCHET); // add to Makers instance variables instead
 
-                        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_INCREASE);
+                        updateRoundComponents(1, ComponentType.REPEAT_INCREASE); // add to Makers instance variables instead
 
-                        assembler.updateRoundComponents(numIncreases - 1, ComponentTypes.REPEAT_COUNT);
+                        updateRoundComponents(numIncreases - 1, ComponentType.REPEAT_COUNT); // add to Makers instance variables instead
 
                         if (numSingleCrochetInHalfSection * 2 != numSingleCrochetInSection) {
                             numSingleCrochetInHalfSection += 1;
                         }
-                        assembler.updateRoundComponents(numSingleCrochetInHalfSection, ComponentTypes.SINGLE_CROCHET);
+                        updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET); // add to Makers instance variables instead
                     } else {
-                        assembler.updateRoundComponents(numSingleCrochetInSection, ComponentTypes.REPEAT_SINGLE_CROCHET);
+                        updateRoundComponents(numSingleCrochetInSection, ComponentType.REPEAT_SINGLE_CROCHET); // add to Makers instance variables instead
 
-                        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_INCREASE);
+                        updateRoundComponents(1, ComponentType.REPEAT_INCREASE); // add to Makers instance variables instead
 
-                        assembler.updateRoundComponents(numIncreases, ComponentTypes.REPEAT_COUNT);
+                        updateRoundComponents(numIncreases, ComponentType.REPEAT_COUNT); // add to Makers instance variables instead
                     }
                     alternateRoundToPreventBubblesCounter++;
                     // TODO: the below comments describe an issue
@@ -79,30 +83,26 @@ public class RoundComponentMaker {
                 }
 
                 if (extraStitches > 0) {
-                    assembler.updateRoundComponents(extraStitches, ComponentTypes.SINGLE_CROCHET);
+                    updateRoundComponents(extraStitches, ComponentType.SINGLE_CROCHET); // add to Makers instance variables instead
                 }
             }
+            updateRoundComponents(currentStitchTotal, ComponentType.STITCH_TOTAL);
 
-            inProgressRound += assembler.assemble();
-
-            inProgressRound += " (" + currentStitchTotal + ")";
-
-            formattedPattern.add(inProgressRound);
+            addRoundComponents();
         }
     }
 
     private void formatDecreaseRounds(List<Integer> stitchesPerRound, int finalLargestRdIndex) {
         for (int i = finalLargestRdIndex; i < stitchesPerRound.size(); i++) {
-            String inProgressRound = "Rd " + (i + 1) + ": ";
-
-            assembler = new RoundComponentAssembler();
+            String inProgressRound = "";
+            updateRoundComponents(i + 1, ComponentType.ROUND_NUMBER);
 
             int previousStitchTotal = stitchesPerRound.get(i - 1);
             int currentStitchTotal = stitchesPerRound.get(i);
             int numDecreases = previousStitchTotal - currentStitchTotal;
 
             if (numDecreases == 0) {
-                inProgressRound += "sc in each st in round";
+                updateRoundComponents(0, ComponentType.ALL_SINGLE_CROCHET);
             } else {
                 int numStitchesInSection = previousStitchTotal / numDecreases;
                 int numSingleCrochetInSection = numStitchesInSection - 2;
@@ -113,61 +113,57 @@ public class RoundComponentMaker {
                 }
 
                 if (numSingleCrochetInSection == 0) {
-                    inProgressRound += "dec in each st in round";
+                    updateRoundComponents(0, ComponentType.ALL_DECREASE);
                 } else {
                     // the numDecreases > 1 in needed because alternate rounds need two repeats to work
                     if (alternateRoundToPreventBubblesCounter % 2 == 0 && numDecreases > 1) {
                         int numSingleCrochetInHalfSection = numSingleCrochetInSection / 2;
 
-                        assembler.updateRoundComponents(numSingleCrochetInHalfSection, ComponentTypes.SINGLE_CROCHET);
-                        assembler.updateRoundComponents(1, ComponentTypes.DECREASE);
+                        updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+                        updateRoundComponents(1, ComponentType.DECREASE);
 
-                        assembler.updateRoundComponents(numSingleCrochetInSection, ComponentTypes.REPEAT_SINGLE_CROCHET);
+                        updateRoundComponents(numSingleCrochetInSection, ComponentType.REPEAT_SINGLE_CROCHET);
 
-                        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_DECREASE);
+                        updateRoundComponents(1, ComponentType.REPEAT_DECREASE);
 
-                        assembler.updateRoundComponents(numDecreases - 1, ComponentTypes.REPEAT_COUNT);
+                        updateRoundComponents(numDecreases - 1, ComponentType.REPEAT_COUNT);
 
                         if (numSingleCrochetInHalfSection * 2 != numSingleCrochetInSection) {
                             numSingleCrochetInHalfSection += 1;
                         }
 
-                        assembler.updateRoundComponents(numSingleCrochetInHalfSection, ComponentTypes.SINGLE_CROCHET);
+                        updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
                     } else {
-                        assembler.updateRoundComponents(numSingleCrochetInSection, ComponentTypes.REPEAT_SINGLE_CROCHET);
+                        updateRoundComponents(numSingleCrochetInSection, ComponentType.REPEAT_SINGLE_CROCHET);
 
-                        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_DECREASE);
+                        updateRoundComponents(1, ComponentType.REPEAT_DECREASE);
 
-                        assembler.updateRoundComponents(numDecreases, ComponentTypes.REPEAT_COUNT);
+                        updateRoundComponents(numDecreases, ComponentType.REPEAT_COUNT);
                     }
                     alternateRoundToPreventBubblesCounter++;
                 }
 
                 if (extraStitches > 0) {
-                    assembler.updateRoundComponents(extraStitches, ComponentTypes.SINGLE_CROCHET);
+                    updateRoundComponents(extraStitches, ComponentType.SINGLE_CROCHET);
                 }
             }
+            updateRoundComponents(currentStitchTotal, ComponentType.STITCH_TOTAL);
 
-            inProgressRound += assembler.assemble();
-
-            inProgressRound += " (" + currentStitchTotal + ")";
-
-            formattedPattern.add(inProgressRound);
+            addRoundComponents();
         }
     }
 
-    RoundComponentAssembler getAssembler() {
-        return assembler;
+    private void updateRoundComponents(int componentCount, ComponentType componentType) {
+        roundComponents.add(new RoundComponent(componentCount, componentType));
     }
 
-    public List<String> getFormattedPattern() {
-        return formattedPattern;
+    private void addRoundComponents() {
+        allRoundComponents.add(roundComponents);
+        roundComponents = new ArrayList<>();
     }
 
-    public void printPattern() {
-        for (String s : formattedPattern) {
-            System.out.print("\n" + s);
-        }
+    public List<List<RoundComponent>> getAllRoundComponents() {
+        return allRoundComponents;
     }
 
     void formatGivenRounds(List<Integer> stitchesPerRound, boolean isDecrease) {

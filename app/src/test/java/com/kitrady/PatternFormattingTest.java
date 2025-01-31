@@ -8,13 +8,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PatternFormattingTest {
     @Test
     public void patternFormatterTest1() {
-        ArrayList<Integer> stitchesPerRd = new ArrayList<>(List.of(6, 12, 18, 23, 26, 29, 31, 31, 31, 29, 26, 23, 18, 12, 6));
-        RoundComponentMaker objRoundComponentMaker =  new RoundComponentMaker(stitchesPerRd);
-        objRoundComponentMaker.formatPattern();
-        List<String> formattedPattern = objRoundComponentMaker.getFormattedPattern();
-        String output = "";
+        List<Integer> stitchesPerRd = List.of(6, 12, 18, 23, 26, 29, 31, 31, 31, 29, 26, 23, 18, 12, 6);
+        RoundComponentMaker maker =  new RoundComponentMaker(stitchesPerRd);
+        maker.formatPattern();
+        RoundComponentAssembler assembler = new RoundComponentAssembler(maker.getAllRoundComponents());
+        assembler.assemble();
+        List<String> formattedPattern = assembler.getFormattedPattern();
+        StringBuilder output = new StringBuilder();
         for (String s : formattedPattern) {
-            output += "\n" + s;
+            output.append("\n").append(s);
         }
         assertEquals("""
 
@@ -32,18 +34,20 @@ Rd 11: (7 sc, dec) x3, 2 sc (26)
 Rd 12: 3 sc, dec, (6 sc, dec) x2, 5 sc (23)
 Rd 13: (2 sc, dec) x5, 3 sc (18)
 Rd 14: 0 sc, dec, (1 sc, dec) x5, 1 sc (12)
-Rd 15: dec in each st in round (6)""", output);
+Rd 15: dec in each st in round (6)""", output.toString());
     }
 
     @Test
     public void patternFormatterTest2() {
-        ArrayList<Integer> stitchesPerRd = new ArrayList<>(List.of(6, 12, 18, 22, 26, 28, 29, 29, 28, 26, 22, 18, 12, 6));
-        RoundComponentMaker objRoundComponentMaker =  new RoundComponentMaker(stitchesPerRd);
-        objRoundComponentMaker.formatPattern();
-        List<String> formattedPattern = objRoundComponentMaker.getFormattedPattern();
-        String output = "";
+        List<Integer> stitchesPerRd = List.of(6, 12, 18, 22, 26, 28, 29, 29, 28, 26, 22, 18, 12, 6);
+        RoundComponentMaker maker =  new RoundComponentMaker(stitchesPerRd);
+        maker.formatPattern();
+        RoundComponentAssembler assembler = new RoundComponentAssembler(maker.getAllRoundComponents());
+        assembler.assemble();
+        List<String> formattedPattern = assembler.getFormattedPattern();
+        StringBuilder output = new StringBuilder();
         for (String s : formattedPattern) {
-            output += "\n" + s;
+            output.append("\n").append(s);
         }
         assertEquals("""
 
@@ -60,6 +64,6 @@ Rd 10: (12 sc, dec) x2 (26)
 Rd 11: 2 sc, dec, (4 sc, dec) x3, 4 sc (22)
 Rd 12: (3 sc, dec) x4, 2 sc (18)
 Rd 13: 0 sc, dec, (1 sc, dec) x5, 1 sc (12)
-Rd 14: dec in each st in round (6)""", output);
+Rd 14: dec in each st in round (6)""", output.toString());
     }
 }

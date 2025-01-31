@@ -1,0 +1,17 @@
+package com.kitrady;
+
+public enum ComponentType {
+    SINGLE_CROCHET,
+    INCREASE,
+    DECREASE,
+    REPEAT_SINGLE_CROCHET,
+    REPEAT_INCREASE,
+    REPEAT_DECREASE,
+    REPEAT_COUNT,
+    ALL_SINGLE_CROCHET,
+    ALL_INCREASE,
+    ALL_DECREASE,
+    ROUND_NUMBER,
+    MAGIC_RING,
+    STITCH_TOTAL
+}

@@ -2,17 +2,18 @@ package com.kitrady;
 
 import java.util.ArrayList;
 import java.lang.Math;
+import java.util.List;
 
 public class SphereMaker {
-    private ArrayList<Integer> stitchesPerRd = new ArrayList<Integer>(); // array list where index represents round and value is number of stitches in round
-    private final double stRadius;
-    private final double rowCircumference;
-    private final double degreesPerRd;
+    private final List<Integer> stitchesPerRd = new ArrayList<>();
+    private final double radiusInStitches;
+    private final double circumferenceInRounds;
+    private final double degreesPerRound;
 
     public SphereMaker(double stRadius, double rowCircumference) {
-        this.stRadius = stRadius; // radius measured in stitches
-        this.rowCircumference = rowCircumference;  // circumference measured in rows
-        degreesPerRd = 360.0 / rowCircumference; // divides 360 degrees in circumference by rows in circumference to get degrees per row
+        this.radiusInStitches = stRadius; // units are stitches
+        this.circumferenceInRounds = rowCircumference;  // units are rows
+        degreesPerRound = 360.0 / rowCircumference;
     }
 
     private void generateRounds() {
@@ -20,16 +21,16 @@ public class SphereMaker {
         // uses degrees per round to increment angle properly
         // no round can be at exact top, so starts with one round offset
         double angle;
-        for (angle = (90 - degreesPerRd); angle >= 0; angle -= degreesPerRd) {
-            double currentRadius = Math.cos(Math.toRadians(angle)) * stRadius; // finds radius associated with current round/angle using cosine
+        for (angle = (90 - degreesPerRound); angle >= 0; angle -= degreesPerRound) {
+            double currentRadius = Math.cos(Math.toRadians(angle)) * radiusInStitches; // finds radius associated with current round/angle using cosine
             double currentCircumference = 6.2831 * currentRadius; // finds circumference associated with current round/angle using circumference formula
             stitchesPerRd.add((int) Math.round(currentCircumference)); // expresses circumference as whole number of stitches and adds to list of stitches per round
         }
 
         int originalSize = stitchesPerRd.size();
         // if more than half of the angle increment was left, there is a "missing" round
-        if (angle + degreesPerRd >= degreesPerRd / 2) {
-            stitchesPerRd.add((int) Math.round(6.2831 * stRadius)); // adds "missing" round using an angle of zero, aka full radius
+        if (angle + degreesPerRound >= degreesPerRound / 2) {
+            stitchesPerRd.add((int) Math.round(6.2831 * radiusInStitches)); // adds "missing" round using an angle of zero, aka full radius
         }
         // since a sphere has identical hemispheres, reverse current stitch counts to get rest of sphere
         for (int i = 0; i < originalSize; i++) {
@@ -37,26 +38,26 @@ public class SphereMaker {
         }
     }
 
-    public ArrayList<Integer> getStitchesPerRd() {
+    public List<Integer> getStitchesPerRd() {
         generateRounds();
         return stitchesPerRd;
     }
 
-    public double getStRadius() {
-        return stRadius;
+    double getRadiusInStitches() {
+        return radiusInStitches;
     }
 
-    public double getRowCircumference() {
-        return rowCircumference;
+    double getCircumferenceInRounds() {
+        return circumferenceInRounds;
     }
 
-    public double getDegreesPerRd() {
-        return degreesPerRd;
+    double getDegreesPerRound() {
+        return degreesPerRound;
     }
 
     public String toString() {
-        return ("\n- Radius in stitches = " + stRadius +
-                "\n- Circumference in rows = " + rowCircumference +
-                "\n- Degrees per round = " + degreesPerRd);
+        return ("\n- Radius in stitches = " + radiusInStitches +
+                "\n- Circumference in rows = " + circumferenceInRounds +
+                "\n- Degrees per round = " + degreesPerRound);
     }
 }
