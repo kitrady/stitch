@@ -2,125 +2,176 @@ package com.kitrady;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RoundComponentAssemblerTest {
     @Test
     public void testSingleCrochetThenIncreaseWithEmptyRound() {
-        RoundComponentAssembler assembler = new RoundComponentAssembler();
-        assembler.updateRoundComponents(2, ComponentTypes.SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.INCREASE);
-        assertEquals("3 sc, inc", assembler.assemble());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.INCREASE)
+        );
+        List<List<RoundComponent>> allComponents = List.of(components);
+        RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
+        assembler.assemble();
+        assertEquals(" 3 sc, inc", assembler.getFormattedPattern().getLast());
     }
 
     @Test
     public void testSingleCrochetThenDecreaseWithEmptyRound() {
-        RoundComponentAssembler assembler = new RoundComponentAssembler();
-        assembler.updateRoundComponents(2, ComponentTypes.SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.DECREASE);
-        assertEquals("3 sc, dec", assembler.assemble());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.DECREASE)
+        );
+        List<List<RoundComponent>> allComponents = List.of(components);
+        RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
+        assembler.assemble();
+        assertEquals(" 3 sc, dec", assembler.getFormattedPattern().getLast());
     }
 
     @Test
     public void testIncreaseAndSingleCrochet() {
-        RoundComponentAssembler assembler = new RoundComponentAssembler();
-        assembler.updateRoundComponents(1, ComponentTypes.INCREASE);
-        assembler.updateRoundComponents(2, ComponentTypes.SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.INCREASE);
-        assertEquals("inc, 3 sc, inc", assembler.assemble());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(1, ComponentType.INCREASE),
+                new RoundComponent(2, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.INCREASE)
+        );
+        List<List<RoundComponent>> allComponents = List.of(components);
+        RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
+        assembler.assemble();
+        assertEquals(" inc, 3 sc, inc", assembler.getFormattedPattern().getLast());
     }
     // TODO make able to handle more than one inc at a time
 
     @Test
     public void testDecreaseAndSingleCrochet() {
-        RoundComponentAssembler assembler = new RoundComponentAssembler();
-        assembler.updateRoundComponents(1, ComponentTypes.DECREASE);
-        assembler.updateRoundComponents(2, ComponentTypes.SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.DECREASE);
-        assertEquals("dec, 3 sc, dec", assembler.assemble());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(1, ComponentType.DECREASE),
+                new RoundComponent(2, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.DECREASE)
+        );
+        List<List<RoundComponent>> allComponents = List.of(components);
+        RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
+        assembler.assemble();
+        assertEquals(" dec, 3 sc, dec", assembler.getFormattedPattern().getLast());
     }
     // TODO make able to handle more than one dec
 
     @Test
     public void testRepeatWithIncreaseWithEmptyRound() {
-        RoundComponentAssembler assembler = new RoundComponentAssembler();
-        assembler.updateRoundComponents(2, ComponentTypes.REPEAT_SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_INCREASE);
-        assembler.updateRoundComponents(3, ComponentTypes.REPEAT_COUNT);
-        assertEquals("(2 sc, inc) x3", assembler.assemble());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_INCREASE),
+                new RoundComponent(3, ComponentType.REPEAT_COUNT)
+        );
+        List<List<RoundComponent>> allComponents = List.of(components);
+        RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
+        assembler.assemble();
+        assertEquals(" (2 sc, inc) x3", assembler.getFormattedPattern().getLast());
     }
 
     @Test
     public void testRepeatWithDecreaseWithEmptyRound() {
-        RoundComponentAssembler assembler = new RoundComponentAssembler();
-        assembler.updateRoundComponents(2, ComponentTypes.REPEAT_SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_DECREASE);
-        assembler.updateRoundComponents(3, ComponentTypes.REPEAT_COUNT);
-        assertEquals("(2 sc, dec) x3", assembler.assemble());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_DECREASE),
+                new RoundComponent(3, ComponentType.REPEAT_COUNT)
+        );
+        List<List<RoundComponent>> allComponents = List.of(components);
+        RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
+        assembler.assemble();
+        assertEquals(" (2 sc, dec) x3", assembler.getFormattedPattern().getLast());
     }
 
     @Test
     public void testFakeRepeatWithIncreaseWithEmptyRound() {
-        RoundComponentAssembler assembler = new RoundComponentAssembler();
-        assembler.updateRoundComponents(2, ComponentTypes.REPEAT_SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_INCREASE);
-        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_COUNT);
-        assertEquals("2 sc, inc", assembler.assemble());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_INCREASE),
+                new RoundComponent(1, ComponentType.REPEAT_COUNT)
+        );
+        List<List<RoundComponent>> allComponents = List.of(components);
+        RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
+        assembler.assemble();
+        assertEquals(" 2 sc, inc", assembler.getFormattedPattern().getLast());
     }
 
     @Test
     public void testFakeRepeatWithDecreaseWithEmptyRound() {
-        RoundComponentAssembler assembler = new RoundComponentAssembler();
-        assembler.updateRoundComponents(2, ComponentTypes.REPEAT_SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_DECREASE);
-        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_COUNT);
-        assertEquals("2 sc, dec", assembler.assemble());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_DECREASE),
+                new RoundComponent(1, ComponentType.REPEAT_COUNT)
+        );
+        List<List<RoundComponent>> allComponents = List.of(components);
+        RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
+        assembler.assemble();
+        assertEquals(" 2 sc, dec", assembler.getFormattedPattern().getLast());
     }
 
     // for this test to pass, the increase part of testIncreaseAndSingleCrochet must also work
     @Test
     public void testRepeatWithIncrease() {
-        RoundComponentAssembler assembler = new RoundComponentAssembler();
-        assembler.updateRoundComponents(1, ComponentTypes.INCREASE);
-        assembler.updateRoundComponents(2, ComponentTypes.REPEAT_SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_INCREASE);
-        assembler.updateRoundComponents(3, ComponentTypes.REPEAT_COUNT);
-        assertEquals("inc, (2 sc, inc) x3", assembler.assemble());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(1, ComponentType.INCREASE),
+                new RoundComponent(2, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_INCREASE),
+                new RoundComponent(3, ComponentType.REPEAT_COUNT)
+        );
+        List<List<RoundComponent>> allComponents = List.of(components);
+        RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
+        assembler.assemble();
+        assertEquals(" inc, (2 sc, inc) x3", assembler.getFormattedPattern().getLast());
     }
 
     // for this test to pass, the decrease part of testDecreaseAndSingleCrochet must also work
     @Test
     public void testRepeatWithDecrease() {
-        RoundComponentAssembler assembler = new RoundComponentAssembler();
-        assembler.updateRoundComponents(1, ComponentTypes.DECREASE);
-        assembler.updateRoundComponents(2, ComponentTypes.REPEAT_SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_DECREASE);
-        assembler.updateRoundComponents(3, ComponentTypes.REPEAT_COUNT);
-        assertEquals("dec, (2 sc, dec) x3", assembler.assemble());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(1, ComponentType.DECREASE),
+                new RoundComponent(2, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_DECREASE),
+                new RoundComponent(3, ComponentType.REPEAT_COUNT)
+        );
+        List<List<RoundComponent>> allComponents = List.of(components);
+        RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
+        assembler.assemble();
+        assertEquals(" dec, (2 sc, dec) x3", assembler.getFormattedPattern().getLast());
     }
 
     // for this test to pass, the increase part of testIncreaseAndSingleCrochet must also work
     @Test
     public void testFakeRepeatWithIncrease() {
-        RoundComponentAssembler assembler = new RoundComponentAssembler();
-        assembler.updateRoundComponents(1, ComponentTypes.INCREASE);
-        assembler.updateRoundComponents(2, ComponentTypes.REPEAT_SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_INCREASE);
-        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_COUNT);
-        assertEquals("inc, 2 sc, inc", assembler.assemble());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(1, ComponentType.INCREASE),
+                new RoundComponent(2, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_INCREASE),
+                new RoundComponent(1, ComponentType.REPEAT_COUNT)
+        );
+        List<List<RoundComponent>> allComponents = List.of(components);
+        RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
+        assembler.assemble();
+        assertEquals(" inc, 2 sc, inc", assembler.getFormattedPattern().getLast());
     }
 
     @Test
     public void testFakeRepeatWithDecrease() {
-        RoundComponentAssembler assembler = new RoundComponentAssembler();
-        assembler.updateRoundComponents(1, ComponentTypes.DECREASE);
-        assembler.updateRoundComponents(2, ComponentTypes.REPEAT_SINGLE_CROCHET);
-        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_DECREASE);
-        assembler.updateRoundComponents(1, ComponentTypes.REPEAT_COUNT);
-        assertEquals("dec, 2 sc, dec", assembler.assemble());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(1, ComponentType.DECREASE),
+                new RoundComponent(2, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_DECREASE),
+                new RoundComponent(1, ComponentType.REPEAT_COUNT)
+        );
+        List<List<RoundComponent>> allComponents = List.of(components);
+        RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
+        assembler.assemble();
+        assertEquals(" dec, 2 sc, dec", assembler.getFormattedPattern().getLast());
     }
 }
