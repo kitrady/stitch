@@ -10,12 +10,15 @@ public class RoundComponentMakerTest {
         List<Integer> stitchesPerRound = List.of(1, 1);
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, false);
-
-        List<Integer> counts = List.of(2, 0, 1);
-        assertEquals(counts, maker.getRoundComponentCounts());
-
-        List<ComponentTypes> types = List.of(ComponentTypes.ROUND_NUMBER, ComponentTypes.ALL_SINGLE_CROCHET, ComponentTypes.STITCH_TOTAL);
-        assertEquals(types, maker.getRoundComponentTypes());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2,ComponentType.ROUND_NUMBER),
+                new RoundComponent(0, ComponentType.ALL_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.STITCH_TOTAL)
+        );
+        for (int i = 0; i < components.size(); i++) {
+            assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
+            assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
+        }
     }
 
     @Test
@@ -23,12 +26,15 @@ public class RoundComponentMakerTest {
         List<Integer> stitchesPerRound = List.of(2, 4);
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, false);
-
-        List<Integer> counts = List.of(2, 0, 4);
-        assertEquals(counts, maker.getRoundComponentCounts());
-
-        List<ComponentTypes> types = List.of(ComponentTypes.ROUND_NUMBER, ComponentTypes.ALL_INCREASE, ComponentTypes.STITCH_TOTAL);
-        assertEquals(types, maker.getRoundComponentTypes());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
+                new RoundComponent(0, ComponentType.ALL_INCREASE),
+                new RoundComponent(4, ComponentType.STITCH_TOTAL)
+        );
+        for (int i = 0; i < components.size(); i++) {
+            assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
+            assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
+        }
     }
 
     @Test
@@ -36,24 +42,30 @@ public class RoundComponentMakerTest {
         List<Integer> stitchesPerRound = List.of(10, 10);
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, true);
-
-        List<Integer> counts = List.of(2, 0, 10);
-        assertEquals(counts, maker.getRoundComponentCounts());
-
-        List<ComponentTypes> types = List.of(ComponentTypes.ROUND_NUMBER, ComponentTypes.ALL_SINGLE_CROCHET, ComponentTypes.STITCH_TOTAL);
-        assertEquals(types, maker.getRoundComponentTypes());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
+                new RoundComponent(0, ComponentType.ALL_SINGLE_CROCHET),
+                new RoundComponent(10, ComponentType.STITCH_TOTAL)
+        );
+        for (int i = 0; i < components.size(); i++) {
+            assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
+            assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
+        }
     }
 
     @Test void testAllDecreases() {
         List<Integer> stitchesPerRound = List.of(4, 2);
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, true);
-
-        List<Integer> counts = List.of(2, 0, 2);
-        assertEquals(counts, maker.getRoundComponentCounts());
-
-        List<ComponentTypes> types = List.of(ComponentTypes.ROUND_NUMBER, ComponentTypes.ALL_DECREASE, ComponentTypes.STITCH_TOTAL);
-        assertEquals(types, maker.getRoundComponentTypes());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
+                new RoundComponent(0, ComponentType.ALL_DECREASE),
+                new RoundComponent(2, ComponentType.STITCH_TOTAL)
+        );
+        for (int i = 0; i < components.size(); i++) {
+            assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
+            assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
+        }
     }
 
     @Test
@@ -61,12 +73,18 @@ public class RoundComponentMakerTest {
         List<Integer> stitchesPerRound = List.of(7, 10);
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, false);
-
-        List<Integer> counts = List.of(2, 1, 1, 3, 1, 10);
-        assertEquals(counts, maker.getRoundComponentCounts());
-
-        List<ComponentTypes> types = List.of(ComponentTypes.ROUND_NUMBER, ComponentTypes.REPEAT_SINGLE_CROCHET, ComponentTypes.REPEAT_INCREASE, ComponentTypes.REPEAT_COUNT, ComponentTypes.SINGLE_CROCHET, ComponentTypes.STITCH_TOTAL);
-        assertEquals(types, maker.getRoundComponentTypes());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
+                new RoundComponent(1, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_INCREASE),
+                new RoundComponent(3, ComponentType.REPEAT_COUNT),
+                new RoundComponent(1, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(10, ComponentType.STITCH_TOTAL)
+        );
+        for (int i = 0; i < components.size(); i++) {
+            assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
+            assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
+        }
     }
 
     @Test
@@ -74,12 +92,18 @@ public class RoundComponentMakerTest {
         List<Integer> stitchesPerRound = List.of(10, 7);
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, true);
-
-        List<Integer> counts = List.of(2, 1, 1, 3, 1, 7);
-        assertEquals(counts, maker.getRoundComponentCounts());
-
-        List<ComponentTypes> types = List.of(ComponentTypes.ROUND_NUMBER, ComponentTypes.REPEAT_SINGLE_CROCHET, ComponentTypes.REPEAT_DECREASE, ComponentTypes.REPEAT_COUNT, ComponentTypes.SINGLE_CROCHET, ComponentTypes.STITCH_TOTAL);
-        assertEquals(types, maker.getRoundComponentTypes());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
+                new RoundComponent(1, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_DECREASE),
+                new RoundComponent(3, ComponentType.REPEAT_COUNT),
+                new RoundComponent(1, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(7, ComponentType.STITCH_TOTAL)
+        );
+        for (int i = 0; i < components.size(); i++) {
+            assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
+            assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
+        }
     }
 
     @Test
@@ -87,12 +111,17 @@ public class RoundComponentMakerTest {
         List<Integer> stitchesPerRound = List.of(6, 9);
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, false);
-
-        List<Integer> counts = List.of(2, 1, 1, 3, 9);
-        assertEquals(counts, maker.getRoundComponentCounts());
-
-        List<ComponentTypes> types = List.of(ComponentTypes.ROUND_NUMBER, ComponentTypes.REPEAT_SINGLE_CROCHET, ComponentTypes.REPEAT_INCREASE, ComponentTypes.REPEAT_COUNT, ComponentTypes.STITCH_TOTAL);
-        assertEquals(types, maker.getRoundComponentTypes());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
+                new RoundComponent(1, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_INCREASE),
+                new RoundComponent(3, ComponentType.REPEAT_COUNT),
+                new RoundComponent(9, ComponentType.STITCH_TOTAL)
+        );
+        for (int i = 0; i < components.size(); i++) {
+            assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
+            assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
+        }
     }
 
     @Test
@@ -100,12 +129,17 @@ public class RoundComponentMakerTest {
         List<Integer> stitchesPerRound = List.of(9, 6);
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, true);
-
-        List<Integer> counts = List.of(2, 1, 1, 3, 6);
-        assertEquals(counts, maker.getRoundComponentCounts());
-
-        List<ComponentTypes> types = List.of(ComponentTypes.ROUND_NUMBER, ComponentTypes.REPEAT_SINGLE_CROCHET, ComponentTypes.REPEAT_DECREASE, ComponentTypes.REPEAT_COUNT, ComponentTypes.STITCH_TOTAL);
-        assertEquals(types, maker.getRoundComponentTypes());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
+                new RoundComponent(1, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_DECREASE),
+                new RoundComponent(3, ComponentType.REPEAT_COUNT),
+                new RoundComponent(6, ComponentType.STITCH_TOTAL)
+        );
+        for (int i = 0; i < components.size(); i++) {
+            assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
+            assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
+        }
     }
 
     @Test
@@ -114,12 +148,20 @@ public class RoundComponentMakerTest {
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, false);
         maker.formatGivenRounds(stitchesPerRound, false);
-
-        List<Integer> counts = List.of(2, 1, 1, 2, 1, 2, 1, 12);
-        assertEquals(counts, maker.getRoundComponentCounts());
-
-        List<ComponentTypes> types = List.of(ComponentTypes.ROUND_NUMBER, ComponentTypes.SINGLE_CROCHET, ComponentTypes.INCREASE, ComponentTypes.REPEAT_SINGLE_CROCHET, ComponentTypes.REPEAT_INCREASE, ComponentTypes.REPEAT_COUNT, ComponentTypes.SINGLE_CROCHET, ComponentTypes.STITCH_TOTAL);
-        assertEquals(types, maker.getRoundComponentTypes());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
+                new RoundComponent(1, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.INCREASE),
+                new RoundComponent(2, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_INCREASE),
+                new RoundComponent(2, ComponentType.REPEAT_COUNT),
+                new RoundComponent(1, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(12, ComponentType.STITCH_TOTAL)
+        );
+        for (int i = 0; i < components.size(); i++) {
+            assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
+            assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
+        }
     }
 
     @Test
@@ -128,12 +170,20 @@ public class RoundComponentMakerTest {
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, false);
         maker.formatGivenRounds(stitchesPerRound, false);
-
-        List<Integer> counts = List.of(2, 2, 1, 5, 1, 2, 3, 21);
-        assertEquals(counts, maker.getRoundComponentCounts());
-
-        List<ComponentTypes> types = List.of(ComponentTypes.ROUND_NUMBER, ComponentTypes.SINGLE_CROCHET, ComponentTypes.INCREASE, ComponentTypes.REPEAT_SINGLE_CROCHET, ComponentTypes.REPEAT_INCREASE, ComponentTypes.REPEAT_COUNT, ComponentTypes.SINGLE_CROCHET, ComponentTypes.STITCH_TOTAL);
-        assertEquals(types, maker.getRoundComponentTypes());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
+                new RoundComponent(2, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.INCREASE),
+                new RoundComponent(5, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_INCREASE),
+                new RoundComponent(2, ComponentType.REPEAT_COUNT),
+                new RoundComponent(3, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(21, ComponentType.STITCH_TOTAL)
+        );
+        for (int i = 0; i < components.size(); i++) {
+            assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
+            assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
+        }
     }
 
     @Test
@@ -142,12 +192,20 @@ public class RoundComponentMakerTest {
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, true);
         maker.formatGivenRounds(stitchesPerRound, true);
-
-        List<Integer> counts = List.of(2, 1, 1, 2, 1, 2, 1, 9);
-        assertEquals(counts, maker.getRoundComponentCounts());
-
-        List<ComponentTypes> types = List.of(ComponentTypes.ROUND_NUMBER, ComponentTypes.SINGLE_CROCHET, ComponentTypes.DECREASE, ComponentTypes.REPEAT_SINGLE_CROCHET, ComponentTypes.REPEAT_DECREASE, ComponentTypes.REPEAT_COUNT, ComponentTypes.SINGLE_CROCHET, ComponentTypes.STITCH_TOTAL);
-        assertEquals(types, maker.getRoundComponentTypes());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
+                new RoundComponent(1, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.DECREASE),
+                new RoundComponent(2, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_DECREASE),
+                new RoundComponent(2, ComponentType.REPEAT_COUNT),
+                new RoundComponent(1, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(9, ComponentType.STITCH_TOTAL)
+        );
+        for (int i = 0; i < components.size(); i++) {
+            assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
+            assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
+        }
     }
 
     @Test
@@ -156,11 +214,19 @@ public class RoundComponentMakerTest {
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, true);
         maker.formatGivenRounds(stitchesPerRound, true);
-
-        List<Integer> counts = List.of(2, 2, 1, 5, 1, 2, 3, 18);
-        assertEquals(counts, maker.getRoundComponentCounts());
-
-        List<ComponentTypes> types = List.of(ComponentTypes.ROUND_NUMBER, ComponentTypes.SINGLE_CROCHET, ComponentTypes.DECREASE, ComponentTypes.REPEAT_SINGLE_CROCHET, ComponentTypes.REPEAT_DECREASE, ComponentTypes.REPEAT_COUNT, ComponentTypes.SINGLE_CROCHET, ComponentTypes.STITCH_TOTAL);
-        assertEquals(types, maker.getRoundComponentTypes());
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
+                new RoundComponent(2, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.DECREASE),
+                new RoundComponent(5, ComponentType.REPEAT_SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.REPEAT_DECREASE),
+                new RoundComponent(2, ComponentType.REPEAT_COUNT),
+                new RoundComponent(3, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(18, ComponentType.STITCH_TOTAL)
+        );
+        for (int i = 0; i < components.size(); i++) {
+            assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
+            assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
+        }
     }
 }

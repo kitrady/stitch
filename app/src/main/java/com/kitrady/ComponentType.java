@@ -1,6 +1,6 @@
 package com.kitrady;
 
-public enum ComponentTypes {
+public enum ComponentType {
     SINGLE_CROCHET,
     INCREASE,
     DECREASE,
