@@ -21,8 +21,20 @@ public class PatternRunner {
 //        which does magically make everything more encapsulated and tests more realistic
 //
 //        example:
-//        List<CrochetRound> components = objRoundComponentMaker.makeComponents();
-//        printedPattern = patternPrinter.format(components)
+          // List<Integer> counts = maker.getRoundComponentCounts()
+          // List<ComponentType> componentTypes = maker.getRoundComponentTypes()
+          // RoundComponentAssembler assembler =  new RoundComponentAssembler(counts, componentTypes);
+          // String printedPattern = assembler.assemble();
+//
+//
+//        List<CrochetRound> components = maker.makeComponents();
+//        String printedPattern = PatternPrinter.format(components)
+//        System.out.println(printedPattern);
+
+        //maker.makeComponents()
+        //List<Integer> componentCounts = maker.getComponentCounts;
+        //List<ComponentTypes> componentTypes = maker.getComponentTypes;
+//        String printedPattern = assemlber.assemble();
 //        System.out.println(printedPattern);
 
         // TODO add more descriptive names to potentially remove comments
