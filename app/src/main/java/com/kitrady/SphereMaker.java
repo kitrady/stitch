@@ -10,10 +10,10 @@ public class SphereMaker {
     private final double circumferenceInRounds;
     private final double degreesPerRound;
 
-    public SphereMaker(double stRadius, double rowCircumference) {
-        this.radiusInStitches = stRadius; // units are stitches
-        this.circumferenceInRounds = rowCircumference;  // units are rows
-        degreesPerRound = 360.0 / rowCircumference;
+    public SphereMaker(double stitchRadius, double circumferenceInRounds) {
+        this.radiusInStitches = stitchRadius;
+        this.circumferenceInRounds = circumferenceInRounds;
+        degreesPerRound = 360.0 / circumferenceInRounds;
     }
 
     private void generateRounds() {
