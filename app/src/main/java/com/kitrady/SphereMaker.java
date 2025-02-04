@@ -10,8 +10,8 @@ public class SphereMaker {
     private final double circumferenceInRounds;
     private final double degreesPerRound;
 
-    public SphereMaker(double stitchRadius, double circumferenceInRounds) {
-        this.radiusInStitches = stitchRadius;
+    public SphereMaker(double radiusInStitches, double circumferenceInRounds) {
+        this.radiusInStitches = radiusInStitches;
         this.circumferenceInRounds = circumferenceInRounds;
         degreesPerRound = 360.0 / circumferenceInRounds;
     }
