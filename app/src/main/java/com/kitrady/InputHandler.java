@@ -74,7 +74,7 @@ public class InputHandler {
         return radiusInStitches;
     }
 
-    public double getRdCircumference() {
+    public double getCircumferenceInRounds() {
         return circumferenceInRounds;
     }
 

@@ -80,11 +80,33 @@ In longer patterns, an alternate format may be used, which is explained below:
 
 ### The Structure of the Code
 
-InputHandler
+**InputHandler**
 
-SphereMaker
+*The purpose of this class is to get sphere specifications from the user*
+- Uses scanner to ask for the radius of the desired sphere in inches, the users crochet stitch gauge in stitches per inch, and their crochet round gauge in rounds per inch
+- If the given inputs are not ints or doubles, prints a message correcting the user
+- Multiplies the radius by the stitch gauge to get the radius in stitches, the radius by the round gauge to get the radius in rounds, and the radius in rounds by 2pi to get the circumference in rounds
+- All of the above is done in the constructor
+- There is a secondary constructor that takes the values directly instead of through scanner for convenience while developing
+- Also has getters for the purpose of testing
 
-RoundComponentMaker
+**SphereMaker**
+
+*The purpose of this class is to generate the stitch totals for all the rounds needed to make the desired sphere*
+- Constructor gets the radius in stitches and circumference in rounds from the inputHandler
+- The generate rounds method uses the math described above to generate stitch totals for the first half of the rounds (i.e. the rounds with increases)
+- Loops to generate stitch totals, starting with the round at the top of the sphere where theta equals 90 - degreesPerRound, and decreases theta by degreesPerRound every loop, with the loop ending when theta is less than zero
+- If the loop has ended, and the last value for theta that it used is more than half of degreesPerRound, there is a "missing" round that was "lost" by splitting the sphere in half, so adds another stitch total for a round exactly at zero degrees
+- Finally, since a sphere has identical hemisphere, it duplicates and reverses the current stitch totals to get the totals for the remaining rounds (excluding the possible "missing" round)
+- Has a getter for the stitchesPerRound instance variable that calls generateRounds then returns StitchesPerRound
+- Also has other getters for the purpose of testing
+
+**RoundComponentMaker**
+
+*The purpose of this class is to make many roundComponent objects that represent the "components" of each round (mainly the groups of stitches, but also other components, e.g. the round number) and store these components in nested lists (the inner layer of list containing components and representing a round, the outer layer containing lists of components and representing a full pattern)*
+- Constructor gets stitchesPerRound from SphereMaker
+- Makes components for the first round, which will always use a magic loop and thus needs special components
+- Makes components for the rounds with increases and the rounds with decreases
 
 RoundComponentAssembler
 

@@ -14,7 +14,7 @@ public class RoundComponentMaker {
         this.stitchesPerRound = stitchesPerRound;
     }
 
-    public void formatPattern() {
+    public void generateAllRoundComponents() {
         updateRoundComponents(1, ComponentType.ROUND_NUMBER);
         updateRoundComponents(stitchesPerRound.getFirst(), ComponentType.MAGIC_RING);
         updateRoundComponents(stitchesPerRound.getFirst(), ComponentType.STITCH_TOTAL);
@@ -22,11 +22,11 @@ public class RoundComponentMaker {
         addRoundComponents();
 
         int finalLargestRoundIndex = stitchesPerRound.lastIndexOf(Collections.max(stitchesPerRound));
-        formatIncreaseRounds(stitchesPerRound, finalLargestRoundIndex);
-        formatDecreaseRounds(stitchesPerRound, finalLargestRoundIndex);
+        generateIncreaseRoundComponents(stitchesPerRound, finalLargestRoundIndex);
+        generateDecreaseRoundComponents(stitchesPerRound, finalLargestRoundIndex);
     }
 
-    private void formatIncreaseRounds(List<Integer> stitchesPerRound, int finalLargestRoundIndex) {
+    private void generateIncreaseRoundComponents(List<Integer> stitchesPerRound, int finalLargestRoundIndex) {
         for (int i = 1; i < finalLargestRoundIndex; i++) {
             updateRoundComponents(i + 1, ComponentType.ROUND_NUMBER);
 
@@ -90,7 +90,7 @@ public class RoundComponentMaker {
         }
     }
 
-    private void formatDecreaseRounds(List<Integer> stitchesPerRound, int finalLargestRdIndex) {
+    private void generateDecreaseRoundComponents(List<Integer> stitchesPerRound, int finalLargestRdIndex) {
         for (int i = finalLargestRdIndex; i < stitchesPerRound.size(); i++) {
             updateRoundComponents(i + 1, ComponentType.ROUND_NUMBER);
 
@@ -165,9 +165,9 @@ public class RoundComponentMaker {
 
     void formatGivenRounds(List<Integer> stitchesPerRound, boolean isDecrease) {
         if (isDecrease) {
-            formatDecreaseRounds(stitchesPerRound, 1);
+            generateDecreaseRoundComponents(stitchesPerRound, 1);
         } else {
-            formatIncreaseRounds(stitchesPerRound, stitchesPerRound.size());
+            generateIncreaseRoundComponents(stitchesPerRound, stitchesPerRound.size());
         }
     }
 }
