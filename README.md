@@ -107,9 +107,27 @@ In longer patterns, an alternate format may be used, which is explained below:
 - Constructor gets stitchesPerRound from SphereMaker
 - Makes components for the first round, which will always use a magic loop and thus needs special components
 - Makes components for the rounds with increases and the rounds with decreases
+- To do this, creates a finalLargestIndex variable that is the final index of the rounds that are the largest
+- It uses the stitch totals up until this index to make the increase rounds, and the totals including and after the index to make the decrease rounds
+- For the increase rounds, it first adds the round number to the list of components
+- Then it uses the difference between the current and previous elements in the stitchesPerRound list to find the number of increases
+- It then checks a bunch of conditions to see what format the round needs
+- If there are no increases, then the round is all single crochets
+- Otherwise, divides the current stitch total by the number of increases to find the number of stitches in a "section" (i.e. the sum of the increase and the singles crochets paired with the increase), and subtracts two to find the number of single crochets in a "section"
+- Then checks if there were any stitches lost to truncation, and adds them to an extraStitches variable if so
+- If there are no single crochets in a section, then the round is all increases
+- Otherwise, it checks if this round should be an alternate round, which is when the counter is even and the number of increases is greater than zero (because the format doesn't work if there is only one increase), and either makes a normal round or a round with the alternate depending on the result of the check
+- Finally, it checks if there were any extra stitches and adds them onto the end if so
+- The decrease rounds follow a similar logic, with the only difference being that it sometimes compares to the previous stitch total instead of the current because the previous round has more stitches when doing decrease rounds
 
 RoundComponentAssembler
 
+*The purpose of this class is to assemble the round components into a full pattern by turning them into strings*
+
+- Gets the nested list of round components from RoundComponentMaker
+- For each round, aka list of components in the nested list, it creates a string builder to collect the pieces of the round as they are made
+- For each component in the round
+
 ### How to Run the Program
 
-At time of writing, the only way to run the program is to download the files through git, and open them in a code editor. Next, run the main function, and give inputs and receive outputs via the console.
+At time of writing, the only way to run the program is to download the files through GitHub, and open them in a code editor. Next, run the main function, and give inputs and receive outputs via the console.
