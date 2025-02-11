@@ -8,9 +8,9 @@ public class PatternRunner {
 
         InputHandler handler = new InputHandler(1.25, 4, 4);
 //        InputHandler handler = new InputHandler(input);
-        SphereMaker sphereMaker = new SphereMaker(handler.getRadiusInStitches(), handler.getRdCircumference());
+        SphereMaker sphereMaker = new SphereMaker(handler.getRadiusInStitches(), handler.getCircumferenceInRounds());
         RoundComponentMaker componentMaker =  new RoundComponentMaker(sphereMaker.getStitchesPerRd());
-        componentMaker.formatPattern();
+        componentMaker.generateAllRoundComponents();
         RoundComponentAssembler assembler = new RoundComponentAssembler(componentMaker.getAllRoundComponents());
         assembler.assemble();
         assembler.printPattern();
