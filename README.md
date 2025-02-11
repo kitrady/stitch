@@ -62,6 +62,15 @@ When creating a crochet pattern, most people start with stitch totals for each r
 - Rd 5: 11 st
 - Rd 6: 6 st
 
+Here are the final formatted rounds:
+
+- Rd 1: 6 sc in magic ring (6)
+- Rd 2: 5 inc, 1 sc (11)
+- Rd 3: (4 sc, inc) x2, 1 sc (13)
+- Rd 4: sc in each st in rd (13)
+- Rd 5: (4 sc, dec) x2, 1 sc (11)
+- Rd 6: 5 dec, 1 sc (6)
+
 And here is a walkthrough of how to format the rounds:
 
 - For round 1, we start the crochet with 6 single crochet in a magic ring. -> Rd 1: 6 sc in magic ring (6)
