@@ -1,6 +1,5 @@
 package com.kitrady;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,7 +9,7 @@ public class PatternFormattingTest {
     public void patternFormatterTest1() {
         List<Integer> stitchesPerRd = List.of(6, 12, 18, 23, 26, 29, 31, 31, 31, 29, 26, 23, 18, 12, 6);
         RoundComponentMaker maker =  new RoundComponentMaker(stitchesPerRd);
-        maker.formatPattern();
+        maker.generateAllRoundComponents();
         RoundComponentAssembler assembler = new RoundComponentAssembler(maker.getAllRoundComponents());
         assembler.assemble();
         List<String> formattedPattern = assembler.getFormattedPattern();
@@ -41,7 +40,7 @@ Rd 15: dec in each st in round (6)""", output.toString());
     public void patternFormatterTest2() {
         List<Integer> stitchesPerRd = List.of(6, 12, 18, 22, 26, 28, 29, 29, 28, 26, 22, 18, 12, 6);
         RoundComponentMaker maker =  new RoundComponentMaker(stitchesPerRd);
-        maker.formatPattern();
+        maker.generateAllRoundComponents();
         RoundComponentAssembler assembler = new RoundComponentAssembler(maker.getAllRoundComponents());
         assembler.assemble();
         List<String> formattedPattern = assembler.getFormattedPattern();

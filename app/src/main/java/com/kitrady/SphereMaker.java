@@ -10,13 +10,13 @@ public class SphereMaker {
     private final double circumferenceInRounds;
     private final double degreesPerRound;
 
-    public SphereMaker(double stRadius, double rowCircumference) {
-        this.radiusInStitches = stRadius; // units are stitches
-        this.circumferenceInRounds = rowCircumference;  // units are rows
-        degreesPerRound = 360.0 / rowCircumference;
+    public SphereMaker(double radiusInStitches, double circumferenceInRounds) {
+        this.radiusInStitches = radiusInStitches;
+        this.circumferenceInRounds = circumferenceInRounds;
+        degreesPerRound = 360.0 / circumferenceInRounds;
     }
 
-    private void generateRounds() {
+    private void generateStitchTotals() {
         // computes stitches per round, starting from top of sphere (aka 90 degrees) and ending at side of sphere (aka 0 degrees)
         // uses degrees per round to increment angle properly
         // no round can be at exact top, so starts with one round offset
@@ -39,7 +39,7 @@ public class SphereMaker {
     }
 
     public List<Integer> getStitchesPerRd() {
-        generateRounds();
+        generateStitchTotals();
         return stitchesPerRd;
     }
 
