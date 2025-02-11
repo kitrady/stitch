@@ -109,15 +109,16 @@ In longer patterns, an alternate format may be used, which is explained below:
 - Makes components for the rounds with increases and the rounds with decreases
 - To do this, creates a finalLargestIndex variable that is the final index of the rounds that are the largest
 - It uses the stitch totals up until this index to make the increase rounds, and the totals including and after the index to make the decrease rounds
-- For the increase rounds, it first adds the round number to the list of components
-- Then it uses the difference between the current and previous elements in the stitchesPerRound list to find the number of increases
-- It then checks a bunch of conditions to see what format the round needs
-- If there are no increases, then the round is all single crochets
-- Otherwise, divides the current stitch total by the number of increases to find the number of stitches in a "section" (i.e. the sum of the increase and the singles crochets paired with the increase), and subtracts two to find the number of single crochets in a "section"
-- Then checks if there were any stitches lost to truncation, and adds them to an extraStitches variable if so
-- If there are no single crochets in a section, then the round is all increases
-- Otherwise, it checks if this round should be an alternate round, which is when the counter is even and the number of increases is greater than zero (because the format doesn't work if there is only one increase), and either makes a normal round or a round with the alternate depending on the result of the check
-- Finally, it checks if there were any extra stitches and adds them onto the end if so
+- For the increase rounds...
+  - it first adds the round number to the list of components
+  - Then it uses the difference between the current and previous elements in the stitchesPerRound list to find the number of increases
+  - It then checks a bunch of conditions to see what format the round needs
+  - If there are no increases, then the round is all single crochets
+  - Otherwise, divides the current stitch total by the number of increases to find the number of stitches in a "section" (i.e. the sum of the increase and the singles crochets paired with the increase), and subtracts two to find the number of single crochets in a "section"
+  - Then checks if there were any stitches lost to truncation, and adds them to an extraStitches variable if so
+  - If there are no single crochets in a section, then the round is all increases
+  - Otherwise, it checks if this round should be an alternate round, which is when the counter is even and the number of increases is greater than zero (because the format doesn't work if there is only one increase), and either makes a normal round or a round with the alternate depending on the result of the check
+  - Finally, it checks if there were any extra stitches and adds them onto the end if so
 - The decrease rounds follow a similar logic, with the only difference being that it sometimes compares to the previous stitch total instead of the current because the previous round has more stitches when doing decrease rounds
 
 RoundComponentAssembler
@@ -125,8 +126,23 @@ RoundComponentAssembler
 *The purpose of this class is to assemble the round components into a full pattern by turning them into strings*
 
 - Gets the nested list of round components from RoundComponentMaker
-- For each round, aka list of components in the nested list, it creates a string builder to collect the pieces of the round as they are made
-- For each component in the round
+- In the assemble method, for each round (aka list of components in the nested list) it creates a string builder to collect the pieces of the round as they are made
+- For each component in the round (aside from the last), it checks several things
+- First, it checks if the component is the round number, and adds it to the string builder if so
+- After that, checks if the string builder is empty or if a round number was just added
+- If the string builder is empty or round number just added, runs a switch statement on the type of the current component
+  - If the component type is magic ring, all single crochets, all increase, or all decrease, those all have very simple string representations, so it adds the string representation with the given component count to the string builder
+  - If the type is single crochet, adds the component count to the running total of single crochets (as there might be multiple groups of single crochets in a row that we want to condense into one group)
+  - If the type is increase or decrease, checks if the previous type was a single crochet, and if so adds the string representation of the running single crochet total to the string builder, then the according string representation of the increase or decrease, and if the previous type wasn't a single crochet, adds a different string for the increase or decrease
+  - If the type is a repeat single crochet, adds the component count to the possible repeat single crochets to save it for later
+  - If the type is a repeat increase or decrease, nothing needs to happen
+  - If the type is a repeat count, checks if the component count is one, and if so, treats the possible repeat single crochets and other repeat stitches as normal stitches, but if not, treats the repeat stitches as a repeat
+- If round was not empty or round number was not just added, runs a different switch statement on the type of the current component
+  - This switch statement is almost identical to the previous one, expect it removes some cases that aren't possible given the preconditions and changes the string representations to match the preconditions
+- After looping through the all the components, checks if there are any single crochets remaining in the single crochet total, and adds them if so
+- Then checks if the very last component is a stitch total, and adds it if so
+- Then adds the string builder to the formatted pattern list, and repeats for the remaining rounds
+- Also has get formatted pattern and print pattern methods
 
 ### How to Run the Program
 
