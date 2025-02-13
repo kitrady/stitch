@@ -17,22 +17,18 @@ public class SphereMaker {
     }
 
     private void generateStitchTotals() {
-        // computes stitches per round, starting from top of sphere (aka 90 degrees) and ending at side of sphere (aka 0 degrees)
-        // uses degrees per round to increment angle properly
-        // no round can be at exact top, so starts with one round offset
         double angle;
         for (angle = (90 - degreesPerRound); angle >= 0; angle -= degreesPerRound) {
-            double currentRadius = Math.cos(Math.toRadians(angle)) * radiusInStitches; // finds radius associated with current round/angle using cosine
-            double currentCircumference = 6.2831 * currentRadius; // finds circumference associated with current round/angle using circumference formula
-            stitchesPerRd.add((int) Math.round(currentCircumference)); // expresses circumference as whole number of stitches and adds to list of stitches per round
+            double currentRoundRadiusInStitches = Math.cos(Math.toRadians(angle)) * radiusInStitches;
+            double currentRoundCircumferenceInStitches = 6.2831 * currentRoundRadiusInStitches;
+            stitchesPerRd.add((int) Math.round(currentRoundCircumferenceInStitches));
         }
 
         int originalSize = stitchesPerRd.size();
-        // if more than half of the angle increment was left, there is a "missing" round
         if (angle + degreesPerRound >= degreesPerRound / 2) {
-            stitchesPerRd.add((int) Math.round(6.2831 * radiusInStitches)); // adds "missing" round using an angle of zero, aka full radius
+            stitchesPerRd.add((int) Math.round(6.2831 * radiusInStitches));
         }
-        // since a sphere has identical hemispheres, reverse current stitch counts to get rest of sphere
+
         for (int i = 0; i < originalSize; i++) {
             stitchesPerRd.add(stitchesPerRd.get(originalSize - i - 1));
         }

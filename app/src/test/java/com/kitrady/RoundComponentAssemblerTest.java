@@ -18,7 +18,7 @@ public class RoundComponentAssemblerTest {
         List<List<RoundComponent>> allComponents = List.of(components);
         RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
         assembler.assemble();
-        assertEquals(" 3 sc, inc", assembler.getFormattedPattern().getLast());
+        assertEquals(" 3 sc, 1 inc", assembler.getFormattedPattern().getLast());
     }
 
     @Test
@@ -31,7 +31,7 @@ public class RoundComponentAssemblerTest {
         List<List<RoundComponent>> allComponents = List.of(components);
         RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
         assembler.assemble();
-        assertEquals(" 3 sc, dec", assembler.getFormattedPattern().getLast());
+        assertEquals(" 3 sc, 1 dec", assembler.getFormattedPattern().getLast());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class RoundComponentAssemblerTest {
         List<List<RoundComponent>> allComponents = List.of(components);
         RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
         assembler.assemble();
-        assertEquals(" inc, 3 sc, inc", assembler.getFormattedPattern().getLast());
+        assertEquals(" 1 inc, 3 sc, 1 inc", assembler.getFormattedPattern().getLast());
     }
     // TODO make able to handle more than one inc at a time
 
@@ -60,7 +60,7 @@ public class RoundComponentAssemblerTest {
         List<List<RoundComponent>> allComponents = List.of(components);
         RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
         assembler.assemble();
-        assertEquals(" dec, 3 sc, dec", assembler.getFormattedPattern().getLast());
+        assertEquals(" 1 dec, 3 sc, 1 dec", assembler.getFormattedPattern().getLast());
     }
     // TODO make able to handle more than one dec
 
@@ -74,7 +74,7 @@ public class RoundComponentAssemblerTest {
         List<List<RoundComponent>> allComponents = List.of(components);
         RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
         assembler.assemble();
-        assertEquals(" (2 sc, inc) x3", assembler.getFormattedPattern().getLast());
+        assertEquals(" (2 sc, 1 inc) x3", assembler.getFormattedPattern().getLast());
     }
 
     @Test
@@ -87,7 +87,7 @@ public class RoundComponentAssemblerTest {
         List<List<RoundComponent>> allComponents = List.of(components);
         RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
         assembler.assemble();
-        assertEquals(" (2 sc, dec) x3", assembler.getFormattedPattern().getLast());
+        assertEquals(" (2 sc, 1 dec) x3", assembler.getFormattedPattern().getLast());
     }
 
     @Test
@@ -100,7 +100,7 @@ public class RoundComponentAssemblerTest {
         List<List<RoundComponent>> allComponents = List.of(components);
         RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
         assembler.assemble();
-        assertEquals(" 2 sc, inc", assembler.getFormattedPattern().getLast());
+        assertEquals(" 2 sc, 1 inc", assembler.getFormattedPattern().getLast());
     }
 
     @Test
@@ -113,7 +113,7 @@ public class RoundComponentAssemblerTest {
         List<List<RoundComponent>> allComponents = List.of(components);
         RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
         assembler.assemble();
-        assertEquals(" 2 sc, dec", assembler.getFormattedPattern().getLast());
+        assertEquals(" 2 sc, 1 dec", assembler.getFormattedPattern().getLast());
     }
 
     // for this test to pass, the increase part of testIncreaseAndSingleCrochet must also work
@@ -128,7 +128,7 @@ public class RoundComponentAssemblerTest {
         List<List<RoundComponent>> allComponents = List.of(components);
         RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
         assembler.assemble();
-        assertEquals(" inc, (2 sc, inc) x3", assembler.getFormattedPattern().getLast());
+        assertEquals(" 1 inc, (2 sc, 1 inc) x3", assembler.getFormattedPattern().getLast());
     }
 
     // for this test to pass, the decrease part of testDecreaseAndSingleCrochet must also work
@@ -143,7 +143,7 @@ public class RoundComponentAssemblerTest {
         List<List<RoundComponent>> allComponents = List.of(components);
         RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
         assembler.assemble();
-        assertEquals(" dec, (2 sc, dec) x3", assembler.getFormattedPattern().getLast());
+        assertEquals(" 1 dec, (2 sc, 1 dec) x3", assembler.getFormattedPattern().getLast());
     }
 
     // for this test to pass, the increase part of testIncreaseAndSingleCrochet must also work
@@ -158,7 +158,7 @@ public class RoundComponentAssemblerTest {
         List<List<RoundComponent>> allComponents = List.of(components);
         RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
         assembler.assemble();
-        assertEquals(" inc, 2 sc, inc", assembler.getFormattedPattern().getLast());
+        assertEquals(" 1 inc, 2 sc, 1 inc", assembler.getFormattedPattern().getLast());
     }
 
     @Test
@@ -172,6 +172,6 @@ public class RoundComponentAssemblerTest {
         List<List<RoundComponent>> allComponents = List.of(components);
         RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
         assembler.assemble();
-        assertEquals(" dec, 2 sc, dec", assembler.getFormattedPattern().getLast());
+        assertEquals(" 1 dec, 2 sc, 1 dec", assembler.getFormattedPattern().getLast());
     }
 }
