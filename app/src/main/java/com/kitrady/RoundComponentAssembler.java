@@ -50,9 +50,9 @@ public class RoundComponentAssembler {
                             if (previousComponentType == ComponentType.SINGLE_CROCHET) {
                                 inProgressRound.append(" ").append(singleCrochetTotal).append(" sc");
                                 singleCrochetTotal = 0;
-                                inProgressRound.append(", inc");
+                                inProgressRound.append(", ").append(currentComponentCount).append(" inc");
                             } else {
-                                inProgressRound.append(" inc");
+                                inProgressRound.append(" ").append(currentComponentCount).append(" inc");
                             }
                             break;
 
@@ -60,10 +60,10 @@ public class RoundComponentAssembler {
                             if (previousComponentType == ComponentType.SINGLE_CROCHET) {
                                 inProgressRound.append(" ").append(singleCrochetTotal).append(" sc");
                                 singleCrochetTotal = 0;
-                                inProgressRound.append(", dec");
+                                inProgressRound.append(", ").append(currentComponentCount).append(" dec");
 
                             } else {
-                                inProgressRound.append(" dec");
+                                inProgressRound.append(" ").append(currentComponentCount).append(" dec");
                             }
                             break;
 
@@ -80,15 +80,15 @@ public class RoundComponentAssembler {
                                 inProgressRound.append(" ").append(singleCrochetTotal).append(" sc");
                                 singleCrochetTotal = 0;
                                 if (previousComponentType == ComponentType.REPEAT_INCREASE) {
-                                    inProgressRound.append(", inc");
+                                    inProgressRound.append(", 1 inc");
                                 } else {
-                                    inProgressRound.append(", dec");
+                                    inProgressRound.append(", 1 dec");
                                 }
                             } else {
                                 if (previousComponentType == ComponentType.REPEAT_INCREASE) {
-                                    inProgressRound.append(" (").append(possibleRepeatSingleCrochets).append(" sc, inc) x").append(currentComponentCount);
+                                    inProgressRound.append(" (").append(possibleRepeatSingleCrochets).append(" sc, 1 inc) x").append(currentComponentCount);
                                 } else {
-                                    inProgressRound.append(" (").append(possibleRepeatSingleCrochets).append(" sc, dec) x").append(currentComponentCount);
+                                    inProgressRound.append(" (").append(possibleRepeatSingleCrochets).append(" sc, 1 dec) x").append(currentComponentCount);
                                 }
                             }
                             break;
@@ -104,7 +104,7 @@ public class RoundComponentAssembler {
                                 inProgressRound.append(", ").append(singleCrochetTotal).append(" sc");
                                 singleCrochetTotal = 0;
                             }
-                            inProgressRound.append(", inc");
+                            inProgressRound.append(", ").append(currentComponentCount).append(" inc");
                             break;
 
                         case DECREASE:
@@ -112,7 +112,7 @@ public class RoundComponentAssembler {
                                 inProgressRound.append(", ").append(singleCrochetTotal).append(" sc");
                                 singleCrochetTotal = 0;
                             }
-                            inProgressRound.append(", dec");
+                            inProgressRound.append(", ").append(currentComponentCount).append(" dec");
                             break;
 
                         case REPEAT_SINGLE_CROCHET:
@@ -123,20 +123,20 @@ public class RoundComponentAssembler {
                             break;
 
                         case REPEAT_COUNT:
-                            if (currentComponentCount < 2) {
+                            if (currentComponentCount == 1) {
                                 singleCrochetTotal += possibleRepeatSingleCrochets;
                                 inProgressRound.append(", ").append(singleCrochetTotal).append(" sc");
                                 singleCrochetTotal = 0;
                                 if (previousComponentType == ComponentType.REPEAT_INCREASE) {
-                                    inProgressRound.append(", inc");
+                                    inProgressRound.append(", 1 inc");
                                 } else {
-                                    inProgressRound.append(", dec");
+                                    inProgressRound.append(", 1 dec");
                                 }
                             } else {
                                 if (previousComponentType == ComponentType.REPEAT_INCREASE) {
-                                    inProgressRound.append(", (").append(possibleRepeatSingleCrochets).append(" sc, inc) x").append(currentComponentCount);
+                                    inProgressRound.append(", (").append(possibleRepeatSingleCrochets).append(" sc, 1 inc) x").append(currentComponentCount);
                                 } else {
-                                    inProgressRound.append(", (").append(possibleRepeatSingleCrochets).append(" sc, dec) x").append(currentComponentCount);
+                                    inProgressRound.append(", (").append(possibleRepeatSingleCrochets).append(" sc, 1 dec) x").append(currentComponentCount);
                                 }
                             }
                             break;

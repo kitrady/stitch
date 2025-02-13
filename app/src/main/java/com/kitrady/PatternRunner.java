@@ -6,7 +6,7 @@ public class PatternRunner {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        InputHandler handler = new InputHandler(1.25, 4, 4);
+        InputHandler handler = new InputHandler(3, 4, 3.8);
 //        InputHandler handler = new InputHandler(input);
         SphereMaker sphereMaker = new SphereMaker(handler.getRadiusInStitches(), handler.getCircumferenceInRounds());
         RoundComponentMaker componentMaker =  new RoundComponentMaker(sphereMaker.getStitchesPerRd());
