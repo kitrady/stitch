@@ -119,7 +119,7 @@ In longer patterns, an alternate format may be used, which is explained below:
 - Makes components for the first round, which will always use a magic loop and thus needs special components
 - Makes components for the rounds with increases and the rounds with decreases
 - To do this, creates a finalLargestIndex variable that is the final index of the rounds that are the largest
-- It uses the stitch totals up until this index to make the increase rounds, and the totals including and after the index to make the decrease rounds
+- It uses the stitch totals up until and including this index to make the increase rounds, and the totals after the index to make the decrease rounds
 - For the increase rounds...
   - it first adds the round number to the list of components
   - Then it uses the difference between the current and previous elements in the stitchesPerRound list to find the number of increases
