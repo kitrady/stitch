@@ -14,21 +14,21 @@ public class InputHandlerTest {
     @Test
     public void testHardcodeGauge() {
         InputHandler classUnderTest = new InputHandler(2.4, 4.3, 3.4);
-        assertEquals(4.3, classUnderTest.getGauge());
+        assertEquals(4.3, classUnderTest.getStitchGauge());
     }
 
     @Test
     public void testHardcodeVertGauge() {
         InputHandler classUnderTest = new InputHandler(2.4, 4.3, 3.4);
-        assertEquals(3.4, classUnderTest.getVertGauge());
+        assertEquals(3.4, classUnderTest.getRoundGauge());
     }
 
     @Test
     public void testHardcodeNegInput() {
         InputHandler classUnderTest = new InputHandler(-4, -3, -3);
         assertEquals(2, classUnderTest.getRadius());
-        assertEquals(3, classUnderTest.getGauge());
-        assertEquals(3, classUnderTest.getVertGauge());
+        assertEquals(3, classUnderTest.getStitchGauge());
+        assertEquals(3, classUnderTest.getRoundGauge());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class InputHandlerTest {
         String data = "2\n3\n4\n";
         Scanner input = new Scanner(data);
         InputHandler classUnderTest = new InputHandler(input);
-        assertEquals(3, classUnderTest.getGauge());
+        assertEquals(3, classUnderTest.getStitchGauge());
     }
 
     @Test
@@ -52,7 +52,7 @@ public class InputHandlerTest {
         String data = "4\n3\n4\n";
         Scanner input = new Scanner(data);
         InputHandler classUnderTest = new InputHandler(input);
-        assertEquals(4, classUnderTest.getVertGauge());
+        assertEquals(4, classUnderTest.getRoundGauge());
     }
 
     @Test
@@ -61,8 +61,8 @@ public class InputHandlerTest {
         Scanner input = new Scanner(data);
         InputHandler classUnderTest = new InputHandler(input);
         assertEquals(1.9, classUnderTest.getRadius());
-        assertEquals(4.1, classUnderTest.getGauge());
-        assertEquals(3.7, classUnderTest.getVertGauge());
+        assertEquals(4.1, classUnderTest.getStitchGauge());
+        assertEquals(3.7, classUnderTest.getRoundGauge());
     }
 
     @Test

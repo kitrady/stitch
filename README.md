@@ -37,12 +37,14 @@ I am NOT the first person to wanted to make mathematically accurate crochet sphe
 ### Shapes it can Currently Make *Correctly*
 
 *Assuming I remembered to update the readme after making changes*
-- None
+- Sphere: when prompted by the program, enter the radius of your desired sphere in inches, your crochet stitch gauge, and your crochet round gauge, and it will generate a pattern that will allow you to make a sphere of that size.
+
+*If you generate one of the above shapes, and notice that the pattern doesn't work in some way, please let me know!*
 
 ### Shapes it can Currently Make *Incorrectly*
 
 *Assuming I remembered to update the readme after making changes*
-- Sphere: when prompted by the program, enter the radius of your desired sphere in inches, your crochet stitch gauge, and your crochet round gauge, and it will generate a pattern that will allow you to make a sphere of that size. *For details on how it is making a sphere incorrectly, see the issues page on the GitHub.*
+-  None
 
 ### Math Behind Making A Sphere
 
@@ -117,7 +119,7 @@ In longer patterns, an alternate format may be used, which is explained below:
 - Makes components for the first round, which will always use a magic loop and thus needs special components
 - Makes components for the rounds with increases and the rounds with decreases
 - To do this, creates a finalLargestIndex variable that is the final index of the rounds that are the largest
-- It uses the stitch totals up until this index to make the increase rounds, and the totals including and after the index to make the decrease rounds
+- It uses the stitch totals up until and including this index to make the increase rounds, and the totals after the index to make the decrease rounds
 - For the increase rounds...
   - it first adds the round number to the list of components
   - Then it uses the difference between the current and previous elements in the stitchesPerRound list to find the number of increases
