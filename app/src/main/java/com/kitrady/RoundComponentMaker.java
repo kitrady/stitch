@@ -56,7 +56,9 @@ public class RoundComponentMaker {
                     if (alternateRoundToPreventBubblesCounter % 2 == 0 && numIncreases > 1) {
                         int numSingleCrochetInHalfSection = numSingleCrochetInSection / 2;
 
-                        updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+                        if (numSingleCrochetInHalfSection > 0) {
+                            updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+                        }
                         updateRoundComponents(1, ComponentType.INCREASE);
 
                         updateRoundComponents(numSingleCrochetInSection, ComponentType.REPEAT_SINGLE_CROCHET);
