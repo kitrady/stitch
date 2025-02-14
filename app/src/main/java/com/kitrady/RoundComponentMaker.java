@@ -69,6 +69,18 @@ public class RoundComponentMaker {
                             numSingleCrochetInHalfSection += 1;
                         }
                         updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+
+                    } else if (alternateRoundToPreventBubblesCounter % 2 == 0 && numIncreases == 1) {
+                        int numSingleCrochetInHalfSection = numSingleCrochetInSection / 2;
+
+                        updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+                        updateRoundComponents(1, ComponentType.INCREASE);
+
+                        if (numSingleCrochetInHalfSection * 2 != numSingleCrochetInSection) {
+                            numSingleCrochetInHalfSection += 1;
+                        }
+                        updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+
                     } else {
                         updateRoundComponents(numSingleCrochetInSection, ComponentType.REPEAT_SINGLE_CROCHET);
 
@@ -135,6 +147,18 @@ public class RoundComponentMaker {
                         }
 
                         updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+
+                    } else if (alternateRoundToPreventBubblesCounter % 2 == 0 && numDecreases == 1) {
+                        int numSingleCrochetInHalfSection = numSingleCrochetInSection / 2;
+
+                        updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+                        updateRoundComponents(1, ComponentType.DECREASE);
+
+                        if (numSingleCrochetInHalfSection * 2 != numSingleCrochetInSection) {
+                            numSingleCrochetInHalfSection += 1;
+                        }
+                        updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+
                     } else {
                         updateRoundComponents(numSingleCrochetInSection, ComponentType.REPEAT_SINGLE_CROCHET);
 
