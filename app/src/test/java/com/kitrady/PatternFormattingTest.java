@@ -252,4 +252,31 @@ Rd 33: 1 sc, 1 dec, (2 sc, 1 dec) x5, 3 sc (20)
 Rd 34: 7 dec, 6 sc (13)
 Rd 35: 6 dec, 1 sc (7)""", output.toString());
     }
+
+    @Test
+    public void patternFormatterTest9() {
+        List<Integer> stitchesPerRd = List.of(7, 13, 18, 22, 24, 25, 24, 22, 18, 13, 7);
+        RoundComponentMaker maker =  new RoundComponentMaker(stitchesPerRd);
+        maker.generateAllRoundComponents();
+        RoundComponentAssembler assembler = new RoundComponentAssembler(maker.getAllRoundComponents());
+        assembler.assemble();
+        List<String> formattedPattern = assembler.getFormattedPattern();
+        StringBuilder output = new StringBuilder();
+        for (String s : formattedPattern) {
+            output.append("\n").append(s);
+        }
+        assertEquals("""
+
+Rd 1: 7 sc in magic ring (7)
+Rd 2: 6 inc, 1 sc (13)
+Rd 3: (1 sc, 1 inc) x5, 3 sc (18)
+Rd 4: 1 sc, 1 inc, (3 sc, 1 inc) x3, 4 sc (22)
+Rd 5: (10 sc, 1 inc) x2 (24)
+Rd 6: 11 sc, 1 inc, 12 sc (25)
+Rd 7: 23 sc, 1 dec (24)
+Rd 8: 5 sc, 1 dec, 10 sc, 1 dec, 5 sc (22)
+Rd 9: (3 sc, 1 dec) x4, 2 sc (18)
+Rd 10: 1 dec, (1 sc, 1 dec) x4, 4 sc (13)
+Rd 11: 6 dec, 1 sc (7)""", output.toString());
+    }
 }

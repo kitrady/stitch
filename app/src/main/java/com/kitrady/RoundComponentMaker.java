@@ -27,7 +27,7 @@ public class RoundComponentMaker {
     }
 
     private void generateIncreaseRoundComponents(List<Integer> stitchesPerRound, int finalLargestRoundIndex) {
-        for (int i = 1; i < finalLargestRoundIndex; i++) {
+        for (int i = 1; i <= finalLargestRoundIndex; i++) {
             updateRoundComponents(i + 1, ComponentType.ROUND_NUMBER);
 
             int previousStitchTotal = stitchesPerRound.get(i - 1);
@@ -104,7 +104,7 @@ public class RoundComponentMaker {
     }
 
     private void generateDecreaseRoundComponents(List<Integer> stitchesPerRound, int finalLargestRdIndex) {
-        for (int i = finalLargestRdIndex; i < stitchesPerRound.size(); i++) {
+        for (int i = finalLargestRdIndex + 1; i < stitchesPerRound.size(); i++) {
             updateRoundComponents(i + 1, ComponentType.ROUND_NUMBER);
 
             int previousStitchTotal = stitchesPerRound.get(i - 1);
@@ -196,9 +196,9 @@ public class RoundComponentMaker {
 
     void formatGivenRounds(List<Integer> stitchesPerRound, boolean isDecrease) {
         if (isDecrease) {
-            generateDecreaseRoundComponents(stitchesPerRound, 1);
+            generateDecreaseRoundComponents(stitchesPerRound, 0);
         } else {
-            generateIncreaseRoundComponents(stitchesPerRound, stitchesPerRound.size());
+            generateIncreaseRoundComponents(stitchesPerRound, stitchesPerRound.size() - 1);
         }
     }
 }
