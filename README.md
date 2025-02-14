@@ -37,12 +37,14 @@ I am NOT the first person to wanted to make mathematically accurate crochet sphe
 ### Shapes it can Currently Make *Correctly*
 
 *Assuming I remembered to update the readme after making changes*
-- None
+- Sphere: when prompted by the program, enter the radius of your desired sphere in inches, your crochet stitch gauge, and your crochet round gauge, and it will generate a pattern that will allow you to make a sphere of that size.
+
+*If you generate one of the above shapes, and notice that the pattern doesn't work in some way, please let me know!*
 
 ### Shapes it can Currently Make *Incorrectly*
 
 *Assuming I remembered to update the readme after making changes*
-- Sphere: when prompted by the program, enter the radius of your desired sphere in inches, your crochet stitch gauge, and your crochet round gauge, and it will generate a pattern that will allow you to make a sphere of that size. *For details on how it is making a sphere incorrectly, see the issues page on the GitHub.*
+-  None
 
 ### Math Behind Making A Sphere
 
