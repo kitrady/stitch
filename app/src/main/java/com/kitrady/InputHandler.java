@@ -7,8 +7,8 @@ import static java.lang.Math.*;
 public class InputHandler {
     private final double diameter; // units are inches
     private final double radius; // units are inches
-    private final double gauge; // units are stitches per inch
-    private final double vertGauge; // units are rows per inch
+    private final double stitchGauge; // units are stitches per inch
+    private final double roundGauge; // units are rows per inch
     private final double radiusInStitches; // units are stitches
     private final double radiusInRounds; // units are rounds
     private final double circumferenceInRounds; // units are rounds
@@ -19,29 +19,29 @@ public class InputHandler {
                 "\nPlease enter just a number that is the diameter of your sphere in inches."));
         input.nextLine();
 
-        gauge = abs(handleInput(input,
+        stitchGauge = abs(handleInput(input,
                 "\nEnter your crochet gauge in stitches per inch: ",
                 "\nPlease enter just a number that is your crochet gauge in stitches per inch."));
         input.nextLine();
 
-        vertGauge = abs(handleInput(input,
+        roundGauge = abs(handleInput(input,
                 "\nEnter your vertical crochet gauge in rows per inch: ",
                 "\nPlease enter just a number that is your vertical crochet gauge in stitches per inch."));
         input.nextLine();
 
         radius = diameter / 2;
-        radiusInStitches = radius * gauge;
-        radiusInRounds = radius * vertGauge;
+        radiusInStitches = radius * stitchGauge;
+        radiusInRounds = radius * roundGauge;
         circumferenceInRounds = 6.2831 * radiusInRounds;
     }
 
-    public InputHandler(double diameter, double gauge, double vertGauge) {
+    public InputHandler(double diameter, double stitchGauge, double roundGauge) {
         this.diameter = abs(diameter);
         this.radius = this.diameter / 2;
-        this.gauge = abs(gauge);
-        this.vertGauge = abs(vertGauge);
-        radiusInStitches = radius * gauge;
-        radiusInRounds = radius * vertGauge;
+        this.stitchGauge = abs(stitchGauge);
+        this.roundGauge = abs(roundGauge);
+        radiusInStitches = radius * stitchGauge;
+        radiusInRounds = radius * roundGauge;
         circumferenceInRounds = 6.2831 * radiusInRounds;
     }
 
@@ -65,12 +65,12 @@ public class InputHandler {
         return radius;
     }
 
-    double getGauge() {
-        return gauge;
+    double getStitchGauge() {
+        return stitchGauge;
     }
 
-    double getVertGauge() {
-        return vertGauge;
+    double getRoundGauge() {
+        return roundGauge;
     }
 
     public double getRadiusInStitches() {
@@ -83,8 +83,8 @@ public class InputHandler {
 
     public String toString() {
         return ("\n- Radius = " + radius +
-                "\n- Gauge = " + gauge +
-                "\n- Vertical gauge = " + vertGauge +
+                "\n- Gauge = " + stitchGauge +
+                "\n- Vertical gauge = " + roundGauge +
                 "\n- Radius in stitches = " + radiusInStitches +
                 "\n- Radius in rows = " + radiusInRounds +
                 "\n- Circumference in rows = " + circumferenceInRounds);
