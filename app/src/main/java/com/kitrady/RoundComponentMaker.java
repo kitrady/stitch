@@ -46,13 +46,19 @@ public class RoundComponentMaker {
                 }
 
                 if (numSingleCrochetInSection == 0) {
-                    updateRoundComponents(0, ComponentType.ALL_INCREASE);
+                    if (extraStitches == 0) {
+                        updateRoundComponents(0, ComponentType.ALL_INCREASE);
+                    } else {
+                        updateRoundComponents(numIncreases, ComponentType.INCREASE);
+                    }
                 } else {
                     // the numIncreases > 1 is needed because alternate rounds need two repeats to work
                     if (alternateRoundToPreventBubblesCounter % 2 == 0 && numIncreases > 1) {
                         int numSingleCrochetInHalfSection = numSingleCrochetInSection / 2;
 
-                        updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+                        if (numSingleCrochetInHalfSection > 0) {
+                            updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+                        }
                         updateRoundComponents(1, ComponentType.INCREASE);
 
                         updateRoundComponents(numSingleCrochetInSection, ComponentType.REPEAT_SINGLE_CROCHET);
@@ -65,6 +71,18 @@ public class RoundComponentMaker {
                             numSingleCrochetInHalfSection += 1;
                         }
                         updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+
+                    } else if (alternateRoundToPreventBubblesCounter % 2 == 0 && numIncreases == 1) {
+                        int numSingleCrochetInHalfSection = numSingleCrochetInSection / 2;
+
+                        updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+                        updateRoundComponents(1, ComponentType.INCREASE);
+
+                        if (numSingleCrochetInHalfSection * 2 != numSingleCrochetInSection) {
+                            numSingleCrochetInHalfSection += 1;
+                        }
+                        updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+
                     } else {
                         updateRoundComponents(numSingleCrochetInSection, ComponentType.REPEAT_SINGLE_CROCHET);
 
@@ -73,11 +91,6 @@ public class RoundComponentMaker {
                         updateRoundComponents(numIncreases, ComponentType.REPEAT_COUNT);
                     }
                     alternateRoundToPreventBubblesCounter++;
-                    // TODO: the below comments describe an issue
-                    // if increases in not greater than one, may be three normal rounds in a row
-                    // or two in a row depending on whether you count 1 inc round to be normal
-                    // solution is to either not increment the counter when inc <= 1
-                    // or create code to format round as "# sc, inc # sc"
                 }
 
                 if (extraStitches > 0) {
@@ -110,13 +123,19 @@ public class RoundComponentMaker {
                 }
 
                 if (numSingleCrochetInSection == 0) {
-                    updateRoundComponents(0, ComponentType.ALL_DECREASE);
+                    if (extraStitches == 0) {
+                        updateRoundComponents(0, ComponentType.ALL_DECREASE);
+                    } else {
+                        updateRoundComponents(numDecreases, ComponentType.DECREASE);
+                    }
                 } else {
                     // the numDecreases > 1 in needed because alternate rounds need two repeats to work
                     if (alternateRoundToPreventBubblesCounter % 2 == 0 && numDecreases > 1) {
                         int numSingleCrochetInHalfSection = numSingleCrochetInSection / 2;
 
-                        updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+                        if (numSingleCrochetInHalfSection > 0) {
+                            updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+                        }
                         updateRoundComponents(1, ComponentType.DECREASE);
 
                         updateRoundComponents(numSingleCrochetInSection, ComponentType.REPEAT_SINGLE_CROCHET);
@@ -130,6 +149,18 @@ public class RoundComponentMaker {
                         }
 
                         updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+
+                    } else if (alternateRoundToPreventBubblesCounter % 2 == 0 && numDecreases == 1) {
+                        int numSingleCrochetInHalfSection = numSingleCrochetInSection / 2;
+
+                        updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+                        updateRoundComponents(1, ComponentType.DECREASE);
+
+                        if (numSingleCrochetInHalfSection * 2 != numSingleCrochetInSection) {
+                            numSingleCrochetInHalfSection += 1;
+                        }
+                        updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
+
                     } else {
                         updateRoundComponents(numSingleCrochetInSection, ComponentType.REPEAT_SINGLE_CROCHET);
 
