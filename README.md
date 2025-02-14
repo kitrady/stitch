@@ -66,24 +66,24 @@ Here are the final formatted rounds:
 
 - Rd 1: 6 sc in magic ring (6)
 - Rd 2: 5 inc, 1 sc (11)
-- Rd 3: (4 sc, inc) x2, 1 sc (13)
+- Rd 3: (4 sc, 1 inc) x2, 1 sc (13)
 - Rd 4: sc in each st in rd (13)
-- Rd 5: (4 sc, dec) x2, 1 sc (11)
+- Rd 5: (4 sc, 1 dec) x2, 1 sc (11)
 - Rd 6: 5 dec, 1 sc (6)
 
 And here is a walkthrough of how to format the rounds:
 
 - For round 1, we start the crochet with 6 single crochet in a magic ring. -> Rd 1: 6 sc in magic ring (6)
 - For round 2, we go from 6 stitches in the previous round to 11 stitches in this round, so we need 11 - 6 = 5 increases. Since increases are worked into one stitch, and there are 6 stitches in the previous round, there is one remaining stitch after the 5 increases, so we will do one single crochet. -> Rd 2: 5 inc, 1 sc (11)
-- For round 3, we go from 11 stitches to 13, so we need 2 increases. Since increases add material to the crochet item, we want to distribute them evenly throughout the round, so that the item grows evenly on all sides. We are working into 11 stitches, so we need 9 single crochets in addition to the 2 increases. 9 divided by 2 is 4 (with a remainder of one), so each increase will be "paired" with 4 single crochets to distribute them evenly, and we will add the remaining single crochet on at the end. Crocheters are like programmers and don't like to repeat themselves, so we will write "x2" to indicate that the group of stitches is repeated twice. -> Rd 3: (4 sc, inc) x2, 1 sc (13)
+- For round 3, we go from 11 stitches to 13, so we need 2 increases. Since increases add material to the crochet item, we want to distribute them evenly throughout the round, so that the item grows evenly on all sides. We are working into 11 stitches, so we need 9 single crochets in addition to the 2 increases. 9 divided by 2 is 4 (with a remainder of one), so each increase will be "paired" with 4 single crochets to distribute them evenly, and we will add the remaining single crochet on at the end. Crocheters are like programmers and don't like to repeat themselves, so we will write "x2" to indicate that the group of stitches is repeated twice. -> Rd 3: (4 sc, 1 inc) x2, 1 sc (13)
 - For round 4, we have 13 stitches just like the last round, so we single crochet into every stitch. -> Rd 4: sc in each st in rd (13)
-- For round 5, we go from 13 stitches to 11, so we need 2 decreases, and just like the increases, we want them to be evenly distributed. Since decreases are worked into 2 stitches, and we are working into 13 stitches, we need 13 - 2(2) = 9 single crochets. 9 single crochets divided by 2 decreases is 8 stitches (with a remainder of one), so each decrease will be paired with 4 singles crochets, and one single crochet will go at the end. -> Rd 5: (4 sc, dec) x2, 1 sc (11)
+- For round 5, we go from 13 stitches to 11, so we need 2 decreases, and just like the increases, we want them to be evenly distributed. Since decreases are worked into 2 stitches, and we are working into 13 stitches, we need 13 - 2(2) = 9 single crochets. 9 single crochets divided by 2 decreases is 8 stitches (with a remainder of one), so each decrease will be paired with 4 singles crochets, and one single crochet will go at the end. -> Rd 5: (4 sc, 1 dec) x2, 1 sc (11)
 - For round 6, we need to go from 11 stitches to 6, so we need 5 decreases. We are working into 11 stitches, so 11 - 5(2) = 1 single crochet, and this single crochet will go at the end. -> Rd 6: 5 dec, 1 sc (6)
 
 In longer patterns, an alternate format may be used, which is explained below:
 
-- Say the current round has 13 stitches, and the previous has 9, so 13 - 9 = 4 increases. The 9 stitches we are working into minus the 4 increases results in 5 single crochets, and 5 divided by 4 increases is one single crochet per increase (with a remainder of one). -> Rd n: (1 sc, inc) x4, 1 sc (13)
-- Say the next round has 16 stitches, so 16 - 13 = 3 increases. If we walk through the normal logic, we would end up with (3 sc, inc) x3, 1 sc (16). However, if we follow this process for the whole pattern, the increases/decrease of each round will stack on top of the increases/decreases of every other round and creates "bubbles" in the item. To prevent this, each round should have its increases/decreases offset by half a "section" (the stitches that are repeated) from the previous round. To do this, we put half of a section at the beginning of the round, and the other half at the end. A section in this example is "3 sc, inc", so the half that will go at the beginning of the round is "1 sc, inc", and the half that will go at the end is "2 sc". The standard is to put the increase/decrease in the beginning half, and put any remainders from dividing an odd number at the end (plus any other remaining stitches from division in previous steps). -> Rd n+1: 1 sc, inc (3 sc, inc) x2, 3 sc (16)
+- Say the current round has 13 stitches, and the previous has 9, so 13 - 9 = 4 increases. The 9 stitches we are working into minus the 4 increases results in 5 single crochets, and 5 divided by 4 increases is one single crochet per increase (with a remainder of one). -> Rd n: (1 sc, 1 inc) x4, 1 sc (13)
+- Say the next round has 16 stitches, so 16 - 13 = 3 increases. If we walk through the normal logic, we would end up with (3 sc, 1 inc) x3, 1 sc (16). However, if we follow this process for the whole pattern, the increases/decrease of each round will stack on top of the increases/decreases of every other round and creates "bubbles" in the item. To prevent this, each round should have its increases/decreases offset by half a "section" (the stitches that are repeated) from the previous round. To do this, we put half of a section at the beginning of the round, and the other half at the end. A section in this example is "3 sc, 1 inc", so the half that will go at the beginning of the round is "1 sc, 1 inc", and the half that will go at the end is "2 sc". The standard is to put the increase/decrease in the beginning half, and put any remainders from dividing an odd number at the end (plus any other remaining stitches from division in previous steps). -> Rd n+1: 1 sc, 1 inc (3 sc, 1 inc) x2, 3 sc (16)
 
 ## How the Code Works
 
@@ -92,9 +92,9 @@ In longer patterns, an alternate format may be used, which is explained below:
 **InputHandler**
 
 *The purpose of this class is to get sphere specifications from the user*
-- Uses scanner to ask for the radius of the desired sphere in inches, the users crochet stitch gauge in stitches per inch, and their crochet round gauge in rounds per inch
+- Uses scanner to ask for the diameter of the desired sphere in inches, the users crochet stitch gauge in stitches per inch, and their crochet round gauge in rounds per inch
 - If the given inputs are not ints or doubles, prints a message correcting the user
-- Multiplies the radius by the stitch gauge to get the radius in stitches, the radius by the round gauge to get the radius in rounds, and the radius in rounds by 2pi to get the circumference in rounds
+- Divides the diameter by two to get radius, then multiplies the radius by the stitch gauge to get the radius in stitches, the radius by the round gauge to get the radius in rounds, and the radius in rounds by 2pi to get the circumference in rounds
 - All of the above is done in the constructor
 - There is a secondary constructor that takes the values directly instead of through scanner for convenience while developing
 - Also has getters for the purpose of testing
@@ -125,8 +125,11 @@ In longer patterns, an alternate format may be used, which is explained below:
   - If there are no increases, then the round is all single crochets
   - Otherwise, divides the current stitch total by the number of increases to find the number of stitches in a "section" (i.e. the sum of the increase and the singles crochets paired with the increase), and subtracts two to find the number of single crochets in a "section"
   - Then checks if there were any stitches lost to truncation, and adds them to an extraStitches variable if so
-  - If there are no single crochets in a section, then the round is all increases
-  - Otherwise, it checks if this round should be an alternate round, which is when the counter is even and the number of increases is greater than zero (because the format doesn't work if there is only one increase), and either makes a normal round or a round with the alternate depending on the result of the check
+  - If there are no single crochets in a section, then the round is either all increases, or several increases followed by some extra single crochets
+  - Otherwise, it checks if this round should be an alternate round
+    - If the counter is even and the number of increases is greater than one, makes an alternate round
+    - If the counter is even and the number of increases is one, makes an alternate round with a different format because there is only one increase
+    - Otherwise, makes a normal round
   - Finally, it checks if there were any extra stitches and adds them onto the end if so
 - The decrease rounds follow a similar logic, with the only difference being that it sometimes compares to the previous stitch total instead of the current because the previous round has more stitches when doing decrease rounds
 
