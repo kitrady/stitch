@@ -1,4 +1,4 @@
-# crochet-pattern-maker
+# STITCH: STupendous ITerative Crochet Helper
 
 ## Crochet Basics and the Program's Purpose
 
