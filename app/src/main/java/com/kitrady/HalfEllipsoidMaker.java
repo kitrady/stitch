@@ -21,7 +21,7 @@ public class HalfEllipsoidMaker {
         int count = 1;
         while (currentRoundRadiusInStitches > 0) {
             currentRoundRadiusInStitches = findXForGivenArcLength(roundHeightInStitches * count, currentRoundRadiusInStitches, heightInStitches, radiusInStitches);
-            double currentRoundHeightInStitches = heightInStitches * Math.sqrt(1 - Math.pow(currentRoundRadiusInStitches / radiusInStitches, 2));
+//            double currentRoundHeightInStitches = heightInStitches * Math.sqrt(1 - Math.pow(currentRoundRadiusInStitches / radiusInStitches, 2));
 //            System.out.println("yVal: " + currentRoundHeightInStitches);
             double currentRoundCircumferenceInStitches = 2 * Math.PI * currentRoundRadiusInStitches;
             stitchesPerRound.add((int) Math.round(currentRoundCircumferenceInStitches));
@@ -29,6 +29,7 @@ public class HalfEllipsoidMaker {
         }
     }
 
+    // TODO handle case when no x value found
     public double findXForGivenArcLength(double arcLength, double startingX, double semiMajorAxis, double semiMinorAxis) {
         for (double x = startingX; x > 0; x -= 0.01) {
             double angle = findAngleForGivenX(x);

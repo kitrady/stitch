@@ -12,6 +12,10 @@ public class HalfEllipsoidMakerTest {
         assertEquals(16, maker.getHeightInStitches());
     }
 
+    // TODO test find x for given arc length
+
+    // TODO test find angle for given x
+
     // TODO check if these totals are right by crocheting them
     @Test
     public void testMakeHalfEllipsoid() {
