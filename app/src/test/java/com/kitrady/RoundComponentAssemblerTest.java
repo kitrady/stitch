@@ -47,7 +47,6 @@ public class RoundComponentAssemblerTest {
         assembler.assemble();
         assertEquals(" 1 inc, 3 sc, 1 inc", assembler.getFormattedPattern().getLast());
     }
-    // TODO make able to handle more than one inc at a time
 
     @Test
     public void testDecreaseAndSingleCrochet() {
@@ -62,7 +61,6 @@ public class RoundComponentAssemblerTest {
         assembler.assemble();
         assertEquals(" 1 dec, 3 sc, 1 dec", assembler.getFormattedPattern().getLast());
     }
-    // TODO make able to handle more than one dec
 
     @Test
     public void testRepeatWithIncreaseWithEmptyRound() {
