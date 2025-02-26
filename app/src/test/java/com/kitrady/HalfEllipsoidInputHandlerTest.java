@@ -54,22 +54,10 @@ public class HalfEllipsoidInputHandlerTest {
     }
 
     @Test
-    public void testGetRadiusInRounds() {
-        HalfEllipsoidInputHandler handler = new HalfEllipsoidInputHandler(3.4, 6.3, 3.3, 3.4);
-        assertEquals((3.4 / 2) * 3.4, handler.getRadiusInRounds());
-    }
-
-    @Test
     public void testGetHeightInStitches() {
         HalfEllipsoidInputHandler handler = new HalfEllipsoidInputHandler(3.4, 6.3, 3.3, 3.4);
         assertEquals(6.3 * 3.3, handler.getHeightInStitches());
     }
 
-    @Test
-    public void testGetHeightInRounds() {
-        HalfEllipsoidInputHandler handler = new HalfEllipsoidInputHandler(3.4, 6.3, 3.3, 3.4);
-        assertEquals(6.3 * 3.4, handler.getHeightInRounds());
-    }
-
-    // TODO when update classes to handle height being less than radius, update some tests to reflect that
+    // old to-do: when update classes to handle height being less than radius, update some tests to reflect that
 }

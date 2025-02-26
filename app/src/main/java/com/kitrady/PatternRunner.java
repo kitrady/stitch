@@ -14,10 +14,10 @@ public class PatternRunner {
         RoundComponentAssembler assembler = new RoundComponentAssembler(componentMaker.getAllRoundComponents());
         assembler.assemble();
         assembler.printPattern();
-//        System.out.println("\nobjInputGetter:" + handler);
-//        System.out.println("\nsphereMaker:" + sphereMaker);
-        double eccentricity = EllipticIntegrals.calculateEccentricity(3, 2);
-        System.out.println("\n" + eccentricity);
-        System.out.println(EllipticIntegrals.calculateArcLengthOfEllipse(1, 3, 2));
+
+        HalfEllipsoidInputHandler handler2 = new HalfEllipsoidInputHandler(3, 2, 5, 5);
+        HalfEllipsoidMaker maker2 = new HalfEllipsoidMaker(handler2.getRadiusInStitches(), handler2.getHeightInStitches(), 1);
+        System.out.println("\n");
+        maker2.printPattern();
     }
 }

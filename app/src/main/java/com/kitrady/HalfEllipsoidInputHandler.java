@@ -16,7 +16,7 @@ public class HalfEllipsoidInputHandler {
     private final double heightInRounds;
     private final double roundHeightInStitches;
 
-    // TODO double check that messages are clear
+    // old to-do: double check that messages are clear
     HalfEllipsoidInputHandler(Scanner input) {
         diameterInInches = abs(handleInput(input,
                 "\nEnter the diameter of your half of an ellipsoid in inches: ",
@@ -79,10 +79,6 @@ public class HalfEllipsoidInputHandler {
         return diameterInInches;
     }
 
-    double getRadiusInInches() {
-        return radiusInInches;
-    }
-
     double getHeightInInches() {
         return heightInInches;
     }
@@ -99,16 +95,8 @@ public class HalfEllipsoidInputHandler {
         return radiusInStitches;
     }
 
-    public double getRadiusInRounds() {
-        return radiusInRounds;
-    }
-
     public double getHeightInStitches() {
         return heightInStitches;
-    }
-
-    public double getHeightInRounds() {
-        return heightInRounds;
     }
 
     public double getRoundHeightInStitches() {
