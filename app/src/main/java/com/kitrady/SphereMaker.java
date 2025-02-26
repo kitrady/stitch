@@ -5,7 +5,7 @@ import java.lang.Math;
 import java.util.List;
 
 public class SphereMaker {
-    private final List<Integer> stitchesPerRd = new ArrayList<>();
+    private final List<Integer> stitchesPerRound = new ArrayList<>();
     private final double radiusInStitches;
     private final double circumferenceInRounds;
     private final double degreesPerRound;
@@ -21,22 +21,22 @@ public class SphereMaker {
         for (angle = (90 - degreesPerRound); angle >= 0; angle -= degreesPerRound) {
             double currentRoundRadiusInStitches = Math.cos(Math.toRadians(angle)) * radiusInStitches;
             double currentRoundCircumferenceInStitches = 6.2831 * currentRoundRadiusInStitches;
-            stitchesPerRd.add((int) Math.round(currentRoundCircumferenceInStitches));
+            stitchesPerRound.add((int) Math.round(currentRoundCircumferenceInStitches));
         }
 
-        int originalSize = stitchesPerRd.size();
+        int originalSize = stitchesPerRound.size();
         if (angle + degreesPerRound >= degreesPerRound / 2) {
-            stitchesPerRd.add((int) Math.round(6.2831 * radiusInStitches));
+            stitchesPerRound.add((int) Math.round(6.2831 * radiusInStitches));
         }
 
         for (int i = 0; i < originalSize; i++) {
-            stitchesPerRd.add(stitchesPerRd.get(originalSize - i - 1));
+            stitchesPerRound.add(stitchesPerRound.get(originalSize - i - 1));
         }
     }
 
-    public List<Integer> getStitchesPerRd() {
+    public List<Integer> getStitchesPerRound() {
         generateStitchTotals();
-        return stitchesPerRd;
+        return stitchesPerRound;
     }
 
     double getRadiusInStitches() {
