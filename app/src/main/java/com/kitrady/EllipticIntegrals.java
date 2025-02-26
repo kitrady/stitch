@@ -21,15 +21,18 @@ public class EllipticIntegrals {
     public static double calculateArcLengthOfEllipse(double angle, double semiMajorAxis, double semiMinorAxis) {
         double eccentricity = calculateEccentricity(semiMajorAxis, semiMinorAxis);
 
+        // calculates incomplete elliptic integral of the second kind from zero to given angle using calculated eccentricity
         double integral = LegendreEllipticIntegral.bigE(angle, Math.pow(eccentricity, 2));
 
+        // calculates other parts of arc length formula
         double arcLengthNumerator = Math.pow(eccentricity, 2) * Math.sin(angle) * Math.cos(angle);
         double arcLengthDenominator = Math.sqrt(1- Math.pow(eccentricity, 2) * Math.pow(Math.sin(angle), 2));
 
+        // returns arc length according to formula (see wikipedia page on meridian arc length for formula)
         return semiMajorAxis * (integral - arcLengthNumerator/arcLengthDenominator);
     }
 
-    // power series for elliptic integral from wikipedia
+    // uses power series for elliptic integral from wikipedia to calculate
     // result is a quarter of the circumference of the ellipse measured in semi-major axis (like how radians are units of radius)
     public static double calculateSecondCompleteEllipticIntegral(double eccentricity) {
         double sum = 1;

@@ -12,11 +12,18 @@ public class HalfEllipsoidMakerTest {
         assertEquals(16, maker.getHeightInStitches());
     }
 
-    // TODO test find x for given arc length
+    @Test
+    public void testFindXForGivenArcLength() {
+        HalfEllipsoidMaker maker = new HalfEllipsoidMaker(5, 10, 1);
+        assertEquals(4.910000000000002, maker.findXForGivenArcLength(1, 5, 10, 5));
+    }
 
-    // TODO test find angle for given x
+    @Test
+    public void testFindAngleForGivenX() {
+        HalfEllipsoidMaker maker = new HalfEllipsoidMaker(5, 10, 1);
+        assertEquals(0.3672355054826683, maker.findAngleForGivenX(4.91));
+    }
 
-    // TODO check if these totals are right by crocheting them
     @Test
     public void testMakeHalfEllipsoid() {
         HalfEllipsoidMaker maker = new HalfEllipsoidMaker(4, 16, 1);
