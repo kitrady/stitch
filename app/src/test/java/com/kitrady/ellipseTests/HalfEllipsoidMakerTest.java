@@ -1,5 +1,6 @@
-package com.kitrady;
+package com.kitrady.ellipseTests;
 
+import com.kitrady.ellipses.HalfEllipsoidMaker;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;

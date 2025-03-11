@@ -1,4 +1,4 @@
-package com.kitrady;
+package com.kitrady.ellipses;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,11 +65,11 @@ public class HalfEllipsoidMaker {
         return stitchesPerRound;
     }
 
-    double getRadiusInStitches() {
+    public double getRadiusInStitches() {
         return radiusInStitches;
     }
 
-    double getHeightInStitches() {
+    public double getHeightInStitches() {
         return heightInStitches;
     }
 }

@@ -157,7 +157,7 @@ public class RoundComponentAssembler {
         }
     }
 
-    List<String> getFormattedPattern() {
+    public List<String> getFormattedPattern() {
         return formattedPattern;
     }
 

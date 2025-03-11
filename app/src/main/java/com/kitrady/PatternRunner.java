@@ -1,5 +1,10 @@
 package com.kitrady;
 
+import com.kitrady.ellipses.HalfEllipsoidInputHandler;
+import com.kitrady.ellipses.HalfEllipsoidMaker;
+import com.kitrady.spheres.SphereInputHandler;
+import com.kitrady.spheres.SphereMaker;
+
 import java.util.Scanner;
 
 public class PatternRunner {
@@ -14,10 +19,5 @@ public class PatternRunner {
         RoundComponentAssembler assembler = new RoundComponentAssembler(componentMaker.getAllRoundComponents());
         assembler.assemble();
         assembler.printPattern();
-
-        HalfEllipsoidInputHandler handler2 = new HalfEllipsoidInputHandler(3, 2, 5, 5);
-        HalfEllipsoidMaker maker2 = new HalfEllipsoidMaker(handler2.getRadiusInStitches(), handler2.getHeightInStitches(), 1);
-        System.out.println("\n");
-        maker2.printPattern();
     }
 }
