@@ -19,5 +19,7 @@ public class PatternRunner {
         RoundComponentAssembler assembler = new RoundComponentAssembler(componentMaker.getAllRoundComponents());
         assembler.assemble();
         assembler.printPattern();
+
+        // TODO update readme with special increase info
     }
 }
