@@ -1,4 +1,4 @@
-package com.kitrady;
+package com.kitrady.ellipses;
 
 import java.util.Scanner;
 
@@ -17,7 +17,7 @@ public class HalfEllipsoidInputHandler {
     private final double roundHeightInStitches;
 
     // old to-do: double check that messages are clear
-    HalfEllipsoidInputHandler(Scanner input) {
+    public HalfEllipsoidInputHandler(Scanner input) {
         diameterInInches = abs(handleInput(input,
                 "\nEnter the diameter of your half of an ellipsoid in inches: ",
                 "\nPlease enter just a number that is the diameter of your half an ellipsoid in inches."));
@@ -46,7 +46,7 @@ public class HalfEllipsoidInputHandler {
         roundHeightInStitches = radiusInStitches / radiusInRounds;
     }
 
-    HalfEllipsoidInputHandler(double diameterInInches, double heightInInches, double stitchGauge, double roundGauge) {
+    public HalfEllipsoidInputHandler(double diameterInInches, double heightInInches, double stitchGauge, double roundGauge) {
         this.diameterInInches = abs(diameterInInches);
         this.radiusInInches = diameterInInches / 2;
         this.heightInInches = abs(heightInInches);
@@ -75,19 +75,19 @@ public class HalfEllipsoidInputHandler {
         }
     }
 
-    double getDiameterInInches() {
+    public double getDiameterInInches() {
         return diameterInInches;
     }
 
-    double getHeightInInches() {
+    public double getHeightInInches() {
         return heightInInches;
     }
 
-    double getStitchGauge() {
+    public double getStitchGauge() {
         return stitchGauge;
     }
 
-    double getRoundGauge() {
+    public double getRoundGauge() {
         return roundGauge;
     }
 

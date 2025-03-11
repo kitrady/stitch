@@ -1,5 +1,6 @@
-package com.kitrady;
+package com.kitrady.sphereTests;
 
+import com.kitrady.spheres.SphereMaker;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

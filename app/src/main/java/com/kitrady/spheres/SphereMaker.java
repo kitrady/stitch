@@ -1,4 +1,4 @@
-package com.kitrady;
+package com.kitrady.spheres;
 
 import java.util.ArrayList;
 import java.lang.Math;
@@ -39,15 +39,15 @@ public class SphereMaker {
         return stitchesPerRound;
     }
 
-    double getRadiusInStitches() {
+    public double getRadiusInStitches() {
         return radiusInStitches;
     }
 
-    double getCircumferenceInRounds() {
+    public double getCircumferenceInRounds() {
         return circumferenceInRounds;
     }
 
-    double getDegreesPerRound() {
+    public double getDegreesPerRound() {
         return degreesPerRound;
     }
 
