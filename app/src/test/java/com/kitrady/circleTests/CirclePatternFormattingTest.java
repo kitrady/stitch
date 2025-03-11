@@ -7,26 +7,25 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CirclePatternFormattingTest {
-//    @Test
-//    public void patternFormatterTest1() {
-//        List<Integer> stitchesPerRd = List.of(6, 13, 19, 25);
-//        RoundComponentMaker maker =  new RoundComponentMaker(stitchesPerRd);
-//        maker.generateAllRoundComponents();
-//        RoundComponentAssembler assembler = new RoundComponentAssembler(maker.getAllRoundComponents());
-//        assembler.assemble();
-//        List<String> formattedPattern = assembler.getFormattedPattern();
-//        StringBuilder output = new StringBuilder();
-//        for (String s : formattedPattern) {
-//            output.append("\n").append(s);
-//        }
-//        // TODO Round 2 in the below pattern is weird, consider how to handle
-//        assertEquals("""
-//
-//Rd 1: 6 sc in magic ring (6)
-//Rd 2: 6 inc, 1 sc (13)
-//Rd 3: (1 sc, 1 inc) x6, 1 sc (19)
-//Rd 4: 1 sc, 1 inc, (2 sc, 1 inc) x5, 2 sc (25)""", output.toString());
-//    }
+    @Test
+    public void patternFormatterTest1() {
+        List<Integer> stitchesPerRd = List.of(6, 13, 19, 25);
+        RoundComponentMaker maker =  new RoundComponentMaker(stitchesPerRd);
+        maker.generateAllRoundComponents();
+        RoundComponentAssembler assembler = new RoundComponentAssembler(maker.getAllRoundComponents());
+        assembler.assemble();
+        List<String> formattedPattern = assembler.getFormattedPattern();
+        StringBuilder output = new StringBuilder();
+        for (String s : formattedPattern) {
+            output.append("\n").append(s);
+        }
+        assertEquals("""
+
+Rd 1: 6 sc in magic ring (6)
+Rd 2: 5 inc, 3 sc in st (13)
+Rd 3: (1 sc, 1 inc) x6, 1 sc (19)
+Rd 4: 1 sc, 1 inc, (2 sc, 1 inc) x5, 2 sc (25)""", output.toString());
+    }
 
     @Test
     public void patternFormatterTest2() {

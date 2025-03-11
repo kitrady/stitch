@@ -228,5 +228,7 @@ public class RoundComponentMakerTest {
             assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
             assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
         }
+
+        // TODO test make special increase
     }
 }

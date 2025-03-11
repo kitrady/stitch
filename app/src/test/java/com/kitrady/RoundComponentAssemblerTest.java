@@ -172,4 +172,6 @@ public class RoundComponentAssemblerTest {
         assembler.assemble();
         assertEquals(" 1 dec, 2 sc, 1 dec", assembler.getFormattedPattern().getLast());
     }
+
+    // TODO test assemble special increase
 }

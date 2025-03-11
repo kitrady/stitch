@@ -13,5 +13,6 @@ public enum ComponentType {
     ALL_DECREASE,
     ROUND_NUMBER,
     MAGIC_RING,
-    STITCH_TOTAL
+    STITCH_TOTAL,
+    SPECIAL_INCREASE,
 }
