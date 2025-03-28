@@ -11,7 +11,7 @@ public class CircleInputHandler {
     private final double roundGauge; // units are rows per inch
     private final double radiusInStitches; // units are stitches
     private final double radiusInRounds; // units are rounds
-    private final double roundLengthInStitches;
+    private final double roundHeightInStitches;
 
     public CircleInputHandler(Scanner input) {
         diameter = abs(handleInput(input,
@@ -32,7 +32,7 @@ public class CircleInputHandler {
         radius = diameter / 2;
         radiusInStitches = radius * stitchGauge;
         radiusInRounds = radius * roundGauge;
-        roundLengthInStitches = radiusInStitches / radiusInRounds;
+        roundHeightInStitches = radiusInStitches / radiusInRounds;
     }
 
     public CircleInputHandler(double diameter, double stitchGauge, double roundGauge) {
@@ -42,7 +42,7 @@ public class CircleInputHandler {
         this.roundGauge = abs(roundGauge);
         radiusInStitches = radius * stitchGauge;
         radiusInRounds = radius * roundGauge;
-        roundLengthInStitches = radiusInStitches / radiusInRounds;
+        roundHeightInStitches = radiusInStitches / radiusInRounds;
     }
 
     private double handleInput(Scanner input, String message, String correctingMessage) {
@@ -77,7 +77,7 @@ public class CircleInputHandler {
         return radiusInStitches;
     }
 
-    public double getRoundLengthInStitches() {
-        return roundLengthInStitches;
+    public double getRoundHeightInStitches() {
+        return roundHeightInStitches;
     }
 }

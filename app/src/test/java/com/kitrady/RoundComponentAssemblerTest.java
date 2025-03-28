@@ -173,5 +173,27 @@ public class RoundComponentAssemblerTest {
         assertEquals(" 1 dec, 2 sc, 1 dec", assembler.getFormattedPattern().getLast());
     }
 
-    // TODO test assemble special increase
+    @Test
+    public void testSpecialIncrease() {
+        List<RoundComponent> components = List.of(
+                new RoundComponent(5, ComponentType.INCREASE),
+                new RoundComponent(1, ComponentType.SPECIAL_INCREASE)
+        );
+        List<List<RoundComponent>> allComponents = List.of(components);
+        RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
+        assembler.assemble();
+        assertEquals(" 5 inc, 3 sc in st", assembler.getFormattedPattern().getLast());
+    }
+
+    @Test
+    public void testRepeatSpecialIncrease() {
+        List<RoundComponent> components = List.of(
+                new RoundComponent(4, ComponentType.INCREASE),
+                new RoundComponent(2, ComponentType.SPECIAL_INCREASE)
+        );
+        List<List<RoundComponent>> allComponents = List.of(components);
+        RoundComponentAssembler assembler = new RoundComponentAssembler(allComponents);
+        assembler.assemble();
+        assertEquals(" 4 inc, (3 sc in st) x2", assembler.getFormattedPattern().getLast());
+    }
 }

@@ -11,7 +11,7 @@ public class PatternRunner {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        SphereInputHandler handler = new SphereInputHandler(5, 2.9, 2.9);
+        SphereInputHandler handler = new SphereInputHandler(2, 4, 4);
 //        InputHandler handler = new InputHandler(input);
         SphereMaker sphereMaker = new SphereMaker(handler.getRadiusInStitches(), handler.getCircumferenceInRounds());
         RoundComponentMaker componentMaker =  new RoundComponentMaker(sphereMaker.getStitchesPerRound());
@@ -20,6 +20,6 @@ public class PatternRunner {
         assembler.assemble();
         assembler.printPattern();
 
-        // TODO update readme with special increase info
+        // TODO update readme with circle stuff
     }
 }
