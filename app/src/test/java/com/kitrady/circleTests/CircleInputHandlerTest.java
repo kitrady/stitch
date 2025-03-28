@@ -51,6 +51,6 @@ public class CircleInputHandlerTest {
     @Test
     public void testGetRoundLengthInStitches() {
         CircleInputHandler handler = new CircleInputHandler(3.4, 3.3, 3.4);
-        assertEquals(0.9705882352941176, handler.getRoundLengthInStitches());
+        assertEquals(0.9705882352941176, handler.getRoundHeightInStitches());
     }
 }

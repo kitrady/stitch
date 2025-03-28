@@ -228,7 +228,39 @@ public class RoundComponentMakerTest {
             assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
             assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
         }
+    }
 
-        // TODO test make special increase
+    @Test
+    public void testSpecialIncrease() {
+        List<Integer> stitchesPerRound = List.of(6, 13);
+        RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
+        maker.formatGivenRounds(stitchesPerRound, false);
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
+                new RoundComponent(5, ComponentType.INCREASE),
+                new RoundComponent(1, ComponentType.SPECIAL_INCREASE),
+                new RoundComponent(13, ComponentType.STITCH_TOTAL)
+        );
+        for (int i = 0; i < components.size(); i++) {
+            assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
+            assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
+        }
+    }
+
+    @Test
+    public void testRepeatSpecialIncrease() {
+        List<Integer> stitchesPerRound = List.of(6, 14);
+        RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
+        maker.formatGivenRounds(stitchesPerRound, false);
+        List<RoundComponent> components = List.of(
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
+                new RoundComponent(4, ComponentType.INCREASE),
+                new RoundComponent(2, ComponentType.SPECIAL_INCREASE),
+                new RoundComponent(14, ComponentType.STITCH_TOTAL)
+        );
+        for (int i = 0; i < components.size(); i++) {
+            assertEquals(components.get(i).getCount(), maker.getAllRoundComponents().getLast().get(i).getCount());
+            assertEquals(components.get(i).getType(), maker.getAllRoundComponents().getLast().get(i).getType());
+        }
     }
 }
