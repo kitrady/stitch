@@ -58,7 +58,7 @@ public class RoundComponentMaker {
                     updateRoundComponents(numSpecialIncreasesNeeded, ComponentType.SPECIAL_INCREASE);
                     extraStitches = 0;
                 } else {
-                    // the numIncreases > 1 is needed because alternate rounds need two repeats to work
+                    // the numIncreases > 1 is needed because this format of alternate round need two repeats to work
                     if (alternateRoundToPreventBubblesCounter % 2 == 0 && numIncreases > 1) {
                         int numSingleCrochetInHalfSection = numSingleCrochetInSection / 2;
 
