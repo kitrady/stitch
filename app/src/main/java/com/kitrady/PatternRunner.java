@@ -1,23 +1,47 @@
 package com.kitrady;
 
+import com.kitrady.circles.CircleInputHandler;
+import com.kitrady.ellipses.HalfEllipsoidInputHandler;
+import com.kitrady.ellipses.HalfEllipsoidMaker;
+import com.kitrady.spheres.SphereInputHandler;
+import com.kitrady.spheres.SphereMaker;
+
 import java.util.Scanner;
 
 public class PatternRunner {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        SphereInputHandler handler = new SphereInputHandler(5, 2.9, 2.9);
-//        InputHandler handler = new InputHandler(input);
-        SphereMaker sphereMaker = new SphereMaker(handler.getRadiusInStitches(), handler.getCircumferenceInRounds());
-        RoundComponentMaker componentMaker =  new RoundComponentMaker(sphereMaker.getStitchesPerRound());
+        InputHandler handler = createInputHandler(input);
+        ShapeMaker maker = handler.makeShapeMaker();
+        RoundComponentMaker componentMaker =  new RoundComponentMaker(maker.getStitchesPerRound());
         componentMaker.generateAllRoundComponents();
         RoundComponentAssembler assembler = new RoundComponentAssembler(componentMaker.getAllRoundComponents());
         assembler.assemble();
         assembler.printPattern();
+    }
 
-        HalfEllipsoidInputHandler handler2 = new HalfEllipsoidInputHandler(3, 2, 5, 5);
-        HalfEllipsoidMaker maker2 = new HalfEllipsoidMaker(handler2.getRadiusInStitches(), handler2.getHeightInStitches(), 1);
-        System.out.println("\n");
-        maker2.printPattern();
+    private static InputHandler createInputHandler(Scanner input) {
+        int shapeChoice = 0;
+        System.out.println("Please choose the shape you want to generate a pattern for and enter the number that corresponds your choice:\n1) Sphere\n2) Circle");
+
+        while (true) {
+            if (input.hasNextInt()) {
+                shapeChoice = input.nextInt();
+            }
+
+            if (shapeChoice == 1 || shapeChoice == 2) {
+                break;
+            }
+
+            input.nextLine();
+            System.out.print("Enter just a number that corresponds your choice of available shapes: ");
+        }
+
+        if (shapeChoice == 1) {
+            return new SphereInputHandler(input);
+        } else {
+            return new CircleInputHandler(input);
+        }
     }
 }

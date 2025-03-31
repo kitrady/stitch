@@ -1,9 +1,11 @@
-package com.kitrady;
+package com.kitrady.ellipses;
+
+import com.kitrady.ShapeMaker;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HalfEllipsoidMaker {
+public class HalfEllipsoidMaker implements ShapeMaker {
     private final List<Integer> stitchesPerRound = new ArrayList<>();
     private final double radiusInStitches;
     private final double heightInStitches;
@@ -16,7 +18,7 @@ public class HalfEllipsoidMaker {
     }
 
     // old to-do: this currently assumes the half ellipsoid is taller than it is wide (aka assumes height is major axis and radius is minor)
-    private void generateStitchTotals() {
+    public void generateStitchTotals() {
         // due to how elliptic integrals work, must generate largest round with largest x value first, then work inward
         // hence why currentRoundRadiusInStitches is set to the overall radius, and while loop goes until current radius is zero
         double currentRoundRadiusInStitches = radiusInStitches;
@@ -65,11 +67,11 @@ public class HalfEllipsoidMaker {
         return stitchesPerRound;
     }
 
-    double getRadiusInStitches() {
+    public double getRadiusInStitches() {
         return radiusInStitches;
     }
 
-    double getHeightInStitches() {
+    public double getHeightInStitches() {
         return heightInStitches;
     }
 }

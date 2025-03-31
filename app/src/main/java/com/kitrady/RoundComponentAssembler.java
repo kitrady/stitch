@@ -92,6 +92,15 @@ public class RoundComponentAssembler {
                                 }
                             }
                             break;
+
+                        case SPECIAL_INCREASE:
+                            if (currentComponentCount == 1) {
+                                inProgressRound.append(" 3 sc in st");
+                            } else {
+                                inProgressRound.append(" (3 sc in st) x").append(currentComponentCount);
+                            }
+                            break;
+
                     }
                 } else {
                     switch (currentComponentType) {
@@ -140,6 +149,14 @@ public class RoundComponentAssembler {
                                 }
                             }
                             break;
+
+                        case SPECIAL_INCREASE:
+                            if (currentComponentCount == 1) {
+                                inProgressRound.append(", 3 sc in st");
+                            } else {
+                                inProgressRound.append(", (3 sc in st) x").append(currentComponentCount);
+                            }
+                            break;
                     }
                 }
                 previousComponentType = currentComponentType;
@@ -157,7 +174,7 @@ public class RoundComponentAssembler {
         }
     }
 
-    List<String> getFormattedPattern() {
+    public List<String> getFormattedPattern() {
         return formattedPattern;
     }
 
