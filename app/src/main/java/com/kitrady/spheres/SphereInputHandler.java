@@ -1,10 +1,14 @@
 package com.kitrady.spheres;
 
+import com.kitrady.InputHandler;
+import com.kitrady.InputHelper;
+import com.kitrady.ShapeMaker;
+
 import java.util.Scanner;
 
 import static java.lang.Math.*;
 
-public class SphereInputHandler {
+public class SphereInputHandler implements InputHandler {
     private final double diameter; // units are inches
     private final double radius; // units are inches
     private final double stitchGauge; // units are stitches per inch
@@ -14,25 +18,22 @@ public class SphereInputHandler {
     private final double circumferenceInRounds; // units are rounds
 
     public SphereInputHandler(Scanner input) {
-        diameter = abs(handleInput(input,
+        diameter = abs(InputHelper.handleInput(input,
                 "\nEnter the diameter of your sphere in inches: ",
-                "\nPlease enter just a number that is the diameter of your sphere in inches."));
-        input.nextLine();
+                "\nPlease enter just a number that is the diameter of your sphere in inches: "));
 
-        stitchGauge = abs(handleInput(input,
-                "\nEnter your crochet gauge in stitches per inch: ",
-                "\nPlease enter just a number that is your crochet gauge in stitches per inch."));
-        input.nextLine();
+        stitchGauge = abs(InputHelper.handleInput(input,
+                "\nEnter your crochet stitch gauge in stitches per inch: ",
+                "\nPlease enter just a number that is your crochet stitch gauge in stitches per inch: "));
 
-        roundGauge = abs(handleInput(input,
-                "\nEnter your vertical crochet gauge in rows per inch: ",
-                "\nPlease enter just a number that is your vertical crochet gauge in stitches per inch."));
-        input.nextLine();
+        roundGauge = abs(InputHelper.handleInput(input,
+                "\nEnter your crochet round gauge in rounds per inch: ",
+                "\nPlease enter just a number that is your crochet round gauge in rounds per inch: "));
 
         radius = diameter / 2;
         radiusInStitches = radius * stitchGauge;
         radiusInRounds = radius * roundGauge;
-        circumferenceInRounds = 6.2831 * radiusInRounds;
+        circumferenceInRounds = 2 * Math.PI * radiusInRounds;
     }
 
     public SphereInputHandler(double diameter, double stitchGauge, double roundGauge) {
@@ -42,23 +43,11 @@ public class SphereInputHandler {
         this.roundGauge = abs(roundGauge);
         radiusInStitches = radius * stitchGauge;
         radiusInRounds = radius * roundGauge;
-        circumferenceInRounds = 6.2831 * radiusInRounds;
+        circumferenceInRounds = 2 * Math.PI * radiusInRounds;
     }
 
-    private double handleInput(Scanner input, String message, String correctingMessage) {
-        while (true) {
-            System.out.print(message);
-
-            if (input.hasNextDouble()) {
-                return input.nextDouble();
-            }
-            if (input.hasNextInt()) {
-                return input.nextInt();
-            }
-            input.nextLine();
-
-            System.out.print(correctingMessage);
-        }
+    public ShapeMaker makeShapeMaker() {
+        return new SphereMaker(radiusInStitches, circumferenceInRounds);
     }
 
     public double getRadius() {

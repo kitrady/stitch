@@ -75,6 +75,6 @@ public class SphereInputHandlerTest {
     @Test
     public void testRdCircumference() {
         SphereInputHandler handler = new SphereInputHandler(2.2, 4.7, 3.9);
-        assertEquals((6.2831 * 1.1 * 3.9), handler.getCircumferenceInRounds());
+        assertEquals((26.954864967800425), handler.getCircumferenceInRounds()); // 2 * Math.PI * 1.1 * 3.9 = 26.95486496780043
     }
 }

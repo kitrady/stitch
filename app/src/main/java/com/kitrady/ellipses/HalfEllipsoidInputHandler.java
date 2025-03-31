@@ -1,10 +1,14 @@
 package com.kitrady.ellipses;
 
+import com.kitrady.InputHandler;
+import com.kitrady.InputHelper;
+import com.kitrady.ShapeMaker;
+
 import java.util.Scanner;
 
 import static java.lang.Math.abs;
 
-public class HalfEllipsoidInputHandler {
+public class HalfEllipsoidInputHandler implements InputHandler {
     private final double diameterInInches;
     private final double radiusInInches;
     private final double heightInInches;
@@ -18,22 +22,22 @@ public class HalfEllipsoidInputHandler {
 
     // old to-do: double check that messages are clear
     public HalfEllipsoidInputHandler(Scanner input) {
-        diameterInInches = abs(handleInput(input,
+        diameterInInches = abs(InputHelper.handleInput(input,
                 "\nEnter the diameter of your half of an ellipsoid in inches: ",
                 "\nPlease enter just a number that is the diameter of your half an ellipsoid in inches."));
         input.nextLine();
 
-        heightInInches = abs(handleInput(input,
+        heightInInches = abs(InputHelper.handleInput(input,
                 "\nEnter the height of your half of an ellipsoid in inches: ",
                 "\nPlease enter just a number that is the height of your half an ellipsoid in inches."));
         input.nextLine();
 
-        stitchGauge = abs(handleInput(input,
+        stitchGauge = abs(InputHelper.handleInput(input,
                 "\nEnter your crochet stitch gauge in stitches per inch: ",
                 "\nPlease enter just a number that is your crochet gauge in stitches per inch."));
         input.nextLine();
 
-        roundGauge = abs(handleInput(input,
+        roundGauge = abs(InputHelper.handleInput(input,
                 "\nEnter your crochet round gauge in rows per inch: ",
                 "\nPlease enter just a number that is your crochet round gauge in stitches per inch."));
         input.nextLine();
@@ -59,20 +63,8 @@ public class HalfEllipsoidInputHandler {
         roundHeightInStitches = radiusInStitches / radiusInRounds;
     }
 
-    private double handleInput(Scanner input, String message, String correctingMessage) {
-        while (true) {
-            System.out.print(message);
-
-            if (input.hasNextDouble()) {
-                return input.nextDouble();
-            }
-            if (input.hasNextInt()) {
-                return input.nextInt();
-            }
-            input.nextLine();
-
-            System.out.print(correctingMessage);
-        }
+    public ShapeMaker makeShapeMaker() {
+        return new HalfEllipsoidMaker(radiusInStitches, heightInStitches, roundHeightInStitches);
     }
 
     public double getDiameterInInches() {
