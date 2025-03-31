@@ -14,11 +14,11 @@ Crochet patterns are a set of instructions that crocheters use to make a specifi
 
 This program is designed to help crocheters make their own patterns. I have taken the implicit logic that is used to make crochet patterns and explicitly stated it as code so that my program can generate a crochet pattern based of the given specifications. While it cannot immediately make a pattern for a specific item (e.g. a sheep), it can make basic shapes that can be combined to make those items (e.g. a sphere for the body).
 
-A secondary purpose of this program is to make *mathematically accurate* crochet patterns. For example, the current standard method for making a crochet sphere is technically to make a cone, followed by a cylinder, followed by another cone, and once stuffed these shapes end up looking pretty close to a sphere. This program uses math to make an actual sphere of any size (which is helpful as the standard method looks less like a sphere in larger sizes).
+A secondary purpose of this program is to make *mathematically accurate* crochet patterns. For example, the current standard method for making a crochet sphere is technically to make a cone, followed by a cylinder, followed by another cone, and once stuffed these shapes end up looking pretty close to a sphere. This program uses math to make an actual sphere of any size (which is helpful as the standard method looks less like a sphere in larger sizes). My goal is to give this program the ability to generate a multitude of patterns for different mathematically accurate shapes.
 
 ### Other Crocheters Who Gave me Inspiration
 
-I am NOT the first person to wanted to make mathematically accurate crochet sphere. MsPremiseConclusion is the one who gave me the idea via this article https://mspremiseconclusion.wordpress.com/2010/03/14/the-ideal-crochet-sphere/. The math I use in this program to make a sphere is entirely of her creation, however the code is all original. At time of writing, this program doesn't make any other shapes, but I plan to add more soon. The math for those shapes will likely be similar to the math for a sphere, and thus I again thank MsPremiseConclusion for introducing this general method of making mathematically accurate crochet shapes.
+I am NOT the first person to wanted to make mathematically accurate crochet sphere. MsPremiseConclusion is the one who gave me the idea via this article https://mspremiseconclusion.wordpress.com/2010/03/14/the-ideal-crochet-sphere/. The math I use in this program to make a sphere is entirely of her creation, however the code is all original. As I add more shapes, the math behind them may or may not be based on MsPremiseConclusion's math.
 
 ### Glossary of Crochet Terms
 
@@ -37,7 +37,8 @@ I am NOT the first person to wanted to make mathematically accurate crochet sphe
 ### Shapes it can Currently Make *Correctly*
 
 *Assuming I remembered to update the readme after making changes*
-- Sphere: when prompted by the program, enter the radius of your desired sphere in inches, your crochet stitch gauge, and your crochet round gauge, and it will generate a pattern that will allow you to make a sphere of that size.
+- Sphere: when prompted by the program, enter the diameter of your desired sphere in inches, your crochet stitch gauge, and your crochet round gauge, and it will generate a pattern that will allow you to make a sphere of that size.
+- Circle: when prompted by the program, enter the diameter of your desired circle in inches, your crochet stitch gauge, and your crochet round gauge, and it will generate a pattern that will allow you to make a circle of that size.
 
 *If you generate one of the above shapes, and notice that the pattern doesn't work in some way, please let me know!*
 
@@ -53,6 +54,10 @@ A crochet sphere is made of rounds of crochet stacked on top of each other. To m
 Assume the center of the circular cross-section is split into 360 degrees, with the top of the sphere being 90 degrees and the right side being 0 degrees. The edge of the circle represents all the possible positions of a round, and each of these positions has a corresponding radius on the circle. The radius of the *circle* can be used to find the radius of a *round*, which can then be used to find the circumference of a round; phrased another way, the vertical radius of a sphere can be used to find the smaller horizontal radii that result from taking horizontal cross-sections of the sphere. So for a round whose position is determined by theta, its radius is given by the equation *radius of round = radius of sphere x cos(theta)*, and the circumference is given by *circumference of round = radius of round x 2pi*. To find the stitch totals for each round, we just need to express the circumference in units of stitches instead of traditional distance measurements. To do this, convert the radius of sphere from inches to stitches by multiplying the desired radius (in inches) by the stitch gauge (in stitches per inch), and use that number in the equations.
 
 To find the theta associated with each round, we need to find out how tall a round is in terms of degrees. We can do this by multiplying the desired radius of the sphere (in inches) by the round gauge (in rounds per inch) to find the radius of the sphere in rounds. We can then take the radius times 2pi to find the circumference in rounds. Then divide 360 degrees by the circumference to find the degrees per one round.
+
+### Math Behind Making Circle
+
+A crochet circle is made up of a bunch of adjacent flat rounds, with each round essentially forming a circle around the previous round. To make a circle of a certain size, we need the total number of stitches in each round. To find the total number of stitches in each round, we need the circumference of the circle associated with each round in stitches (i.e. the circumference of each of the nested circles in stitches). To do this, we will use concentric circles whose radii increase by the height of a round per each circle (i.e. start with a circle whose radius is the same length as the height of one round, then a circle whose radius is the same length as the height of two rounds, and so on). First, we need the height of a round expressed in units of stitch length, which can be found by dividing the overall radius in stitches by the overall radius in rounds. Then, for each circle, we will multiply its radius in round height by the conversion factor we just found to get its radius in stitch length. Finally, we will take this radius in stitch length times 2pi to get the circumference in stitch length, aka the stitch total for the current that round.
 
 ### Formatting a Pattern From Stitch totals
 
@@ -93,32 +98,39 @@ In longer patterns, an alternate format may be used, which is explained below:
 
 **InputHandler**
 
-*The purpose of this class is to get sphere specifications from the user*
-- Uses scanner to ask for the diameter of the desired sphere in inches, the users crochet stitch gauge in stitches per inch, and their crochet round gauge in rounds per inch
+*This is an interface that defines how all ShapeInputHandler classes should act; the ShapeInputHandlers are supposed to get and share the information from the user that is needed to make the given shape. Each ShapeInputHandler works as described below.*
+- The constructor of the ShapeInputHandler uses scanner to get needed information from the user
+- Ask for information about the size of the desired shape, as well as the users crochet stitch gauge in stitches per inch and their crochet round gauge in rounds per inch
 - If the given inputs are not ints or doubles, prints a message correcting the user
-- Divides the diameter by two to get radius, then multiplies the radius by the stitch gauge to get the radius in stitches, the radius by the round gauge to get the radius in rounds, and the radius in rounds by 2pi to get the circumference in rounds
-- All of the above is done in the constructor
-- There is a secondary constructor that takes the values directly instead of through scanner for convenience while developing
-- Also has getters for the purpose of testing
+- Process the given information to distill into the needed values
+  - There is also an alternate constructor that gets the needed information as parameters
+- In addition to the constructors, there is the interface defined method which is responsible for making a ShapeMaker of the proper type using the information stored in the ShapeInputHandler
+- There are also getters for the purpose of testing
 
-**SphereMaker**
+**ShapeMaker**
 
-*The purpose of this class is to generate the stitch totals for all the rounds needed to make the desired sphere*
-- Constructor gets the radius in stitches and circumference in rounds from the inputHandler
-- The generate rounds method uses the math described above to generate stitch totals for the first half of the rounds (i.e. the rounds with increases)
-- Loops to generate stitch totals, starting with the round at the top of the sphere where theta equals 90 - degreesPerRound, and decreases theta by degreesPerRound every loop, with the loop ending when theta is less than zero
-- If the loop has ended, and the last value for theta that it used is more than half of degreesPerRound, there is a "missing" round that was "lost" by splitting the sphere in half, so adds another stitch total for a round exactly at zero degrees
-- Finally, since a sphere has identical hemisphere, it duplicates and reverses the current stitch totals to get the totals for the remaining rounds (excluding the possible "missing" round)
-- Has a getter for the stitchesPerRound instance variable that calls generateRounds then returns StitchesPerRound
-- Also has other getters for the purpose of testing
+*This is an interface that defines how all ShapeMaker classes should act; the ShapeMakers are supposed to use the information from their respective ShapeInputHandlers to calculate the stitch totals for each round. The general behavior for ShapeMakers, along with specific behaviors for individual classes, are described below.*
+- ShapeMaker
+  - Constructor gets needed information from InputHandler and calculates and other values that are needed
+  - Then generates stitch totals in the interface defined method by calculating them using the stored information
+  - Shares the stitch totals via the interface defined getter method
+  - Each class may also have other getters for the purpose of testing
+- SphereMaker
+  - Generates stitch totals for the first half of the rounds (i.e. the rounds with increases) using the math described above in a loop
+  - Loops over the angles for each round, starting with the round at the top of the sphere where theta equals 90 - degreesPerRound, and decreases theta by degreesPerRound every loop, with the loop ending when theta is less than zero
+  - If the loop has ended, and the last value for theta that it used is more than half of degreesPerRound, there is a "missing" round that was "lost" by splitting the sphere in half, so adds another stitch total for a round exactly at zero degrees
+  - Finally, since a sphere has identical hemisphere, it duplicates and reverses the current stitch totals to get the totals for the remaining rounds (excluding the possible "missing" round)
+- CircleMaker
+  - Generates stitch total by looping over a current radius that increases by the height of a round until the desired radius is reached
+  - Uses the math described above to find the stitch total from the current radius
 
 **RoundComponentMaker**
 
 *The purpose of this class is to make many roundComponent objects that represent the "components" of each round (mainly the groups of stitches, but also other components, e.g. the round number) and store these components in nested lists (the inner layer of list containing components and representing a round, the outer layer containing lists of components and representing a full pattern)*
-- Constructor gets stitchesPerRound from SphereMaker
+- Constructor gets stitchesPerRound from a shape maker
 - Makes components for the first round, which will always use a magic loop and thus needs special components
 - Makes components for the rounds with increases and the rounds with decreases
-- To do this, creates a finalLargestIndex variable that is the final index of the rounds that are the largest
+- To do this, creates a finalLargestIndex variable that is the index of the final largest round
 - It uses the stitch totals up until and including this index to make the increase rounds, and the totals after the index to make the decrease rounds
 - For the increase rounds...
   - it first adds the round number to the list of components
@@ -128,6 +140,10 @@ In longer patterns, an alternate format may be used, which is explained below:
   - Otherwise, divides the current stitch total by the number of increases to find the number of stitches in a "section" (i.e. the sum of the increase and the singles crochets paired with the increase), and subtracts two to find the number of single crochets in a "section"
   - Then checks if there were any stitches lost to truncation, and adds them to an extraStitches variable if so
   - If there are no single crochets in a section, then the round is either all increases, or several increases followed by some extra single crochets
+  - If the number of single crochets was calculated to be negative, this means some stitches will have more than one increase (i.e. going from 6 to 13 stitches would mean 7 increases, 13 / 7 = 1, 1 - 2 = -1, and 7 increases is greater than the 6 stitches that are being worked into, so some stitches will have more than one increase worked into them)
+    - To make these rounds, some stitches will have three single crochets worked into them, as opposed to the two single crochets that make up an increase
+    - To calculate how many stitches will have three single crochets (aka special increase stitches), finds the difference between the current stitch total and twice the previous stitch total
+    - To find the number of normal increases, finds the difference between the previous stitch total and the number of special increases
   - Otherwise, it checks if this round should be an alternate round
     - If the counter is even and the number of increases is greater than one, makes an alternate round
     - If the counter is even and the number of increases is one, makes an alternate round with a different format because there is only one increase
@@ -151,6 +167,7 @@ RoundComponentAssembler
   - If the type is a repeat single crochet, adds the component count to the possible repeat single crochets to save it for later
   - If the type is a repeat increase or decrease, nothing needs to happen
   - If the type is a repeat count, checks if the component count is one, and if so, treats the possible repeat single crochets and other repeat stitches as normal stitches, but if not, treats the repeat stitches as a repeat
+  - If the type is a special increase, adds the needed string representation depending on the component count
 - If round was not empty or round number was not just added, runs a different switch statement on the type of the current component
   - This switch statement is almost identical to the previous one, expect it removes some cases that aren't possible given the preconditions and changes the string representations to match the preconditions
 - After looping through the all the components, checks if there are any single crochets remaining in the single crochet total, and adds them if so

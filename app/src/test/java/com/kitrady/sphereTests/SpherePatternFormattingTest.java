@@ -1,10 +1,13 @@
-package com.kitrady;
+package com.kitrady.sphereTests;
 
 import java.util.List;
+
+import com.kitrady.RoundComponentAssembler;
+import com.kitrady.RoundComponentMaker;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PatternFormattingTest {
+public class SpherePatternFormattingTest {
     @Test
     public void patternFormatterTest1() {
         List<Integer> stitchesPerRd = List.of(6, 12, 18, 23, 26, 29, 31, 31, 31, 29, 26, 23, 18, 12, 6);
