@@ -1,9 +1,11 @@
 package com.kitrady.circles;
 
+import com.kitrady.ShapeMaker;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class CircleMaker {
+public class CircleMaker implements ShapeMaker {
     private final List<Integer> stitchesPerRound = new ArrayList<>();
     private final double radiusInRounds;
     private final double roundLengthInStitches;
@@ -13,7 +15,7 @@ public class CircleMaker {
         this.roundLengthInStitches = roundLengthInStitches;
     }
 
-    private void generateStitchTotals() {
+    public void generateStitchTotals() {
         for (int currentRadiusInRounds = 1; currentRadiusInRounds <= radiusInRounds; currentRadiusInRounds++) {
             double currentRadiusInStitches = roundLengthInStitches * currentRadiusInRounds;
             double currentRoundCircumferenceInStitches = (2 * Math.PI * currentRadiusInStitches);

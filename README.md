@@ -98,24 +98,31 @@ In longer patterns, an alternate format may be used, which is explained below:
 
 **InputHandler**
 
-*The purpose of this class is to get sphere specifications from the user*
-- Uses scanner to ask for the diameter of the desired sphere in inches, the users crochet stitch gauge in stitches per inch, and their crochet round gauge in rounds per inch
+*This is an interface that defines how all ShapeInputHandler classes should act; the ShapeInputHandlers are supposed to get and share the information from the user that is needed to make the given shape. Each ShapeInputHandler works as described below.*
+- The constructor of the ShapeInputHandler uses scanner to get needed information from the user
+- Ask for information about the size of the desired shape, as well as the users crochet stitch gauge in stitches per inch and their crochet round gauge in rounds per inch
 - If the given inputs are not ints or doubles, prints a message correcting the user
-- Divides the diameter by two to get radius, then multiplies the radius by the stitch gauge to get the radius in stitches, the radius by the round gauge to get the radius in rounds, and the radius in rounds by 2pi to get the circumference in rounds
-- All of the above is done in the constructor
-- There is a secondary constructor that takes the values directly instead of through scanner for convenience while developing
-- Also has getters for the purpose of testing
+- Process the given information to distill into the needed values
+  - There is also an alternate constructor that gets the needed information as parameters
+- In addition to the constructors, there is the interface defined method which is responsible for making a ShapeMaker of the proper type using the information stored in the ShapeInputHandler
+- There are also getters for the purpose of testing
 
-**SphereMaker**
+**ShapeMaker**
 
-*The purpose of this class is to generate the stitch totals for all the rounds needed to make the desired sphere*
-- Constructor gets the radius in stitches and circumference in rounds from the inputHandler
-- The generate rounds method uses the math described above to generate stitch totals for the first half of the rounds (i.e. the rounds with increases)
-- Loops to generate stitch totals, starting with the round at the top of the sphere where theta equals 90 - degreesPerRound, and decreases theta by degreesPerRound every loop, with the loop ending when theta is less than zero
-- If the loop has ended, and the last value for theta that it used is more than half of degreesPerRound, there is a "missing" round that was "lost" by splitting the sphere in half, so adds another stitch total for a round exactly at zero degrees
-- Finally, since a sphere has identical hemisphere, it duplicates and reverses the current stitch totals to get the totals for the remaining rounds (excluding the possible "missing" round)
-- Has a getter for the stitchesPerRound instance variable that calls generateRounds then returns StitchesPerRound
-- Also has other getters for the purpose of testing
+*This is an interface that defines how all ShapeMaker classes should act; the ShapeMakers are supposed to use the information from their respective ShapeInputHandlers to calculate the stitch totals for each round. The general behavior for ShapeMakers, along with specific behaviors for individual classes, are described below.*
+- ShapeMaker
+  - Constructor gets needed information from InputHandler and calculates and other values that are needed
+  - Then generates stitch totals in the interface defined method by calculating them using the stored information
+  - Shares the stitch totals via the interface defined getter method
+  - Each class may also have other getters for the purpose of testing
+- SphereMaker
+  - Generates stitch totals for the first half of the rounds (i.e. the rounds with increases) using the math described above in a loop
+  - Loops over the angles for each round, starting with the round at the top of the sphere where theta equals 90 - degreesPerRound, and decreases theta by degreesPerRound every loop, with the loop ending when theta is less than zero
+  - If the loop has ended, and the last value for theta that it used is more than half of degreesPerRound, there is a "missing" round that was "lost" by splitting the sphere in half, so adds another stitch total for a round exactly at zero degrees
+  - Finally, since a sphere has identical hemisphere, it duplicates and reverses the current stitch totals to get the totals for the remaining rounds (excluding the possible "missing" round)
+- CircleMaker
+  - Generates stitch total by looping over a current radius that increases by the height of a round until the desired radius is reached
+  - Uses the math described above to find the stitch total from the current radius
 
 **RoundComponentMaker**
 

@@ -1,10 +1,12 @@
 package com.kitrady.spheres;
 
+import com.kitrady.ShapeMaker;
+
 import java.util.ArrayList;
 import java.lang.Math;
 import java.util.List;
 
-public class SphereMaker {
+public class SphereMaker implements ShapeMaker {
     private final List<Integer> stitchesPerRound = new ArrayList<>();
     private final double radiusInStitches;
     private final double circumferenceInRounds;
@@ -16,7 +18,7 @@ public class SphereMaker {
         degreesPerRound = 360.0 / circumferenceInRounds;
     }
 
-    private void generateStitchTotals() {
+    public void generateStitchTotals() {
         double angle;
         for (angle = (90 - degreesPerRound); angle >= 0; angle -= degreesPerRound) {
             double currentRoundRadiusInStitches = Math.cos(Math.toRadians(angle)) * radiusInStitches;
