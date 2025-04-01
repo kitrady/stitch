@@ -9,26 +9,24 @@ import java.util.List;
 public class SphereMaker implements ShapeMaker {
     private final List<Integer> stitchesPerRound = new ArrayList<>();
     private final double radiusInStitches;
-    private final double circumferenceInRounds;
     private final double degreesPerRound;
 
-    public SphereMaker(double radiusInStitches, double circumferenceInRounds) {
+    public SphereMaker(double radiusInStitches, double degreesPerRound) {
         this.radiusInStitches = radiusInStitches;
-        this.circumferenceInRounds = circumferenceInRounds;
-        degreesPerRound = 360.0 / circumferenceInRounds;
+        this.degreesPerRound = degreesPerRound;
     }
 
     public void generateStitchTotals() {
         double angle;
         for (angle = (90 - degreesPerRound); angle >= 0; angle -= degreesPerRound) {
             double currentRoundRadiusInStitches = Math.cos(Math.toRadians(angle)) * radiusInStitches;
-            double currentRoundCircumferenceInStitches = 6.2831 * currentRoundRadiusInStitches;
+            double currentRoundCircumferenceInStitches = 2 * Math.PI * currentRoundRadiusInStitches;
             stitchesPerRound.add((int) Math.round(currentRoundCircumferenceInStitches));
         }
 
         int originalSize = stitchesPerRound.size();
         if (angle + degreesPerRound >= degreesPerRound / 2) {
-            stitchesPerRound.add((int) Math.round(6.2831 * radiusInStitches));
+            stitchesPerRound.add((int) Math.round(2 * Math.PI * radiusInStitches));
         }
 
         for (int i = 0; i < originalSize; i++) {
@@ -45,17 +43,12 @@ public class SphereMaker implements ShapeMaker {
         return radiusInStitches;
     }
 
-    public double getCircumferenceInRounds() {
-        return circumferenceInRounds;
-    }
-
     public double getDegreesPerRound() {
         return degreesPerRound;
     }
 
     public String toString() {
         return ("\n- Radius in stitches = " + radiusInStitches +
-                "\n- Circumference in rows = " + circumferenceInRounds +
                 "\n- Degrees per round = " + degreesPerRound);
     }
 }

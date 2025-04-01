@@ -3,9 +3,7 @@ package com.kitrady.circles;
 import com.kitrady.InputHandler;
 import com.kitrady.InputHelper;
 import com.kitrady.ShapeMaker;
-
 import java.util.Scanner;
-
 import static java.lang.Math.abs;
 
 public class CircleInputHandler implements InputHandler {

@@ -1,10 +1,7 @@
 package com.kitrady;
 
 import com.kitrady.circles.CircleInputHandler;
-import com.kitrady.ellipses.HalfEllipsoidInputHandler;
-import com.kitrady.ellipses.HalfEllipsoidMaker;
 import com.kitrady.spheres.SphereInputHandler;
-import com.kitrady.spheres.SphereMaker;
 
 import java.util.Scanner;
 
@@ -44,4 +41,11 @@ public class PatternRunner {
             return new CircleInputHandler(input);
         }
     }
+    /*
+    TODO
+    consider writing to-string methods for ShapeMaker classes so that tests can act more realistically
+    since the InputHandlers share information by creating ShapeMaker inside the class
+    */
+
+    // TODO update runner and readme with elongated spheres
 }

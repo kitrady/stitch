@@ -1,6 +1,6 @@
-package com.kitrady.ellipseTests;
+package com.kitrady.ellipsoidTests;
 
-import com.kitrady.ellipses.HalfEllipsoidInputHandler;
+import com.kitrady.ellipsoids.HalfEllipsoidInputHandler;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
