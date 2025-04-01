@@ -1,4 +1,4 @@
-package com.kitrady.ellipses;
+package com.kitrady.ellipsoids;
 
 import org.hipparchus.special.elliptic.legendre.LegendreEllipticIntegral;
 
