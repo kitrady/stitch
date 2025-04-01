@@ -8,12 +8,14 @@ import static java.lang.Math.abs;
 
 public class CircleInputHandler implements InputHandler {
     private final double diameter; // units are inches
-    private final double radius; // units are inches
     private final double stitchGauge; // units are stitches per inch
     private final double roundGauge; // units are rows per inch
+
+    private final double radius; // units are inches
     private final double radiusInStitches; // units are stitches
+
     private final double radiusInRounds; // units are rounds
-    private final double roundHeightInStitches;
+    private final double roundHeightInStitches; // units are stitches
 
     public CircleInputHandler(Scanner input) {
         diameter = abs(InputHelper.handleInput(input,
@@ -58,13 +60,5 @@ public class CircleInputHandler implements InputHandler {
 
     public double getRoundGauge() {
         return roundGauge;
-    }
-
-    public double getRadiusInStitches() {
-        return radiusInStitches;
-    }
-
-    public double getRoundHeightInStitches() {
-        return roundHeightInStitches;
     }
 }
