@@ -24,18 +24,19 @@ public class PatternRunner {
         System.out.println("Please choose the shape you want to generate a pattern for and enter the number that corresponds your choice:" +
                 "\n1) Sphere" +
                 "\n2) Circle" +
-                "\n3) elongated sphere (sphere with a cylinder in the middle; creates oval like shapes when cylinder is small compared to diameter of sphere");
+                "\n3) Elongated sphere (sphere with a cylinder in the middle; creates oval like shapes when cylinder is small compared to diameter of sphere");
 
         while (true) {
-            if (input.hasNextInt()) {
-                shapeChoice = input.nextInt();
+            if (input.hasNextInt()) { // this should prompt the scanner to wait for user input, as there should be nothing ahead of the scanner
+                shapeChoice = input.nextInt(); // gets the int character from the scanner, leaving the newline character ahead of the scanner
             }
 
             if (shapeChoice >= 1 && shapeChoice <= 3) {
+                input.nextLine(); // gets the newline character from the scanner, meaning there is nothing ahead of the scanner
                 break;
             }
 
-            input.nextLine();
+            input.nextLine(); // gets the newline character from the scanner, meaning there is nothing ahead of the scanner
             System.out.print("Enter just a number that corresponds your choice of available shapes: ");
         }
 
@@ -47,6 +48,4 @@ public class PatternRunner {
             return new ElongatedSphereInputHandler(input);
         }
     }
-
-    // TODO update readme with elongated spheres
 }
