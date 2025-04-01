@@ -25,22 +25,18 @@ public class HalfEllipsoidInputHandler implements InputHandler {
         diameterInInches = abs(InputHelper.handleInput(input,
                 "\nEnter the diameter of your half of an ellipsoid in inches: ",
                 "\nPlease enter just a number that is the diameter of your half an ellipsoid in inches."));
-        input.nextLine();
 
         heightInInches = abs(InputHelper.handleInput(input,
                 "\nEnter the height of your half of an ellipsoid in inches: ",
                 "\nPlease enter just a number that is the height of your half an ellipsoid in inches."));
-        input.nextLine();
 
         stitchGauge = abs(InputHelper.handleInput(input,
                 "\nEnter your crochet stitch gauge in stitches per inch: ",
                 "\nPlease enter just a number that is your crochet gauge in stitches per inch."));
-        input.nextLine();
 
         roundGauge = abs(InputHelper.handleInput(input,
                 "\nEnter your crochet round gauge in rows per inch: ",
                 "\nPlease enter just a number that is your crochet round gauge in stitches per inch."));
-        input.nextLine();
 
         radiusInInches = diameterInInches / 2;
         radiusInStitches = radiusInInches * stitchGauge;

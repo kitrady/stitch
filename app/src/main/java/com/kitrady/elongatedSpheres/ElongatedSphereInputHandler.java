@@ -24,14 +24,14 @@ public class ElongatedSphereInputHandler implements InputHandler {
     private final double cylinderLengthInRounds;
 
     public ElongatedSphereInputHandler(Scanner input) {
-        // TODO diameter must be smaller than length (enforce this)
         diameter = abs(InputHelper.handleInput(input,
                 "\nEnter the diameter, aka the maximum width, of your elongated sphere in inches: ",
                 "\nPlease enter just a number that is the diameter/maximum width of your elongated sphere in inches: "));
 
-        length = abs(InputHelper.handleInput(input,
-                "\nEnter the total length of your elongated sphere in inches: ",
-                "\nPlease enter just a number that is the total length of your elongated sphere in inches: "));
+        length = abs(InputHelper.handleInputGreaterThanValue(input,
+                "\nEnter the total length of your elongated sphere in inches (must be larger than the diameter): ",
+                "\nPlease enter just a number that is the total length of your elongated sphere in inches and is larger than the diameter you entered: ",
+                diameter));
 
         stitchGauge = abs(InputHelper.handleInput(input,
                 "\nEnter your crochet stitch gauge in stitches per inch: ",
