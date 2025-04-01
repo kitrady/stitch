@@ -9,15 +9,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SphereMakerTest {
     @Test
-    public void testGetStRadius() {
+    public void testGetDirectlyAssignedInstanceVariables() {
         SphereMaker maker = new SphereMaker(4.6, 28.9);
-        assertEquals(4.6, maker.getRadiusInStitches());
-    }
-
-    @Test
-    public void testGetDegreesPerRd() {
-        SphereMaker maker = new SphereMaker(4.6, 12.4567474048);
-        assertEquals(12.4567474048, maker.getDegreesPerRound());
+        assertEquals(
+                "\n- Radius in stitches: 4.6" + "\n- Degrees per round: 28.9" + "\n- Stitches per round: []",
+                maker.toString());
     }
 
     @Test

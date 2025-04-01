@@ -36,5 +36,10 @@ public class ElongatedSphereMaker implements ShapeMaker {
         return stitchesPerRound;
     }
 
-    // TODO write getters needed for tests
+    public String toString() {
+        return ("\n- Radius in stitches: " + radiusInStitches +
+                "\n- Degrees per round: " + degreesPerRound +
+                "\n- Cylinder length in rounds: " + cylinderLengthInRounds +
+                "\n- Stitches per round: " + stitchesPerRound);
+    }
 }

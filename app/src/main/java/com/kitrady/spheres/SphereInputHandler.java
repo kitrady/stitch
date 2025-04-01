@@ -64,21 +64,4 @@ public class SphereInputHandler implements InputHandler {
     public double getRoundGauge() {
         return roundGauge;
     }
-
-    public double getRadiusInStitches() {
-        return radiusInStitches;
-    }
-
-    public double getCircumferenceInRounds() {
-        return circumferenceInRounds;
-    }
-
-    public String toString() {
-        return ("\n- Radius = " + radius +
-                "\n- Gauge = " + stitchGauge +
-                "\n- Vertical gauge = " + roundGauge +
-                "\n- Radius in stitches = " + radiusInStitches +
-                "\n- Radius in rows = " + radiusInRounds +
-                "\n- Circumference in rows = " + circumferenceInRounds);
-    }
 }
