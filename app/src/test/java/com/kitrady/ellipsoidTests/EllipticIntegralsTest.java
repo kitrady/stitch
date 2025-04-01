@@ -1,6 +1,6 @@
-package com.kitrady.ellipseTests;
+package com.kitrady.ellipsoidTests;
 
-import com.kitrady.ellipses.EllipticIntegrals;
+import com.kitrady.ellipsoids.EllipticIntegrals;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

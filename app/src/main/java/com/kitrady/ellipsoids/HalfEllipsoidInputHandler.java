@@ -1,4 +1,4 @@
-package com.kitrady.ellipses;
+package com.kitrady.ellipsoids;
 
 import com.kitrady.InputHandler;
 import com.kitrady.InputHelper;

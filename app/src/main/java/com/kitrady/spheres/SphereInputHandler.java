@@ -16,6 +16,7 @@ public class SphereInputHandler implements InputHandler {
     private final double radiusInStitches; // units are stitches
     private final double radiusInRounds; // units are rounds
     private final double circumferenceInRounds; // units are rounds
+    private final double degreesPerRound;
 
     public SphereInputHandler(Scanner input) {
         diameter = abs(InputHelper.handleInput(input,
@@ -34,6 +35,7 @@ public class SphereInputHandler implements InputHandler {
         radiusInStitches = radius * stitchGauge;
         radiusInRounds = radius * roundGauge;
         circumferenceInRounds = 2 * Math.PI * radiusInRounds;
+        degreesPerRound = 360.0 / circumferenceInRounds;
     }
 
     public SphereInputHandler(double diameter, double stitchGauge, double roundGauge) {
@@ -44,10 +46,11 @@ public class SphereInputHandler implements InputHandler {
         radiusInStitches = radius * stitchGauge;
         radiusInRounds = radius * roundGauge;
         circumferenceInRounds = 2 * Math.PI * radiusInRounds;
+        degreesPerRound = 360.0 / circumferenceInRounds;
     }
 
     public ShapeMaker makeShapeMaker() {
-        return new SphereMaker(radiusInStitches, circumferenceInRounds);
+        return new SphereMaker(radiusInStitches, degreesPerRound);
     }
 
     public double getRadius() {
