@@ -19,8 +19,10 @@ public class SphereMaker implements ShapeMaker {
     public void generateStitchTotals() {
         double angle;
         for (angle = (90 - degreesPerRound); angle >= 0; angle -= degreesPerRound) {
+            double height = radiusInStitches * Math.sin(Math.toRadians(angle));
             double currentRoundRadiusInStitches = Math.cos(Math.toRadians(angle)) * radiusInStitches;
             double currentRoundCircumferenceInStitches = 2 * Math.PI * currentRoundRadiusInStitches;
+            System.out.println("height: " + height + ", stitches: " + (int) Math.round(currentRoundCircumferenceInStitches));
             stitchesPerRound.add((int) Math.round(currentRoundCircumferenceInStitches));
         }
 
@@ -39,16 +41,9 @@ public class SphereMaker implements ShapeMaker {
         return stitchesPerRound;
     }
 
-    public double getRadiusInStitches() {
-        return radiusInStitches;
-    }
-
-    public double getDegreesPerRound() {
-        return degreesPerRound;
-    }
-
     public String toString() {
-        return ("\n- Radius in stitches = " + radiusInStitches +
-                "\n- Degrees per round = " + degreesPerRound);
+        return ("\n- Radius in stitches: " + radiusInStitches +
+                "\n- Degrees per round: " + degreesPerRound +
+                "\n- Stitches per round: " + stitchesPerRound);
     }
 }

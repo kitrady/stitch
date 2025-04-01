@@ -1,6 +1,7 @@
 package com.kitrady;
 
 import com.kitrady.circles.CircleInputHandler;
+import com.kitrady.elongatedSpheres.ElongatedSphereInputHandler;
 import com.kitrady.spheres.SphereInputHandler;
 
 import java.util.Scanner;
@@ -20,14 +21,17 @@ public class PatternRunner {
 
     private static InputHandler createInputHandler(Scanner input) {
         int shapeChoice = 0;
-        System.out.println("Please choose the shape you want to generate a pattern for and enter the number that corresponds your choice:\n1) Sphere\n2) Circle");
+        System.out.println("Please choose the shape you want to generate a pattern for and enter the number that corresponds your choice:" +
+                "\n1) Sphere" +
+                "\n2) Circle" +
+                "\n3) elongated sphere (sphere with a cylinder in the middle; creates oval like shapes when cylinder is small compared to diameter of sphere");
 
         while (true) {
             if (input.hasNextInt()) {
                 shapeChoice = input.nextInt();
             }
 
-            if (shapeChoice == 1 || shapeChoice == 2) {
+            if (shapeChoice >= 1 && shapeChoice <= 3) {
                 break;
             }
 
@@ -37,15 +41,12 @@ public class PatternRunner {
 
         if (shapeChoice == 1) {
             return new SphereInputHandler(input);
-        } else {
+        } else if (shapeChoice == 2) {
             return new CircleInputHandler(input);
+        } else {
+            return new ElongatedSphereInputHandler(input);
         }
     }
-    /*
-    TODO
-    consider writing to-string methods for ShapeMaker classes so that tests can act more realistically
-    since the InputHandlers share information by creating ShapeMaker inside the class
-    */
 
-    // TODO update runner and readme with elongated spheres
+    // TODO update readme with elongated spheres
 }

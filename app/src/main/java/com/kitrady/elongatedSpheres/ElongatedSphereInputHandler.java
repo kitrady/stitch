@@ -24,6 +24,7 @@ public class ElongatedSphereInputHandler implements InputHandler {
     private final double cylinderLengthInRounds;
 
     public ElongatedSphereInputHandler(Scanner input) {
+        // TODO diameter must be smaller than length (enforce this)
         diameter = abs(InputHelper.handleInput(input,
                 "\nEnter the diameter, aka the maximum width, of your elongated sphere in inches: ",
                 "\nPlease enter just a number that is the diameter/maximum width of your elongated sphere in inches: "));
@@ -67,5 +68,19 @@ public class ElongatedSphereInputHandler implements InputHandler {
         return new ElongatedSphereMaker(radiusInStitches, degreesPerRound, cylinderLengthInRounds);
     }
 
-    // TODO write needed getters for tests
+    public double getDiameter() {
+        return diameter;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public double getStitchGauge() {
+        return stitchGauge;
+    }
+
+    public double getRoundGauge() {
+        return roundGauge;
+    }
 }

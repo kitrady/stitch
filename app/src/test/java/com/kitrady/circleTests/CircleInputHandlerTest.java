@@ -1,5 +1,6 @@
 package com.kitrady.circleTests;
 
+import com.kitrady.ShapeMaker;
 import com.kitrady.circles.CircleInputHandler;
 import java.util.Scanner;
 import org.junit.jupiter.api.Test;
@@ -43,14 +44,11 @@ public class CircleInputHandlerTest {
     }
 
     @Test
-    public void testGetRadiusInStitches() {
+    public void testCreateCircleMaker() {
         CircleInputHandler handler = new CircleInputHandler(3.4, 3.3, 3.4);
-        assertEquals((3.4 / 2) * 3.3, handler.getRadiusInStitches());
-    }
-
-    @Test
-    public void testGetRoundLengthInStitches() {
-        CircleInputHandler handler = new CircleInputHandler(3.4, 3.3, 3.4);
-        assertEquals(0.9705882352941176, handler.getRoundHeightInStitches());
+        ShapeMaker maker = handler.makeShapeMaker();
+        assertEquals(
+                "\n- Radius in rounds: 5.779999999999999" + "\n- Round length in stitches: 0.9705882352941176" + "\n- Stitches per round: []",
+                maker.toString());
     }
 }
