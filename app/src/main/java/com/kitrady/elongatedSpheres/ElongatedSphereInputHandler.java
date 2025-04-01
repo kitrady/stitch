@@ -28,9 +28,10 @@ public class ElongatedSphereInputHandler implements InputHandler {
                 "\nEnter the diameter, aka the maximum width, of your elongated sphere in inches: ",
                 "\nPlease enter just a number that is the diameter/maximum width of your elongated sphere in inches: "));
 
-        length = abs(InputHelper.handleInput(input,
-                "\nEnter the total length of your elongated sphere in inches: ",
-                "\nPlease enter just a number that is the total length of your elongated sphere in inches: "));
+        length = abs(InputHelper.handleInputGreaterThanValue(input,
+                "\nEnter the total length of your elongated sphere in inches (must be larger than the diameter): ",
+                "\nPlease enter just a number that is the total length of your elongated sphere in inches and is larger than the diameter you entered: ",
+                diameter));
 
         stitchGauge = abs(InputHelper.handleInput(input,
                 "\nEnter your crochet stitch gauge in stitches per inch: ",
@@ -67,5 +68,19 @@ public class ElongatedSphereInputHandler implements InputHandler {
         return new ElongatedSphereMaker(radiusInStitches, degreesPerRound, cylinderLengthInRounds);
     }
 
-    // TODO write needed getters for tests
+    public double getDiameter() {
+        return diameter;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public double getStitchGauge() {
+        return stitchGauge;
+    }
+
+    public double getRoundGauge() {
+        return roundGauge;
+    }
 }

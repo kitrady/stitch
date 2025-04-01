@@ -28,11 +28,9 @@ public class CircleMaker implements ShapeMaker {
         return stitchesPerRound;
     }
 
-    public double getRadiusInRounds() {
-        return radiusInRounds;
-    }
-
-    public double getRoundLengthInStitches() {
-        return roundLengthInStitches;
+    public String toString() {
+        return ("\n- Radius in rounds: " + radiusInRounds +
+                "\n- Round length in stitches: " + roundLengthInStitches +
+                "\n- Stitches per round: " + stitchesPerRound);
     }
 }

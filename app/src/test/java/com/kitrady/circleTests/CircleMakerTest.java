@@ -9,8 +9,9 @@ public class CircleMakerTest {
     @Test
     public void testGetDirectlyAssignedInstanceVariables() {
         CircleMaker maker = new CircleMaker(4, 1.05263157895);
-        assertEquals(4, maker.getRadiusInRounds());
-        assertEquals(1.05263157895, maker.getRoundLengthInStitches());
+        assertEquals(
+                "\n- Radius in rounds: 4.0" + "\n- Round length in stitches: 1.05263157895" + "\n- Stitches per round: []",
+                maker.toString());
     }
 
     @Test

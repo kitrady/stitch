@@ -37,8 +37,9 @@ I am NOT the first person to wanted to make mathematically accurate crochet sphe
 ### Shapes it can Currently Make *Correctly*
 
 *Assuming I remembered to update the readme after making changes*
-- Sphere: when prompted by the program, enter the diameter of your desired sphere in inches, your crochet stitch gauge, and your crochet round gauge, and it will generate a pattern that will allow you to make a sphere of that size.
-- Circle: when prompted by the program, enter the diameter of your desired circle in inches, your crochet stitch gauge, and your crochet round gauge, and it will generate a pattern that will allow you to make a circle of that size.
+- **Sphere:** creates a sphere. When prompted by the program, enter the diameter of your desired sphere in inches, your crochet stitch gauge, and your crochet round gauge, and it will generate a pattern that will allow you to make a sphere of that size.
+- **Circle:** creates a circle. When prompted by the program, enter the diameter of your desired circle in inches, your crochet stitch gauge, and your crochet round gauge, and it will generate a pattern that will allow you to make a circle of that size.
+- **Elongated sphere:** creates a sphere with a cylinder inserted in the middle, thus elongating the sphere. When the total length of the shape is similar to the diameter of the circle/width of the shape, the resulting object will be oval/ellipsoid like. When prompted by the program, enter your desired diameter/width and desired length, as well as your crochet stitch gauge and crochet round gauge, and it will generate a pattern that will allow you to make an elongated sphere with those dimensions.
 
 *If you generate one of the above shapes, and notice that the pattern doesn't work in some way, please let me know!*
 
@@ -57,7 +58,11 @@ To find the theta associated with each round, we need to find out how tall a rou
 
 ### Math Behind Making Circle
 
-A crochet circle is made up of a bunch of adjacent flat rounds, with each round essentially forming a circle around the previous round. To make a circle of a certain size, we need the total number of stitches in each round. To find the total number of stitches in each round, we need the circumference of the circle associated with each round in stitches (i.e. the circumference of each of the nested circles in stitches). To do this, we will use concentric circles whose radii increase by the height of a round per each circle (i.e. start with a circle whose radius is the same length as the height of one round, then a circle whose radius is the same length as the height of two rounds, and so on). First, we need the height of a round expressed in units of stitch length, which can be found by dividing the overall radius in stitches by the overall radius in rounds. Then, for each circle, we will multiply its radius in round height by the conversion factor we just found to get its radius in stitch length. Finally, we will take this radius in stitch length times 2pi to get the circumference in stitch length, aka the stitch total for the current that round.
+A crochet circle is made up of a bunch of adjacent flat rounds, with each round essentially forming a circle around the previous round. To make a circle of a certain size, we need the stitch totals for each round, which is the same as the circumference of the circle associated with each round in stitches (i.e. the circumference of each of the nested circles in stitches). To find these circumferences, we will use concentric circles whose radii increase by the height of a round per each circle (i.e. start with a circle whose radius is the same length as the height of one round, then a circle whose radius is the same length as the height of two rounds, and so on). First, we need the height of a round expressed in units of stitch length, which can be found by dividing the overall radius in stitches by the overall radius in rounds. Then, for each circle, we will multiply its radius in round height by the conversion factor we just found to get its radius in stitch length. Finally, we will take this radius in stitch length times 2pi to get the circumference in stitch length, aka the stitch total for the current that round.
+
+### Math Behind Making an Elongated Sphere
+
+A crocheted elongated sphere is just a crochet sphere with a cylinder in the middle, which is created by making several rounds composed of all single crochets. To find the stitch totals for each round, take the stitch totals for a sphere and add some number of rounds whose stitch total is the maximum stitch total in the sphere. To find the proper number of additional rounds, subtract the diameter of the sphere in inches from the total desired length of the shape in inches to find the length of the cylinder section in inches. Take this length times the round gauge to find the length of the cylinder portion in rounds, which is the number of additional rounds that are needed. Putting these rounds in the middle of the sphere rounds creates an elongated sphere.
 
 ### Formatting a Pattern From Stitch totals
 
@@ -114,7 +119,7 @@ In longer patterns, an alternate format may be used, which is explained below:
   - Constructor gets needed information from InputHandler and calculates and other values that are needed
   - Then generates stitch totals in the interface defined method by calculating them using the stored information
   - Shares the stitch totals via the interface defined getter method
-  - Each class may also have other getters for the purpose of testing
+  - Each class also has an overridden toString method for testing purposes
 - SphereMaker
   - Generates stitch totals for the first half of the rounds (i.e. the rounds with increases) using the math described above in a loop
   - Loops over the angles for each round, starting with the round at the top of the sphere where theta equals 90 - degreesPerRound, and decreases theta by degreesPerRound every loop, with the loop ending when theta is less than zero
@@ -123,6 +128,11 @@ In longer patterns, an alternate format may be used, which is explained below:
 - CircleMaker
   - Generates stitch total by looping over a current radius that increases by the height of a round until the desired radius is reached
   - Uses the math described above to find the stitch total from the current radius
+- ElongatedSphereMaker
+  - Creates a SphereMaker object with the information stored in the class to generate stitch totals for a sphere
+  - Find the maximum stitch total and its index
+  - Inserts several more rounds with this maximum stitch total after the index
+  - Number of additional rounds is determined using the math described above
 
 **RoundComponentMaker**
 
