@@ -15,5 +15,5 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'crochet-pattern-maker'
+rootProject.name = 'stitch'
 include 'app'
