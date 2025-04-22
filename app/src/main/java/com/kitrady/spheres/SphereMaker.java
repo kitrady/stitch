@@ -22,7 +22,7 @@ public class SphereMaker implements ShapeMaker {
             double height = radiusInStitches * Math.sin(Math.toRadians(angle));
             double currentRoundRadiusInStitches = Math.cos(Math.toRadians(angle)) * radiusInStitches;
             double currentRoundCircumferenceInStitches = 2 * Math.PI * currentRoundRadiusInStitches;
-            System.out.println("height: " + height + ", stitches: " + (int) Math.round(currentRoundCircumferenceInStitches));
+            // System.out.println("height: " + height + ", stitches: " + (int) Math.round(currentRoundCircumferenceInStitches));
             stitchesPerRound.add((int) Math.round(currentRoundCircumferenceInStitches));
         }
 
