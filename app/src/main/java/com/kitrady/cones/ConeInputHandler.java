@@ -14,9 +14,12 @@ public class ConeInputHandler implements InputHandler {
     private final double roundGauge; // units are rows per inch
 
     private final double radius;
+    private final double radiusInRounds;
+    private final double lengthInRounds;
+    private final double sideLengthInRounds;
 
     private final double radiusInStitches;
-    private final double lengthInRounds;
+    private final double changeInRadiusPerOneRound;
 
     public ConeInputHandler(Scanner input) {
         diameter = abs(InputHelper.handleInput(input,
@@ -36,8 +39,12 @@ public class ConeInputHandler implements InputHandler {
                 "\nPlease enter just a number that is your crochet round gauge in rounds per inch: "));
 
         radius = diameter / 2;
-        radiusInStitches = radius * stitchGauge;
+        radiusInRounds = radius * roundGauge;
         lengthInRounds = length * roundGauge;
+        sideLengthInRounds = Math.sqrt(Math.pow(radiusInRounds, 2) + Math.pow(lengthInRounds, 2));
+
+        radiusInStitches = radius * stitchGauge;
+        changeInRadiusPerOneRound = radiusInStitches / sideLengthInRounds;
     }
 
     public ConeInputHandler(double diameter, double length, double stitchGauge, double roundGauge) {
@@ -47,11 +54,15 @@ public class ConeInputHandler implements InputHandler {
         this.roundGauge = roundGauge;
 
         radius = diameter / 2;
-        radiusInStitches = radius * stitchGauge;
+        radiusInRounds = radius * roundGauge;
         lengthInRounds = length * roundGauge;
+        sideLengthInRounds = Math.sqrt(Math.pow(radiusInRounds, 2) + Math.pow(lengthInRounds, 2));
+
+        radiusInStitches = radius * stitchGauge;
+        changeInRadiusPerOneRound = radiusInStitches / sideLengthInRounds;
     }
 
     public ShapeMaker makeShapeMaker() {
-
+        return new ConeMaker(radiusInStitches, changeInRadiusPerOneRound);
     }
 }
