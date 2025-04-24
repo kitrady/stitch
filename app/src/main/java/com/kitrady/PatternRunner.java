@@ -1,6 +1,7 @@
 package com.kitrady;
 
 import com.kitrady.circles.CircleInputHandler;
+import com.kitrady.cones.ConeInputHandler;
 import com.kitrady.elongatedSpheres.ElongatedSphereInputHandler;
 import com.kitrady.spheres.SphereInputHandler;
 
@@ -24,14 +25,15 @@ public class PatternRunner {
         System.out.println("Please choose the shape you want to generate a pattern for and enter the number that corresponds your choice:" +
                 "\n1) Sphere" +
                 "\n2) Circle" +
-                "\n3) Elongated sphere (sphere with a cylinder in the middle; creates oval like shapes when cylinder is small compared to diameter of sphere");
+                "\n3) Elongated sphere (sphere with a cylinder in the middle; creates oval like shapes when cylinder is small compared to diameter of sphere" +
+                "\n4) Cone");
 
         while (true) {
             if (input.hasNextInt()) { // this should prompt the scanner to wait for user input, as there should be nothing ahead of the scanner
                 shapeChoice = input.nextInt(); // gets the int character from the scanner, leaving the newline character ahead of the scanner
             }
 
-            if (shapeChoice >= 1 && shapeChoice <= 3) {
+            if (shapeChoice >= 1 && shapeChoice <= 4) {
                 input.nextLine(); // gets the newline character from the scanner, meaning there is nothing ahead of the scanner
                 break;
             }
@@ -44,8 +46,10 @@ public class PatternRunner {
             return new SphereInputHandler(input);
         } else if (shapeChoice == 2) {
             return new CircleInputHandler(input);
-        } else {
+        } else if (shapeChoice == 3) {
             return new ElongatedSphereInputHandler(input);
+        } else {
+            return new ConeInputHandler(input);
         }
     }
 }
