@@ -23,7 +23,7 @@ public class ConeInputHandler implements InputHandler {
 
     public ConeInputHandler(Scanner input) {
         diameter = abs(InputHelper.handleInput(input,
-                "\nEnter the diameter, aka the maximum width of your cone in inches: ",
+                "\nEnter the diameter, aka the maximum width, of your cone in inches: ",
                 "\nPlease enter just a number that is the diameter/maximum width of your cone in inches: "));
 
         length = abs(InputHelper.handleInput(input,
@@ -60,9 +60,12 @@ public class ConeInputHandler implements InputHandler {
 
         radiusInStitches = radius * stitchGauge;
         changeInRadiusPerOneRound = radiusInStitches / sideLengthInRounds;
+
     }
 
     public ShapeMaker makeShapeMaker() {
-        return new ConeMaker(radiusInStitches, changeInRadiusPerOneRound);
+        double lengthInStitches = length * stitchGauge;
+        double changeInLengthPerOneRound = lengthInStitches / sideLengthInRounds;
+        return new ConeMaker(radiusInStitches, changeInRadiusPerOneRound, changeInLengthPerOneRound);
     }
 }
