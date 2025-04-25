@@ -39,7 +39,8 @@ I am NOT the first person to wanted to make mathematically accurate crochet sphe
 *Assuming I remembered to update the readme after making changes*
 - **Sphere:** creates a sphere. When prompted by the program, enter the diameter of your desired sphere in inches, your crochet stitch gauge, and your crochet round gauge, and it will generate a pattern that will allow you to make a sphere of that size.
 - **Circle:** creates a circle. When prompted by the program, enter the diameter of your desired circle in inches, your crochet stitch gauge, and your crochet round gauge, and it will generate a pattern that will allow you to make a circle of that size.
-- **Elongated sphere:** creates a sphere with a cylinder inserted in the middle, thus elongating the sphere. When the total length of the shape is similar to the diameter of the circle/width of the shape, the resulting object will be oval/ellipsoid like. When prompted by the program, enter your desired diameter/width and desired length, as well as your crochet stitch gauge and crochet round gauge, and it will generate a pattern that will allow you to make an elongated sphere with those dimensions.
+- **Elongated sphere:** creates a sphere with a cylinder inserted in the middle, thus elongating the sphere. When the total length of the shape is similar to the diameter of the circle/width of the shape, the resulting object will be oval/ellipsoid like. When prompted by the program, enter your desired diameter/width and desired length in inches, as well as your crochet stitch gauge and crochet round gauge in stitches per inch, and it will generate a pattern that will allow you to make an elongated sphere with those dimensions.
+- **Cone:** creates a cone. When prompted by the program, enter the diameter and length of your desired cone in inches, as well as your crochet stitch gauge and round gauge in stitches per inch, and it will generate a pattern that will allow you to make a cone with those dimensions.
 
 *If you generate one of the above shapes, and notice that the pattern doesn't work in some way, please let me know!*
 
@@ -63,6 +64,9 @@ A crochet circle is made up of a bunch of adjacent flat rounds, with each round 
 ### Math Behind Making an Elongated Sphere
 
 A crocheted elongated sphere is just a crochet sphere with a cylinder in the middle, which is created by making several rounds composed of all single crochets. To find the stitch totals for each round, take the stitch totals for a sphere and add some number of rounds whose stitch total is the maximum stitch total in the sphere. To find the proper number of additional rounds, subtract the diameter of the sphere in inches from the total desired length of the shape in inches to find the length of the cylinder section in inches. Take this length times the round gauge to find the length of the cylinder portion in rounds, which is the number of additional rounds that are needed. Putting these rounds in the middle of the sphere rounds creates an elongated sphere.
+
+### Math Behind Making a Cone
+A crochet cone is made up of rounds which increase their number of stitches by a constant amount. The stitch totals for each round is just the circumference of that circular layer in stitches, which can be found using the radius in stitches; the radius can be found by treating the cone as a right triangle, where one leg is the radius, the other is the length, and the hypotenuse is the number of rounds. Use the radius and length (both measured in rounds) to find the hypotenuse in rounds via the pythagorean theorem, then divide the radius measured in stitches by the hypotenuse in rounds to find the change of the radius in stitches per one round. Use this number to find the radius for each round and multiply by 2pi to find the circumference in stitches, aka the stitch total for that round.
 
 ### Formatting a Pattern From Stitch totals
 
@@ -133,6 +137,9 @@ In longer patterns, an alternate format may be used, which is explained below:
   - Find the maximum stitch total and its index
   - Inserts several more rounds with this maximum stitch total after the index
   - Number of additional rounds is determined using the math described above
+- ConeMaker
+  -  Generates stitch total by looping over a current radius that increases by a pre-determined amount (see the math described above for details) until the desired radius is reached
+  - Uses the math described above to find the stitch total from the current radius
 
 **RoundComponentMaker**
 
