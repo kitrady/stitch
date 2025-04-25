@@ -13,7 +13,7 @@ public class ConeInputHandler implements InputHandler {
     private final double stitchGauge; // units are stitches per inch
     private final double roundGauge; // units are rows per inch
 
-    private final double radius;
+    private final double radius; // units are inches
     private final double radiusInRounds;
     private final double lengthInRounds;
     private final double sideLengthInRounds;
