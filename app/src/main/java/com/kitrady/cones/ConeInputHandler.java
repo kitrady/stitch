@@ -48,10 +48,10 @@ public class ConeInputHandler implements InputHandler {
     }
 
     public ConeInputHandler(double diameter, double length, double stitchGauge, double roundGauge) {
-        this.diameter = diameter;
-        this.length = length;
-        this.stitchGauge = stitchGauge;
-        this.roundGauge = roundGauge;
+        this.diameter = abs(diameter);
+        this.length = abs(length);
+        this.stitchGauge = abs(stitchGauge);
+        this.roundGauge = abs(roundGauge);
 
         radius = diameter / 2;
         radiusInRounds = radius * roundGauge;
@@ -66,6 +66,22 @@ public class ConeInputHandler implements InputHandler {
     public ShapeMaker makeShapeMaker() {
         double lengthInStitches = length * stitchGauge;
         double changeInLengthPerOneRound = lengthInStitches / sideLengthInRounds;
-        return new ConeMaker(radiusInStitches, changeInRadiusPerOneRound, changeInLengthPerOneRound);
+        return new ConeMaker(radiusInStitches, changeInRadiusPerOneRound);
+    }
+
+    public double getDiameterInInches() {
+        return diameter;
+    }
+
+    public double getLengthInInches() {
+        return length;
+    }
+
+    public double getStitchGauge() {
+        return stitchGauge;
+    }
+
+    public double getRoundGauge() {
+        return roundGauge;
     }
 }
