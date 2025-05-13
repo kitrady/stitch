@@ -18,7 +18,7 @@ A secondary purpose of this program is to make *mathematically accurate* crochet
 
 ### Other Crocheters Who Gave me Inspiration
 
-I am NOT the first person to wanted to make mathematically accurate crochet sphere. MsPremiseConclusion is the one who gave me the idea via this article https://mspremiseconclusion.wordpress.com/2010/03/14/the-ideal-crochet-sphere/. The math I use in this program to make a sphere is entirely of her creation, however the code is all original. As I add more shapes, the math behind them may or may not be based on MsPremiseConclusion's math.
+I am NOT the first person to wanted to make mathematically accurate crochet sphere. MsPremiseConclusion is the one who gave me the idea via this article https://mspremiseconclusion.wordpress.com/2010/03/14/the-ideal-crochet-sphere/. The math I use in this program to make a sphere is entirely of her creation, however the code is all original. For shapes besides spheres, the math will be largely of my own design, as MsPremiseConclusion's method doesn't really work with other shapes.
 
 ### Glossary of Crochet Terms
 

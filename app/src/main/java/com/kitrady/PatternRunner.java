@@ -20,6 +20,8 @@ public class PatternRunner {
         assembler.printPattern();
     }
 
+    // TODO add description of gauges to README
+
     private static InputHandler createInputHandler(Scanner input) {
         int shapeChoice = 0;
         System.out.println("Please choose the shape you want to generate a pattern for and enter the number that corresponds your choice:" +
