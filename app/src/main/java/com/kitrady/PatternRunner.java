@@ -7,8 +7,6 @@ import com.kitrady.spheres.SphereInputHandler;
 
 import java.util.Scanner;
 
-// TODO write tests
-
 public class PatternRunner {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);

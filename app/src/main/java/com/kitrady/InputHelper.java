@@ -2,6 +2,8 @@ package com.kitrady;
 
 import java.util.Scanner;
 
+import static java.lang.Math.abs;
+
 public class InputHelper {
     public static double handleInput(Scanner input, String message, String correctingMessage) {
         double inputVal = 0;
@@ -35,5 +37,17 @@ public class InputHelper {
             input.nextLine(); // gets the newline character from the scanner, meaning there is nothing ahead of the scanner
             System.out.print(correctingMessage);
         }
+    }
+
+    public static double handleStitchGaugeInput(Scanner input) {
+        return abs(handleInput(input,
+                "\nEnter your crochet stitch gauge in stitches per inch: ",
+                "\nPlease enter just a number that is your crochet stitch gauge in stitches per inch: "));
+    }
+
+    public static double handleRoundGaugeInput(Scanner input) {
+        return abs(handleInput(input,
+                "\nEnter your crochet round gauge in rounds per inch: ",
+                "\nPlease enter just a number that is your crochet round gauge in rounds per inch: "));
     }
 }

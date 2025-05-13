@@ -22,13 +22,9 @@ public class CircleInputHandler implements InputHandler {
                 "\nEnter the diameter of your circle in inches: ",
                 "\nPlease enter just a number that is the diameter of your circle in inches: "));
 
-        stitchGauge = abs(InputHelper.handleInput(input,
-                "\nEnter your crochet stitch gauge in stitches per inch: ",
-                "\nPlease enter just a number that is your crochet stitch gauge in stitches per inch: "));
+        stitchGauge = InputHelper.handleStitchGaugeInput(input);
 
-        roundGauge = abs(InputHelper.handleInput(input,
-                "\nEnter your crochet round gauge in rounds per inch: ",
-                "\nPlease enter just a number that is your crochet round gauge in rounds per inch: "));
+        roundGauge = InputHelper.handleRoundGaugeInput(input);
 
         radius = diameter / 2;
         radiusInStitches = radius * stitchGauge;
