@@ -18,13 +18,15 @@ A secondary purpose of this program is to make *mathematically accurate* crochet
 
 ### Other Crocheters Who Gave me Inspiration
 
-I am NOT the first person to wanted to make mathematically accurate crochet sphere. MsPremiseConclusion is the one who gave me the idea via this article https://mspremiseconclusion.wordpress.com/2010/03/14/the-ideal-crochet-sphere/. The math I use in this program to make a sphere is entirely of her creation, however the code is all original. As I add more shapes, the math behind them may or may not be based on MsPremiseConclusion's math.
+I am NOT the first person to wanted to make mathematically accurate crochet sphere. MsPremiseConclusion is the one who gave me the idea via this article https://mspremiseconclusion.wordpress.com/2010/03/14/the-ideal-crochet-sphere/. The math I use in this program to make a sphere is entirely of her creation, however the code is all original. For shapes besides spheres, the math will be largely of my own design, as MsPremiseConclusion's method doesn't really work with other shapes.
 
 ### Glossary of Crochet Terms
 
 - **Stitch:** a single unit of crochet that is repeated over and over again to make a crochet item. *Abbreviation: st*
 - **Row:** one length of 2D crochet; these lengths are stacked on top of each other to make a flat shape (e.g. rectangles, triangles). One row is created by making a line of stitches in one direction, and the next row is created by making a line of stitches in the other direction.
 - **Round:** one length of 3D crochet; these lengths are also stacked on top of each other, but they make 3D shapes (e.g. spheres). One round is created by making a circle of stitches, and the next round is created by making another circle directly on top of the previous, forming a tight spiral shape. *Abbreviation: rd*
+- **Stitch Gauge:** for a given yarn and crochet hook size, a stitch gauge is the number of stitches per inch (or other measurement, but this program uses per one inch). The gauge can be a decimal, and it is encouraged to measure at least four inches and divide so that the gauge is more accurate.
+- **Round Gauge:** for a given yarn and crochet hook size, a round gauge is the number of rounds per inch (other measurements can be used, but this program uses per one inch). The gauge can be a decimal, and it is encouraged to measure at least four inches and divide so that the gauge is more accurate.
 - **Chain stitch:** the foundational crochet stitch; it serves as the foundation for a lot of crochet items, as it can be made with just a strand of yarn. *Abbreviation: ch*
 - **"Worked into":** crochet is a process of pulling loops of yarn (aka stitches) through other loops of yarn (aka stitches). The stitch currently being made is "worked into" the previous stitch (i.e. the loop currently being made is worked into, aka pulled through, the previous loop). 
 - **Magic loop:** a special technique used to start crochet that is done in the round; it ensures that the top of an item remains closed and doesn't form a hole.
