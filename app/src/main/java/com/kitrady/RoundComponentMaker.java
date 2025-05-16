@@ -65,6 +65,11 @@ public class RoundComponentMaker {
                         if (numSingleCrochetInHalfSection > 0) {
                             updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
                         }
+
+                        if (numSingleCrochetInHalfSection * 2 != numSingleCrochetInSection) {
+                            updateRoundComponents(1, ComponentType.SINGLE_CROCHET);
+                        }
+
                         updateRoundComponents(1, ComponentType.INCREASE);
 
                         updateRoundComponents(numSingleCrochetInSection, ComponentType.REPEAT_SINGLE_CROCHET);
@@ -73,9 +78,6 @@ public class RoundComponentMaker {
 
                         updateRoundComponents(numIncreases - 1, ComponentType.REPEAT_COUNT);
 
-                        if (numSingleCrochetInHalfSection * 2 != numSingleCrochetInSection) {
-                            numSingleCrochetInHalfSection += 1;
-                        }
                         updateRoundComponents(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET);
 
                     } else if (alternateRoundToPreventBubblesCounter % 2 == 0 && numIncreases == 1) {
