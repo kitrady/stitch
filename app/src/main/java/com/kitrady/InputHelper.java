@@ -41,13 +41,13 @@ public class InputHelper {
 
     public static double handleStitchGaugeInput(Scanner input) {
         return abs(handleInput(input,
-                "\nEnter your crochet stitch gauge in stitches per inch: ",
+                "\nEnter your crochet stitch gauge in stitches per inch\n(it is recommended you measure four inches then divide for a more accurate gauge): ",
                 "\nPlease enter just a number that is your crochet stitch gauge in stitches per inch: "));
     }
 
     public static double handleRoundGaugeInput(Scanner input) {
         return abs(handleInput(input,
-                "\nEnter your crochet round gauge in rounds per inch: ",
+                "\nEnter your crochet round gauge in rounds per inch\n(it is recommended you measure four inches then divide for a more accurate gauge): ",
                 "\nPlease enter just a number that is your crochet round gauge in rounds per inch: "));
     }
 }
