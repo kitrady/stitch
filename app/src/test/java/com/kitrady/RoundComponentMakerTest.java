@@ -207,11 +207,12 @@ public class RoundComponentMakerTest {
         List<RoundComponent> components = List.of(
                 new RoundComponent(2, ComponentType.ROUND_NUMBER),
                 new RoundComponent(2, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(1, ComponentType.SINGLE_CROCHET),
                 new RoundComponent(1, ComponentType.INCREASE),
                 new RoundComponent(5, ComponentType.REPEAT_SINGLE_CROCHET),
                 new RoundComponent(1, ComponentType.REPEAT_INCREASE),
                 new RoundComponent(2, ComponentType.REPEAT_COUNT),
-                new RoundComponent(3, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(2, ComponentType.SINGLE_CROCHET),
                 new RoundComponent(21, ComponentType.STITCH_TOTAL)
         );
         for (int i = 0; i < components.size(); i++) {
