@@ -6,10 +6,12 @@ import java.util.List;
 
 public class ConeMaker implements ShapeMaker {
     private List<Integer> stitchesPerRound = new ArrayList<>();
+    private final boolean startFromSmallEnd;
     private final double radiusInStitches;
     private final double changeInRadiusPerOneRound;
 
-    public ConeMaker(double radiusInStitches, double changeInRadiusPerOneRound) {
+    public ConeMaker(boolean startFromSmallEnd, double radiusInStitches, double changeInRadiusPerOneRound) {
+        this.startFromSmallEnd = startFromSmallEnd;
         this.radiusInStitches = radiusInStitches;
         this.changeInRadiusPerOneRound = changeInRadiusPerOneRound;
     }
@@ -20,7 +22,9 @@ public class ConeMaker implements ShapeMaker {
             stitchesPerRound.add(currentCircumferenceInStitches);
         }
 
-        stitchesPerRound = stitchesPerRound.reversed();
+        if (startFromSmallEnd) {
+            stitchesPerRound = stitchesPerRound.reversed();
+        }
     }
 
     public List<Integer> getStitchesPerRound() {
@@ -29,7 +33,8 @@ public class ConeMaker implements ShapeMaker {
     }
 
     public String toString() {
-        return ("\n- Radius in stitches: " + radiusInStitches +
+        return ("\n- Start from small end: " + startFromSmallEnd +
+                "\n- Radius in stitches: " + radiusInStitches +
                 "\n- Change in radius per one round: " + changeInRadiusPerOneRound +
                 "\n- stitches per round: " + stitchesPerRound);
     }

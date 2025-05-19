@@ -18,6 +18,7 @@ public class ConeInputHandler implements InputHandler {
     private final double lengthInRounds;
     private final double sideLengthInRounds;
 
+    private final boolean startFromSmallEnd;
     private final double radiusInStitches;
     private final double changeInRadiusPerOneRound;
 
@@ -29,6 +30,10 @@ public class ConeInputHandler implements InputHandler {
         length = abs(InputHelper.handleInput(input,
                 "\nEnter the length of your cone in inches: ",
                 "\nPlease enter just a number that is the length of your come in inches: "));
+
+        startFromSmallEnd = InputHelper.handleBooleanInput(input,
+                "\nDo you want the pattern for your cone to start from the small end? (y/n): ",
+                "\nPlease enter either 'y' or 'n' depending on whether you want the pattern to start at the small end of the cone: ");
 
         stitchGauge = InputHelper.handleStitchGaugeInput(input);
 
@@ -43,7 +48,7 @@ public class ConeInputHandler implements InputHandler {
         changeInRadiusPerOneRound = radiusInStitches / sideLengthInRounds;
     }
 
-    public ConeInputHandler(double diameter, double length, double stitchGauge, double roundGauge) {
+    public ConeInputHandler(double diameter, double length, boolean startFromSmallEnd, double stitchGauge, double roundGauge) {
         this.diameter = abs(diameter);
         this.length = abs(length);
         this.stitchGauge = abs(stitchGauge);
@@ -54,6 +59,7 @@ public class ConeInputHandler implements InputHandler {
         lengthInRounds = length * roundGauge;
         sideLengthInRounds = Math.sqrt(Math.pow(radiusInRounds, 2) + Math.pow(lengthInRounds, 2));
 
+        this.startFromSmallEnd = startFromSmallEnd;
         radiusInStitches = radius * stitchGauge;
         changeInRadiusPerOneRound = radiusInStitches / sideLengthInRounds;
 
@@ -62,7 +68,7 @@ public class ConeInputHandler implements InputHandler {
     public ShapeMaker makeShapeMaker() {
         double lengthInStitches = length * stitchGauge;
         double changeInLengthPerOneRound = lengthInStitches / sideLengthInRounds;
-        return new ConeMaker(radiusInStitches, changeInRadiusPerOneRound);
+        return new ConeMaker(startFromSmallEnd, radiusInStitches, changeInRadiusPerOneRound);
     }
 
     public double getDiameterInInches() {
@@ -71,6 +77,10 @@ public class ConeInputHandler implements InputHandler {
 
     public double getLengthInInches() {
         return length;
+    }
+
+    public boolean getStartFromSmallEnd() {
+        return startFromSmallEnd;
     }
 
     public double getStitchGauge() {
