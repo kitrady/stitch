@@ -24,7 +24,7 @@ public class ConeMakerTest {
     @Test
     public void testMakeCone1() {
         ConeMaker maker = new ConeMaker(false, 4, 0.19611613513818404);
-        List<Integer> totals = List.of(25, 24, 23, 21, 20, 19, 18, 17, 15, 14, 13, 12, 10, 9, 8, 7, 5, 4);
+        List<Integer> totals = List.of(25, 24, 23, 21, 20, 19, 18, 17, 15, 14, 13, 12, 10, 9, 8, 7, 5);
         assertEquals(totals, maker.getStitchesPerRound());
     }
 
