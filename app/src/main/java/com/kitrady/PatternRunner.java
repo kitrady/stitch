@@ -3,6 +3,7 @@ package com.kitrady;
 import com.kitrady.circles.CircleInputHandler;
 import com.kitrady.cones.ConeInputHandler;
 import com.kitrady.elongatedSpheres.ElongatedSphereInputHandler;
+import com.kitrady.elongatedSpheres.ElongatedSphereMaker;
 import com.kitrady.spheres.SphereInputHandler;
 
 import java.util.Scanner;
@@ -18,6 +19,14 @@ public class PatternRunner {
         RoundComponentAssembler assembler = new RoundComponentAssembler(componentMaker.getAllRoundComponents());
         assembler.assemble();
         assembler.printPattern();
+
+//        InputHandler handler1 = new ElongatedSphereInputHandler(1.5, 2.5, 4.66, 5.33);
+//        ShapeMaker maker1 = handler1.makeShapeMaker();
+//        RoundComponentMaker componentMaker1 =  new RoundComponentMaker(maker1.getStitchesPerRound());
+//        componentMaker1.generateAllRoundComponents();
+//        RoundComponentAssembler assembler1 = new RoundComponentAssembler(componentMaker1.getAllRoundComponents());
+//        assembler1.assemble();
+//        assembler1.printPattern();
     }
 
     private static InputHandler createInputHandler(Scanner input) {
