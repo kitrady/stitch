@@ -50,4 +50,20 @@ public class InputHelper {
                 "\nEnter your crochet round gauge in rounds per inch\n(it is recommended you measure four inches then divide for a more accurate gauge): ",
                 "\nPlease enter just a number that is your crochet round gauge in rounds per inch: "));
     }
+
+    public static boolean handleBooleanInput(Scanner input, String message, String correctingMessage) {
+        String inputVal;
+        System.out.print(message);
+
+        while (true) {
+            if (input.hasNext("y") || input.hasNext("n")) { // this should prompt the scanner to wait for user input, as there should be nothing ahead of the scanner
+                inputVal = input.next(); // gets the boolean from the scanner, leaving the newline character ahead of the scanner
+                input.nextLine(); // gets the newline character from the scanner, meaning there is nothing ahead of the scanner
+                return inputVal.equals("y");
+            }
+
+            input.nextLine(); // gets the newline character from the scanner, meaning there is nothing ahead of the scanner
+            System.out.print(correctingMessage);
+        }
+    }
 }
