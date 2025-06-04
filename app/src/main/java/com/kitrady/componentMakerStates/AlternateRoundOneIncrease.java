@@ -4,6 +4,7 @@ import com.kitrady.ComponentMakerRoundInfo;
 import com.kitrady.ComponentMakerState;
 import com.kitrady.ComponentType;
 import com.kitrady.RoundComponent;
+
 import java.util.List;
 
 public class AlternateRoundOneIncrease implements ComponentMakerState {

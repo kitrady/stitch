@@ -26,10 +26,10 @@ public class EllipticIntegrals {
 
         // calculates other parts of arc length formula
         double arcLengthNumerator = Math.pow(eccentricity, 2) * Math.sin(angle) * Math.cos(angle);
-        double arcLengthDenominator = Math.sqrt(1- Math.pow(eccentricity, 2) * Math.pow(Math.sin(angle), 2));
+        double arcLengthDenominator = Math.sqrt(1 - Math.pow(eccentricity, 2) * Math.pow(Math.sin(angle), 2));
 
         // returns arc length according to formula (see wikipedia page on meridian arc length for formula)
-        return semiMajorAxis * (integral - arcLengthNumerator/arcLengthDenominator);
+        return semiMajorAxis * (integral - arcLengthNumerator / arcLengthDenominator);
     }
 
     // uses power series for elliptic integral from wikipedia to calculate

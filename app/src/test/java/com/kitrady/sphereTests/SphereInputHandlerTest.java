@@ -3,8 +3,10 @@ package com.kitrady.sphereTests;
 import com.kitrady.ShapeMaker;
 import com.kitrady.spheres.SphereInputHandler;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.Scanner;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SphereInputHandlerTest {
     @Test
