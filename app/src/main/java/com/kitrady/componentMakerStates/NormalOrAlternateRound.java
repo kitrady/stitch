@@ -1,10 +1,17 @@
 package com.kitrady.componentMakerStates;
 
-import com.kitrady.ComponentMakerInfo;
+import com.kitrady.ComponentMakerRoundInfo;
 import com.kitrady.ComponentMakerState;
 
 public class NormalOrAlternateRound implements ComponentMakerState {
-    public ComponentMakerState step(ComponentMakerInfo info) {
-        return null;
+
+    public ComponentMakerState step(ComponentMakerRoundInfo info) {
+        int alternateRoundToPreventBubblesCounter = info.getAlternateRoundToPreventBubblesCounter();
+
+        if (alternateRoundToPreventBubblesCounter % 2 == 0) {
+            return new AlternateRound();
+        } else {
+            return new NormalRound();
+        }
     }
 }

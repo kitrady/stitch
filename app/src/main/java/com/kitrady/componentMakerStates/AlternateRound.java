@@ -1,10 +1,17 @@
 package com.kitrady.componentMakerStates;
 
-import com.kitrady.ComponentMakerInfo;
+import com.kitrady.ComponentMakerRoundInfo;
 import com.kitrady.ComponentMakerState;
 
 public class AlternateRound implements ComponentMakerState {
-    public ComponentMakerState step(ComponentMakerInfo info) {
-        return null;
+
+    public ComponentMakerState step(ComponentMakerRoundInfo info) {
+        int numIncreases = info.getNumIncreases();
+
+        if (numIncreases > 1) {
+            return new AlternateRoundMultipleIncreases();
+        } else {
+            return new AlternateRoundOneIncrease();
+        }
     }
 }

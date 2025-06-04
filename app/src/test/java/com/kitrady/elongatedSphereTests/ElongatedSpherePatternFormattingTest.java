@@ -26,7 +26,7 @@ public class ElongatedSpherePatternFormattingTest {
 Rd 1: 6 sc in magic ring (6)
 Rd 2: inc in each st in round (12)
 Rd 3: (1 sc, 1 inc) x5, 2 sc (17)
-Rd 4: 2 sc, 1 inc, (3 sc, 1 inc) x3, 2 sc (21)
+Rd 4: 1 sc, 1 inc, (3 sc, 1 inc) x3, 3 sc (21)
 Rd 5: (6 sc, 1 inc) x3 (24)
 Rd 6: 11 sc, 1 inc, 12 sc (25)
 Rd 7: sc in each st in round (25)

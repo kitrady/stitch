@@ -6,12 +6,13 @@ import com.kitrady.ComponentType;
 import com.kitrady.RoundComponent;
 import java.util.List;
 
-public class AllSingleCrochets implements ComponentMakerState {
+public class StitchTotal implements ComponentMakerState {
 
     public ComponentMakerState step(ComponentMakerRoundInfo info) {
         List<RoundComponent> roundComponents = info.getRoundComponents();
+        int currentStitchTotal = info.getCurrentStitchTotal();
 
-        roundComponents.add(new RoundComponent(0, ComponentType.ALL_SINGLE_CROCHET));
-        return new StitchTotal();
+        roundComponents.add(new RoundComponent(currentStitchTotal, ComponentType.STITCH_TOTAL));
+        return new EndState();
     }
 }

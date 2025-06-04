@@ -4,21 +4,17 @@ import com.kitrady.ComponentMakerRoundInfo;
 import com.kitrady.ComponentMakerState;
 import com.kitrady.ComponentType;
 import com.kitrady.RoundComponent;
+
 import java.util.List;
 
-public class StartState implements ComponentMakerState {
+public class IncreasesAndExtraStitches implements ComponentMakerState {
 
     public ComponentMakerState step(ComponentMakerRoundInfo info) {
         List<RoundComponent> roundComponents = info.getRoundComponents();
-        int roundNumber = info.getRoundNumber();
         int numIncreases = info.getNumIncreases();
+        int extraStitches = info.getExtraStitches();
 
-        roundComponents.add(new RoundComponent(roundNumber, ComponentType.ROUND_NUMBER));
-
-        if (numIncreases == 0) {
-            return new AllSingleCrochets();
-        } else {
-            return new SomeIncreases();
-        }
+        roundComponents.add(new RoundComponent(numIncreases, ComponentType.INCREASE));
+        return new ExtraStitches();
     }
 }
