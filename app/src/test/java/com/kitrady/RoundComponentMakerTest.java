@@ -1,8 +1,10 @@
 package com.kitrady;
 
 import org.junit.jupiter.api.Test;
+
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RoundComponentMakerTest {
     @Test
@@ -11,7 +13,7 @@ public class RoundComponentMakerTest {
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, false);
         List<RoundComponent> components = List.of(
-                new RoundComponent(2,ComponentType.ROUND_NUMBER),
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
                 new RoundComponent(0, ComponentType.ALL_SINGLE_CROCHET),
                 new RoundComponent(1, ComponentType.STITCH_TOTAL)
         );
@@ -27,7 +29,7 @@ public class RoundComponentMakerTest {
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, false);
         List<RoundComponent> components = List.of(
-                new RoundComponent(2,ComponentType.ROUND_NUMBER),
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
                 new RoundComponent(5, ComponentType.INCREASE),
                 new RoundComponent(1, ComponentType.SINGLE_CROCHET),
                 new RoundComponent(11, ComponentType.STITCH_TOTAL)
@@ -76,7 +78,7 @@ public class RoundComponentMakerTest {
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, true);
         List<RoundComponent> components = List.of(
-                new RoundComponent(2,ComponentType.ROUND_NUMBER),
+                new RoundComponent(2, ComponentType.ROUND_NUMBER),
                 new RoundComponent(5, ComponentType.DECREASE),
                 new RoundComponent(1, ComponentType.SINGLE_CROCHET),
                 new RoundComponent(6, ComponentType.STITCH_TOTAL)
@@ -87,7 +89,8 @@ public class RoundComponentMakerTest {
         }
     }
 
-    @Test void testAllDecreases() {
+    @Test
+    void testAllDecreases() {
         List<Integer> stitchesPerRound = List.of(4, 2);
         RoundComponentMaker maker = new RoundComponentMaker(stitchesPerRound);
         maker.formatGivenRounds(stitchesPerRound, true);
@@ -207,12 +210,11 @@ public class RoundComponentMakerTest {
         List<RoundComponent> components = List.of(
                 new RoundComponent(2, ComponentType.ROUND_NUMBER),
                 new RoundComponent(2, ComponentType.SINGLE_CROCHET),
-                new RoundComponent(1, ComponentType.SINGLE_CROCHET),
                 new RoundComponent(1, ComponentType.INCREASE),
                 new RoundComponent(5, ComponentType.REPEAT_SINGLE_CROCHET),
                 new RoundComponent(1, ComponentType.REPEAT_INCREASE),
                 new RoundComponent(2, ComponentType.REPEAT_COUNT),
-                new RoundComponent(2, ComponentType.SINGLE_CROCHET),
+                new RoundComponent(3, ComponentType.SINGLE_CROCHET),
                 new RoundComponent(21, ComponentType.STITCH_TOTAL)
         );
         for (int i = 0; i < components.size(); i++) {

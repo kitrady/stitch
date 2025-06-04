@@ -1,5 +1,7 @@
 package com.kitrady;
 
+import com.kitrady.componentMakerStates.StartState;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,10 +30,30 @@ public class RoundComponentMaker {
 
     private void generateIncreaseRoundComponents(List<Integer> stitchesPerRound, int finalLargestRoundIndex) {
         for (int i = 1; i <= finalLargestRoundIndex; i++) {
-            updateRoundComponents(i + 1, ComponentType.ROUND_NUMBER);
-
             int previousStitchTotal = stitchesPerRound.get(i - 1);
             int currentStitchTotal = stitchesPerRound.get(i);
+
+            ComponentMakerRoundInfo info = new ComponentMakerRoundInfo(i + 1, previousStitchTotal, currentStitchTotal, alternateRoundToPreventBubblesCounter);
+
+            ComponentMakerState state = new StartState();
+
+            while (!state.isEndState()) {
+                state = state.step(info);
+            }
+
+            alternateRoundToPreventBubblesCounter = info.getAlternateRoundToPreventBubblesCounter();
+            roundComponents = info.getRoundComponents();
+            addRoundComponents();
+        }
+    }
+
+    private void generateIncreaseRoundComponents1(List<Integer> stitchesPerRound, int finalLargestRoundIndex) {
+        for (int i = 1; i <= finalLargestRoundIndex; i++) {
+            int previousStitchTotal = stitchesPerRound.get(i - 1);
+            int currentStitchTotal = stitchesPerRound.get(i);
+
+            updateRoundComponents(i + 1, ComponentType.ROUND_NUMBER);
+
             int numIncreases = currentStitchTotal - previousStitchTotal;
 
             if (numIncreases == 0) {
