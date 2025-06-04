@@ -16,7 +16,7 @@ public class ConeMaker implements ShapeMaker {
         this.changeInRadiusPerOneRound = changeInRadiusPerOneRound;
     }
 
-    public void generateStitchTotals() {
+    private void generateStitchTotals() {
         for (double currentRadius = radiusInStitches; currentRadius >= 4 / (2 * Math.PI); currentRadius -= changeInRadiusPerOneRound) {
             int currentCircumferenceInStitches = (int) Math.round(2 * Math.PI * currentRadius);
             if (currentCircumferenceInStitches > 4) {
