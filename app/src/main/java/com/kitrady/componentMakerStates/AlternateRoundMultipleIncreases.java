@@ -27,7 +27,7 @@ public class AlternateRoundMultipleIncreases implements ComponentMakerState {
         roundComponents.add(new RoundComponent(numIncreases - 1, ComponentType.REPEAT_COUNT));
 
         if (numSingleCrochetInHalfSection * 2 != numSingleCrochetInSection) {
-            numSingleCrochetInHalfSection ++;
+            numSingleCrochetInHalfSection++;
         }
         roundComponents.add(new RoundComponent(numSingleCrochetInHalfSection, ComponentType.SINGLE_CROCHET));
 

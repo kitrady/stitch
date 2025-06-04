@@ -13,7 +13,7 @@ public class PatternRunner {
 
         InputHandler handler = createInputHandler(input);
         ShapeMaker maker = handler.makeShapeMaker();
-        RoundComponentMaker componentMaker =  new RoundComponentMaker(maker.getStitchesPerRound());
+        RoundComponentMaker componentMaker = new RoundComponentMaker(maker.getStitchesPerRound());
         componentMaker.generateAllRoundComponents();
         RoundComponentAssembler assembler = new RoundComponentAssembler(componentMaker.getAllRoundComponents());
         assembler.assemble();

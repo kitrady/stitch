@@ -6,7 +6,7 @@ import com.kitrady.ShapeMaker;
 
 import java.util.Scanner;
 
-import static java.lang.Math.*;
+import static java.lang.Math.abs;
 
 public class SphereInputHandler implements InputHandler {
     private final double diameter; // units are inches

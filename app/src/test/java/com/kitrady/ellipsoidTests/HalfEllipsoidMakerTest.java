@@ -2,8 +2,10 @@ package com.kitrady.ellipsoidTests;
 
 import com.kitrady.ellipsoids.HalfEllipsoidMaker;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HalfEllipsoidMakerTest {
     @Test

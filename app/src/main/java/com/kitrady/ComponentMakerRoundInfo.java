@@ -37,7 +37,7 @@ public class ComponentMakerRoundInfo {
         return roundComponents;
     }
 
-    public int getPreviousStitchTotal(){
+    public int getPreviousStitchTotal() {
         return previousStitchTotal;
     }
 
