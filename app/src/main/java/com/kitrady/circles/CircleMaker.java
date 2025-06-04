@@ -15,7 +15,7 @@ public class CircleMaker implements ShapeMaker {
         this.roundLengthInStitches = roundLengthInStitches;
     }
 
-    public void generateStitchTotals() {
+    private void generateStitchTotals() {
         for (int currentRadiusInRounds = 1; currentRadiusInRounds <= radiusInRounds; currentRadiusInRounds++) {
             double currentRadiusInStitches = roundLengthInStitches * currentRadiusInRounds;
             double currentRoundCircumferenceInStitches = (2 * Math.PI * currentRadiusInStitches);

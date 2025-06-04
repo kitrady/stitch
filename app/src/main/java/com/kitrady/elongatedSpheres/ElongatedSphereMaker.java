@@ -19,7 +19,7 @@ public class ElongatedSphereMaker implements ShapeMaker {
         this.cylinderLengthInRounds = cylinderLengthInRounds;
     }
 
-    public void generateStitchTotals() {
+    private void generateStitchTotals() {
         ShapeMaker sphereMaker = new SphereMaker(radiusInStitches, degreesPerRound);
         stitchesPerRound.addAll(sphereMaker.getStitchesPerRound());
 
