@@ -16,7 +16,7 @@ public class SphereMaker implements ShapeMaker {
         this.degreesPerRound = degreesPerRound;
     }
 
-    public void generateStitchTotals() {
+    private void generateStitchTotals() {
         double angle;
         for (angle = (90 - degreesPerRound); angle >= 0; angle -= degreesPerRound) {
             double height = radiusInStitches * Math.sin(Math.toRadians(angle));
