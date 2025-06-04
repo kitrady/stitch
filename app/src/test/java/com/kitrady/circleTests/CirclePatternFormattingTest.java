@@ -47,6 +47,6 @@ Rd 3: 7 inc, 6 sc (20)
 Rd 4: (2 sc, 1 inc) x6, 2 sc (26)
 Rd 5: 1 sc, 1 inc, (2 sc, 1 inc) x6, 6 sc (33)
 Rd 6: (3 sc, 1 inc) x7, 5 sc (40)
-Rd 7: 3 sc, 1 inc, (5 sc, 1 inc) x5, 6 sc (46)""", output.toString());
+Rd 7: 2 sc, 1 inc, (5 sc, 1 inc) x5, 7 sc (46)""", output.toString());
     }
 }
