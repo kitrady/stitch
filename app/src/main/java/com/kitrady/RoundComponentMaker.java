@@ -28,10 +28,13 @@ public class RoundComponentMaker {
 
     private void generateIncreaseRoundComponents(List<Integer> stitchesPerRound, int finalLargestRoundIndex) {
         for (int i = 1; i <= finalLargestRoundIndex; i++) {
-            updateRoundComponents(i + 1, ComponentType.ROUND_NUMBER);
-
             int previousStitchTotal = stitchesPerRound.get(i - 1);
             int currentStitchTotal = stitchesPerRound.get(i);
+
+            ComponentMakerInfo info = new ComponentMakerInfo(i + 1, previousStitchTotal, currentStitchTotal);
+
+            updateRoundComponents(i + 1, ComponentType.ROUND_NUMBER);
+
             int numIncreases = currentStitchTotal - previousStitchTotal;
 
             if (numIncreases == 0) {
