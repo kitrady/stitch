@@ -7,6 +7,10 @@ import com.kitrady.spheres.SphereInputHandler;
 
 import java.util.Scanner;
 
+// TODO check state machine stuff to ensure it is well named
+// TODO check to ensure tests cover all of state machine stuff
+// TODO update README
+
 public class PatternRunner {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
