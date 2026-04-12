@@ -3,4 +3,11 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="23" />
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="stitch.app" options="-Werror -Xlint" />
+      <module name="stitch.app.main" options="-Werror -Xlint" />
+      <module name="stitch.app.test" options="-Werror -Xlint" />
+    </option>
+  </component>
 </project>
