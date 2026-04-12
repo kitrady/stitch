@@ -8,13 +8,17 @@ import com.kitrady.spheres.SphereInputHandler;
 
 import java.util.Scanner;
 
+// TODO check state machine stuff to ensure it is well named
+// TODO check to ensure tests cover all of state machine stuff
+// TODO update README
+
 public class PatternRunner {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
         InputHandler handler = createInputHandler(input);
         ShapeMaker maker = handler.makeShapeMaker();
-        RoundComponentMaker componentMaker =  new RoundComponentMaker(maker.getStitchesPerRound());
+        RoundComponentMaker componentMaker = new RoundComponentMaker(maker.getStitchesPerRound());
         componentMaker.generateAllRoundComponents();
         RoundComponentAssembler assembler = new RoundComponentAssembler(componentMaker.getAllRoundComponents());
         assembler.assemble();

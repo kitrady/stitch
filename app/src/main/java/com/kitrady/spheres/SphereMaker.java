@@ -3,7 +3,6 @@ package com.kitrady.spheres;
 import com.kitrady.ShapeMaker;
 
 import java.util.ArrayList;
-import java.lang.Math;
 import java.util.List;
 
 public class SphereMaker implements ShapeMaker {
